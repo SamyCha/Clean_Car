@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170821151811) do
+ActiveRecord::Schema.define(version: 20170821152022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,9 +21,18 @@ ActiveRecord::Schema.define(version: 20170821151811) do
     t.string "model"
     t.string "color"
     t.bigint "user_id"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_cars_on_category_id"
     t.index ["user_id"], name: "index_cars_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cleanings", force: :cascade do |t|
@@ -35,9 +44,9 @@ ActiveRecord::Schema.define(version: 20170821151811) do
     t.string "cleaning_status"
     t.string "images"
     t.bigint "user_id"
-    t.bigint "car_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "car_id"
     t.index ["car_id"], name: "index_cleanings_on_car_id"
     t.index ["user_id"], name: "index_cleanings_on_user_id"
   end
@@ -64,6 +73,7 @@ ActiveRecord::Schema.define(version: 20170821151811) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cars", "categories"
   add_foreign_key "cars", "users"
   add_foreign_key "cleanings", "cars"
   add_foreign_key "cleanings", "users"
