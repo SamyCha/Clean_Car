@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def after_sign_in_path(user)
+    if user.cleaner == true
+
+    end
+  end
+
   def configure_permitted_parameters
     # rajouter ici les keys pour les champs à add lors du sign-up
     # https://karr.lewagon.org/lectures/rails/07-authentication#/5/3

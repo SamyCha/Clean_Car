@@ -17,6 +17,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def change_to_cleaner
+    # cleaner: true
+    redirect_to new_registration_path(:user)
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save
