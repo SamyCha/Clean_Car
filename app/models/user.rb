@@ -4,8 +4,8 @@ class User < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
-  has_many :cleanings
-  has_many :cars
+  has_many :cleanings, dependent: :destroy
+  has_many :cars, dependent: :destroy
 
   # email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   # wtf ? validation on an encrypted password testing a mail regex ???

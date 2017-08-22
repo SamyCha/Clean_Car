@@ -8,7 +8,8 @@ gem 'pg'
 gem 'puma'
 gem 'rails', '5.1.3'
 gem 'redis'
-gem "geocoder"
+gem 'geocoder'
+gem 'faker'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
@@ -33,5 +34,3 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
-gem 'geocoder'
