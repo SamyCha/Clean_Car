@@ -6,9 +6,9 @@ puts "All tables are destroyed !"
 
 puts "Generating some random users & cleaners"
 # Users / Customers
-User.create!(email: "test@test", password: "test", latitude: 44.8, longitude: -0.5)
-User.create!(email: "test2@test", password: "test", address: Faker::Address.city)
-User.create!(email: "test3@test", password: "test", latitude: 31.13, longitude: 121)
+User.create!(email: "test@test", password: "test", latitude: 44.8, longitude: -0.5, phonenumber: Faker::PhoneNumber.cell_phone)
+User.create!(email: "test2@test", password: "test", address: Faker::Address.city, phonenumber: Faker::PhoneNumber.cell_phone)
+User.create!(email: "test3@test", password: "test", latitude: 31.13, longitude: 121, phonenumber: Faker::PhoneNumber.cell_phone)
 
 # Cleaners
 x = User.new(firstname: Faker::Name.first_name, lastname: Faker::Name.last_name, email: "test4@test", password: "test", address: Faker::Address.city, phonenumber: Faker::PhoneNumber.cell_phone, cleaner: true)
