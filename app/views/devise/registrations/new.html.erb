@@ -1,17 +1,67 @@
-<h2>Sign up</h2>
+<div class="container">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
+  <div class="row">
+    <div class="col-xs-12" style="margin-top: 50px;">
+      <h2 class="text-right" style="margin-right: 20px;">
+        Sign up
+        <small>
+        <% if params[:cleaner] %>
+          as cleaner
+        <% else %>
+          as client
+        <% end %>
+        </small>
+      </h2>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
+  <div class="row">
+    <div class="col-xs-12">
 
-<%= render "devise/shared/links" %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <div class="col-xs-12">
+            <%= f.input :email, required: true, autofocus: true %>
+        <% if params[:cleaner] %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :firstname, required: true %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :lastname, required: true %>
+          </div>
+          <div class="col-xs-12">
+              <%= f.input :address, required: true%>
+              <%= f.input :cleaner, as: :hidden, input_html: {value: true} %>
+        <% end %>
+            <%= f.input :phonenumber, required: true %>
+            <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+            <%= f.input :password_confirmation, required: true %>
+          </div>
+        </div>
+
+        <div class="form-actions col-xs-6 ">
+          <%= f.button :submit, "Sign up", class: "btn btn-default", style: "width: 100%"  %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <h5>Already an account ?</h5>
+    </div>
+    <div class="col-xs-6 col-xs-offset-3 text-center btn btn-default" style="margin-bottom: 100px;">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
+
+
+
+
+

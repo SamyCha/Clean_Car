@@ -37,4 +37,5 @@ z.save!
 cleaning = Cleaning.new(place: Faker::Address.city, period: Faker::Date.between( Date.today, 1.year.from_now), comment_access: "usefull comment on where is the car", requirements: true, rating: 4, cleaning_status: "confirmed", images: "whatever attachinary", user: x, car: z)
 cleaning.save!
 
+
 puts "Seed done !"
