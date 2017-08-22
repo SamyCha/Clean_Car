@@ -3,6 +3,12 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @cleaners = User.where(cleaner: true)
+    @hash = Gmaps4rails.build_markers(@cleaners) do |cleaner, marker|
+      marker.lat cleaner.latitude
+      marker.lng cleaner.longitude
+      # marker.infowindow render_to_string(partial: "/cleaners/map_box", locals: { cleaner: cleaner })
+    end
   end
 
   def new
@@ -22,10 +28,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
   end
 
   def update
-    @ruser.update(params[:user])
+    @user.update(params[:user])
     redirect_to_restaurant_path
   end
 

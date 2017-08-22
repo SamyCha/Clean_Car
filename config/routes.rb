@@ -5,5 +5,7 @@ Rails.application.routes.draw do
     resources :cars, only: [:new, :create, :edit, :update, :destroy]
   end
   resources :cleanings
-  root to: 'pages#home'
+
+  root 'pages#home'
+  get 'map', to: 'users#index'
 end
