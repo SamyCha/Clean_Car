@@ -1,4 +1,5 @@
 <div class="container">
+
   <div class="row">
     <div class="col-xs-12" style="margin-top: 50px;">
       <h2 class="text-right" style="margin-right: 20px;">Sign up</h2>
@@ -14,6 +15,7 @@
         <div class="form-inputs">
           <div class="col-xs-12">
             <%= f.input :email, required: true, autofocus: true %>
+        <% if params[:cleaner] %>
           </div>
           <div class="col-xs-6">
             <%= f.input :firstname, required: true %>
@@ -22,8 +24,10 @@
             <%= f.input :lastname, required: true %>
           </div>
           <div class="col-xs-12">
-            <%= f.input :address, required: true, autofocus: true %>
-            <%= f.input :phonenumber, required: true, autofocus: true %>
+              <%= f.input :address, required: true%>
+              <%= f.input :cleaner, as: :hidden, input_html: {value: true} %>
+        <% end %>
+            <%= f.input :phonenumber, required: true %>
             <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
             <%= f.input :password_confirmation, required: true %>
           </div>

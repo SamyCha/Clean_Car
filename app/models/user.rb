@@ -9,14 +9,19 @@ class User < ApplicationRecord
 
   # email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   # wtf ? validation on an encrypted password testing a mail regex ???
-  # validates :encrypted_password, presence: true, uniqueness: true, allow_blank: false, format: { :with => email_regex }
 
   validates :email, presence: true, uniqueness: true, allow_blank: false
-  # validates :firstname, presence: true, allow_blank: false
-  # validates :lastname, presence: true, allow_blank: false
-  # validates :adress, presence: true, allow_blank: false
-  # validates :phonenumber, presence: true, allow_blank: false
-  # validates :cleaner, presence: true, allow_blank: false
+  validates :encrypted_password, presence: true, uniqueness: true, allow_blank: false
+
+  validate :require_cleaner
+
+  def require_cleaner
+    if cleaner
+      unless address.present? && firstname.present? && lastname.present?
+        errors.add(:cleaner, "Needs an address, a first name and a last name")
+      end
+    end
+  end
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

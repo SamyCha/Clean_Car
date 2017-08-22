@@ -1,14 +1,13 @@
 
 <div class="container">
   <% @cleaners.each do |cleaner| %>
-  <div class="col-xs-12">
-    <div class="row">
-      <div class="card-user">
-        <img src="#" class="card-user-avatar">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="card" >
         <%= image_tag "profil.png", id: "logo", height: 60 %>
-          <div class="card-user-infos">
+          <div class="card-user">
           <%= cleaner.firstname %>
-          <%= cleaner.rating %>
+          <%#= user.cleanings.rating %>
           </div>
         <% end %>
       </div>
