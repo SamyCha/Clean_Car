@@ -5,6 +5,9 @@ class UsersController < ApplicationController
     @address = params["address"]
     @users = User.all
     @cleaners = User.where(cleaner: true)
+                    .near(@address, 20)
+    #ici ce n'est pas tous les User que l'on affiche mais seulement les cleaners (à corriger)
+
     @hash = Gmaps4rails.build_markers(@cleaners) do |cleaner, marker|
       marker.lat cleaner.latitude
       marker.lng cleaner.longitude
