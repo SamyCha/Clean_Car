@@ -1,16 +1,15 @@
 
-<div class="container">
-  <% @cleaners.each do |cleaner| %>
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="card" >
-        <%= image_tag "profil.png", id: "logo", height: 60 %>
-          <div class="card-user">
-          <%= cleaner.firstname %>
-          <%#= user.cleanings.rating %>
-          </div>
-        <% end %>
-      </div>
+<% @cleaners.each do |cleaner| %>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="card" >
+      <%= image_tag "profil.png", id: "logo", height: 60 %>
+        <div class="card-user">
+        <%= cleaner.firstname %>
+        <%#= user.cleanings.rating %>
+        </div>
     </div>
   </div>
 </div>
+<% end %>
+

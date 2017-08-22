@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true, allow_blank: false
   validates :encrypted_password, presence: true, uniqueness: true, allow_blank: false
+  validates :phonenumber, presence: true
 
   validate :require_cleaner
 
