@@ -19,7 +19,6 @@ gem 'simple_form'
 gem 'uglifier'
 gem "coffee-rails"
 gem "gmaps4rails"
-
   source 'https://rails-assets.org' do
   gem "rails-assets-underscore"
 end
