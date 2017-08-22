@@ -1,4 +1,5 @@
 
-<% user.each do |user| if user.cleaner?
+<% if @user.cleaner? %>
   <p><%= @user.firstname %></p>
-  <% end %>
+<% end %>
+<p><%= @user raise %></p>
