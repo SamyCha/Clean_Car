@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20170821165748) do
     t.string "lastname"
     t.string "address"
     t.string "phonenumber"
-    t.boolean "cleaner"
+    t.boolean "cleaner", default: false
     t.float "latitude"
     t.float "longitude"
     t.index ["email"], name: "index_users_on_email", unique: true
