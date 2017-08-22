@@ -2,8 +2,10 @@ class UsersController < ApplicationController
    before_action :find_user, only: [:show, :edit, :update, :destroy]
 
   def index
+    @address = params["address"]
     @users = User.all
-    @cleaners = User.where(cleaner: true)
+    @cleaners = User.where.not(latitude: nil, longitude: nil)
+    #ici ce n'est pas tous les User que l'on affiche mais seulement les cleaners (à corriger)
     @hash = Gmaps4rails.build_markers(@cleaners) do |cleaner, marker|
       marker.lat cleaner.latitude
       marker.lng cleaner.longitude
