@@ -3,11 +3,10 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @cleaners = User.where.not(latitude: nil, longitude: nil)
-#ici ce n'est pas tous les User que l'on affiche mais seulement les cleaners (à corriger)
+    @cleaners = User.where(cleaner: true)
     @hash = Gmaps4rails.build_markers(@cleaners) do |cleaner, marker|
-      marker.lat flat.latitude
-      marker.lng flat.longitude
+      marker.lat cleaner.latitude
+      marker.lng cleaner.longitude
       # marker.infowindow render_to_string(partial: "/cleaners/map_box", locals: { cleaner: cleaner })
     end
   end
