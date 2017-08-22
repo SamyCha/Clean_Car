@@ -11,8 +11,10 @@ User.create!(email: "test2@test", password: "test", address: "Sydney")
 User.create!(email: "test3@test", password: "test", latitude: 31.13, longitude: 121)
 
 # Cleaners
-User.create!(email: "test4@test", password: "test", address: "Moscou", cleaner: true)
-User.create!(email: "test5@test", password: "test", address: "Tokyo", cleaner: true)
-User.create!(email: "test6@test", password: "test", address: "Rio de Janeiro", cleaner: true)
+User.create!(email: "test4@test", password: "test", firstname: "Adrien", rating: 3, address: "Moscou", cleaner: true)
+User.create!(email: "test5@test", password: "test", firstname: "Marco", rating: 4, address: "Tokyo", cleaner: true)
+User.create!(email: "test6@test", password: "test", firstname: "Lolo", rating: 2, address: "Rio de Janeiro", cleaner: true)
+User.create!(email: "test7@test", password: "test", firstname: "Marco", rating: 4, address: "Bordeaux", cleaner: true)
+User.create!(email: "test8@test", password: "test", firstname: "Marco", rating: 5, address: "Bordeaux", cleaner: true)
 
 puts "Seed done !"
