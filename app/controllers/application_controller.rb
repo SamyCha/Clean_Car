@@ -1,4 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :authenticate_user!
+  # decommenter cette ligne sinon gros trou dans le site ! :O
+  # skip_before_action :authenticate_user!
+
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def configure_permitted_parameters
+    # rajouter ici les keys pour les champs à add lors du sign-up
+    # https://karr.lewagon.org/lectures/rails/07-authentication#/5/3
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:firstname, :lastname, :phonenumber, :address])
+    # devise_parameter_sanitizer.permit(:account_update, keys: [:username])
+  end
 end
