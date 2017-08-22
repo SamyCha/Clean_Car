@@ -1,3 +1,3 @@
 class Category < ApplicationRecord
-  belongs_to :car
+  has_many :cars
 end
