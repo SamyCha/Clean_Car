@@ -12,7 +12,7 @@
             <label style="font-weight: lighter;">cleaners around you</label>
           </div>
           <div class="col-xs-9">
-            <input type="address" class="form-control" placeholder="Location of your car">
+            <%= text_field_tag :location_address, nil, class: "form-control", placeholder: "Location of your car"  %>
           </div>
           <div class="col-xs-3" style="padding: 0px;">
             <input type="submit" class="btn btn-success" value="search">
@@ -53,4 +53,3 @@
     </div>
   </div>
 </div>
-
