@@ -1,10 +1,35 @@
-<p>
-  Voici les différents cleaners sur la map
-</p>
-
 <div class="container">
-  <div class="col-xs-12">
+  <div class="row text-right" style="margin-top: 15px;">
+    <div class="col-xs-10 col-xs-offset-2">
+      <h2>My Clean Car</h2>
+      <h6>book an eco wash</h6>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top: 50px;">
+    <div class="col-xs-12">
+     <h6>Cleaners around you</h6>
+    </div>
     <div id="map" style="width: 100%; height: 200px;"></div>
+  </div>
+
+  <div class="row" style="margin-top: 50px;">
+    <% @cleaners.each do |cleaner| %>
+    <div class="col-xs-12">
+      <div class="card" >
+        <%= image_tag "profil.png", id: "logo", height: 60 %>
+          <div class="card-user">
+          <%= cleaner.firstname %>
+          </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+
+
+  <div class="col-xs-12 text-center">
+    <%= link_to "Connect to My Clean Car", new_user_session_path, class: "btn btn-success" %>
   </div>
 </div>
 
@@ -36,22 +61,3 @@
   <% end %>
 <% end %>
 
-<% @cleaners.each do |cleaner| %>
-<div class="row">
-  <div class="col-xs-12">
-    <div class="card" >
-      <%= image_tag "profil.png", id: "logo", height: 60 %>
-        <div class="card-user">
-        <%= cleaner.firstname %>
-        <%#= user.cleanings.rating %>
-        </div>
-    </div>
-  </div>
-</div>
-<% end %>
-
-
-
-<div class="col-xs-12 text-center">
-  <%= link_to "Connect to My Clean Car", new_user_session_path, class: "btn btn-success" %>
-</div>

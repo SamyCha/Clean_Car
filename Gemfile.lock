@@ -43,9 +43,9 @@ GEM
     autoprefixer-rails (7.1.2.6)
       execjs
     bcrypt (3.1.11)
-    better_errors (2.1.1)
+    better_errors (2.3.0)
       coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
+      erubi (>= 1.0.0)
       rack (>= 0.9.0)
     bindex (0.5.0)
     binding_of_caller (0.7.2)
@@ -72,7 +72,6 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.6.1)
-    erubis (2.7.0)
     execjs (2.7.0)
     faker (1.8.4)
       i18n (~> 0.5)
