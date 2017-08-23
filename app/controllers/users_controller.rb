@@ -37,6 +37,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @title = "Dashboard"
   end
 
   def show
