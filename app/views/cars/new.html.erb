@@ -1,19 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 text-right" style="margin-top: 50px;">
-      <h2>Enter your cars to clean</h2>
+      <h2>Enter your car to clean</h2>
     </div>
   </div>
 
   <div class="row">
     <div class="col-xs-12">
 
-      <%= simple_form_for(:car, url: cars_path) do |f| %>
+      <%= simple_form_for @car do |f| %>
         <%= f.error_notification %>
 
         <div class="form-inputs">
           <div class="col-xs-12">
-            <%= f.input :immatriculation, placeholder: " 888 DB 33"  %>
+            <%= f.input :immatriculation, placeholder: "DB 888 QV"  %>
           </div>
           <div class="col-xs-6">
             <%= f.input :brand, placeholder: "Peugeot" %>
@@ -26,10 +26,12 @@
           </div>
 
           <div class="col-xs-12 text-center">
-            <%= f.submit "Save this car", class: "btn btn-success" %>
+            <%= f.submit "Save this Car", class: "btn btn-success" %>
+              or
+            <%= link_to "Add an other Car", new_car_path(current_user), class: "btn btn-primary" %>
           </div>
         </div>
-      <% end %>
+       <% end %>
     </div>
   </div>
 </div>

@@ -7,10 +7,12 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
+    @car.update(user: current_user)
     if @car.save
-      redirect_to cars_path
+      redirect_to new_cleaning_path
     else
-      render :new
+      flash[:alert] = "please enter the right informations"
+      redirect_to new_car_path
     end
   end
 
