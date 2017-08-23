@@ -41,7 +41,11 @@
 
   <div class="row" style="margin-top: 50px;">
     <div class="col-xs-12 text-center">
-      <%= link_to "Connect to My Clean Car", new_user_session_path, class: "btn btn-success" %>
+      <% if current_user %>
+        <%= link_to "Book a Cleaning", new_cleaning_path, class: "btn btn-success" %>
+      <% else %>
+        <%= link_to "Connect to My Clean Car", new_user_session_path, class: "btn btn-success" %>
+      <% end %>
     </div>
   </div>
 </div>
