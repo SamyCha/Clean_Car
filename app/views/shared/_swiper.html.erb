@@ -2,9 +2,9 @@
   <div class="swiper-container swiper-container-horizontal">
     <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1860px, 0px, 0px);">
 
-      <div class="swiper-slide" style="height: 25vh; margin-right: 30px; background-color: #e5e5e5; display: flex; align-items: center;">
-        <%= link_to new_car_path do %>
-          <h3>Create new car</h3>
+      <div class="swiper-slide" style="height: 25vh; margin-right: 30px; background-color: #e5e5e5;">
+          <%= link_to new_car_path, class: "col-xs-12", style: "height: 100%; display: flex; align-items: center; justify-content: center;" do %>
+            <h4>Create new car</h4>
         <% end %>
       </div>
 
@@ -17,13 +17,13 @@
               <%= image_tag "car picto.png", style: "width: 100%; height: 14vh; background-color: white;", class: "img-circle" %>
             <% end %>
           </div>
-          <div class="col-xs-7">
+          <div class="col-xs-6">
             <h4>
               <%= car.brand %>
               <%= car.model %>
               <%= car.color %>
             </h4>
-            <h6>
+            <h6 style="display: flex; justify-content: space-around;">
               <small>
                 <%= car.immatriculation %>
               </small>
@@ -46,6 +46,7 @@
 <script>
   var swiper = new Swiper('.swiper-container', {
     initialSlide: 1,
+    roundLengths: true,
     pagination: '.swiper-pagination',
     paginationClickable: true,
     nextButton: '.swiper-button-next',
