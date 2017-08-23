@@ -1,0 +1,31 @@
+<div class="row" style="margin: 50px 0px;">
+  <div class="swiper-container swiper-container-horizontal">
+    <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1860px, 0px, 0px);">
+
+      <% @cars.each do |car| %>
+        <div class="swiper-slide" style="height: 300px; width: 900px; margin-right: 30px; background-color: #e5e5e5;">
+
+        </div>
+      <% end %>
+
+      <div class="swiper-slide" style="width: 900px; margin-right: 30px;">Slide 10</div>
+    </div>
+
+    <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
+    </div>
+
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</div>
+
+<script>
+  var swiper = new Swiper('.swiper-container', {
+    initialSlide: 0,
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    spaceBetween: 30
+  });
+</script>
