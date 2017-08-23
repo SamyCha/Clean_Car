@@ -1,14 +1,38 @@
-<div class="row" style="margin: 50px 0px;">
+<div class="row" style="margin-bottom: 20px;">
   <div class="swiper-container swiper-container-horizontal">
     <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1860px, 0px, 0px);">
 
-      <% @cars.each do |car| %>
-        <div class="swiper-slide" style="height: 300px; width: 900px; margin-right: 30px; background-color: #e5e5e5;">
+      <div class="swiper-slide" style="height: 25vh; margin-right: 30px; background-color: #e5e5e5; display: flex; align-items: center;">
+        <%= link_to new_car_path do %>
+          <h3>Create new car</h3>
+        <% end %>
+      </div>
 
+      <% @cars.each do |car| %>
+        <div class="swiper-slide" style="height: 25vh; margin-right: 30px; background-color: #e5e5e5; display: flex; align-items: center;">
+          <div class="col-xs-4 col-xs-offset-1">
+            <% if car.car_picture && !car.car_picture.blank? %>
+              <%= image_tag car.car_picture, class: "img-circle" %>
+            <% else %>
+              <%= image_tag "car picto.png", style: "width: 100%; height: 14vh; background-color: white;", class: "img-circle" %>
+            <% end %>
+          </div>
+          <div class="col-xs-7">
+            <h4>
+              <%= car.brand %>
+              <%= car.model %>
+              <%= car.color %>
+            </h4>
+            <h6>
+              <small>
+                <%= car.immatriculation %>
+              </small>
+              <%= Category.find(car.id).name %>
+            </h6>
+          </div>
         </div>
       <% end %>
 
-      <div class="swiper-slide" style="width: 900px; margin-right: 30px;">Slide 10</div>
     </div>
 
     <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
@@ -21,7 +45,7 @@
 
 <script>
   var swiper = new Swiper('.swiper-container', {
-    initialSlide: 0,
+    initialSlide: 1,
     pagination: '.swiper-pagination',
     paginationClickable: true,
     nextButton: '.swiper-button-next',
