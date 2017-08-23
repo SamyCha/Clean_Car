@@ -4,9 +4,16 @@ class UsersController < ApplicationController
   def index
     @title = "Index - My Clean Car"
 
-    @address = params["location_address"]
+    if params["location_address"]
+      @address = params["location_address"]
+    else
+      @address = "107 Cours Balguerie Stuttenberg, 33300 Bordeaux"
+    end
     @users = User.all
-    @cleaners = User.where(cleaner: true).near(@address, 20)
+    @cleaners = User.where(cleaner: true)
+    @cleaners = User.near(@address, 1000).first(5)
+
+
     #ici ce n'est pas tous les User que l'on affiche mais seulement les cleaners (à corriger)
 
     @hash = Gmaps4rails.build_markers(@cleaners) do |cleaner, marker|
