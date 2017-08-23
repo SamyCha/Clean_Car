@@ -13,19 +13,21 @@
 
         <div class="form-inputs">
           <div class="col-xs-12">
-            <%= f.input :immatriculation, required: true %>
+            <%= f.input :immatriculation, placeholder: " 888 DB 33"  %>
           </div>
           <div class="col-xs-6">
-            <%= f.input :brand, required: true %>
+            <%= f.input :brand, placeholder: "Peugeot" %>
           </div>
           <div class="col-xs-6">
-            <%= f.input :model, required: true %>
+            <%= f.input :model, placeholder: "208" %>
           </div>
           <div class="col-xs-6">
-            <%= f.input :color %>
+            <%= f.input :color, placeholder: "grey" %>
           </div>
-          <div class="form-actions col-xs-6 ">
-          <%= f.button :submit, "Continue to book a cleaning", class: "btn btn-default", style: "width: 100%"  %>
+       <%end%>
+
+          <div class="col-xs-12 text-center">
+            <%= link_to "Save this Car", new_user_session_path, class: "btn btn-success" %>
           </div>
         </div>
       <% end %>
