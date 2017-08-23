@@ -6,6 +6,7 @@ class CleaningsController < ApplicationController
   end
 
   def new
+    @cleaning = Cleaning.new
   end
 
   def create
