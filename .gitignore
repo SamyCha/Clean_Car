@@ -6,6 +6,8 @@ tmp/*
 .DS_Store
 public/assets
 .byebug_history
+Gemfile
+Gemfile.lock
 
 # Ignore application configuration
 /config/application.yml

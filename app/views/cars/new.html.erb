@@ -24,10 +24,9 @@
           <div class="col-xs-6">
             <%= f.input :color, placeholder: "grey" %>
           </div>
-       <%end%>
 
           <div class="col-xs-12 text-center">
-            <%= link_to "Save this Car", new_user_session_path, class: "btn btn-success" %>
+            <%= f.submit "Save this car", class: "btn btn-success" %>
           </div>
         </div>
       <% end %>

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resource)
-    new_user_car_path(current_user)
+    new_car_path(current_user)
   end
 
   def configure_permitted_parameters
