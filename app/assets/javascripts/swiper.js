@@ -227,9 +227,9 @@
             onAfterResize: function (swiper)
             onClick: function (swiper, e)
             onTap: function (swiper, e)
-            onDoubleTap: function (swiper, e)
-            onSliderMove: function (swiper, e)
-            onSlideChangeStart: function (swiper)
+            onDoubleTap: function (swiper, e)*/
+            // onSliderMove: function (swiper, e)
+            /*onSlideChangeStart: function (swiper)
             onSlideChangeEnd: function (swiper)
             onTransitionStart: function (swiper)
             onTransitionEnd: function (swiper)

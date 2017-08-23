@@ -15,6 +15,7 @@
     </div>
 
     <%= render "shared/swiper" %>
+    <%= f.text_field :car_id, id: "car_id_field", class: "hidden" %>
 
     <div class="row">
       <h6 style="margin-bottom: 3px; margin-left: 16px;">
@@ -47,8 +48,7 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <textarea class="form-control" placeholder="Give more details to the cleaner (special access, other informations ...)">
-        </textarea>
+        <%= f.text_area :comment_access, placeholder: "Give more details to the cleaner (special access, other informations ...)", class: "form-control"  %>
       </div>
     </div>
 
@@ -59,3 +59,10 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  $(document).ready(function(){
+    var carId = $(".swiper-slide-active").attr('id');
+    $('#car_id_field').val(carId);
+  });
+</script>

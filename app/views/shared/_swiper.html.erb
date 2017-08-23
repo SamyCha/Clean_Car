@@ -9,7 +9,7 @@
       </div>
 
       <% @cars.each do |car| %>
-        <div class="swiper-slide" style="height: 19vh; margin-right: 30px; background-color: #e5e5e5; display: flex; align-items: center;">
+        <div class="swiper-slide" id="<%= car.id %>" style="height: 19vh; margin-right: 30px; background-color: #e5e5e5; display: flex; align-items: center;">
           <div class="col-xs-4 col-xs-offset-1">
             <% if car.car_picture && !car.car_picture.blank? %>
               <%= image_tag car.car_picture, class: "img-circle" %>
@@ -51,6 +51,11 @@
     paginationClickable: true,
     nextButton: '.swiper-button-next',
     prevButton: '.swiper-button-prev',
-    spaceBetween: 30
+    spaceBetween: 30,
+    onSlideChangeEnd: function (swiper) {
+      var carId = $(".swiper-slide-active").attr('id');
+      $('#car_id_field').val(carId);
+    }
   });
 </script>
+
