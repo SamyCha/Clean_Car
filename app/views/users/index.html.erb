@@ -25,7 +25,7 @@
         </div>
 
         <div class="col-xs-3 col-xs-offset-3">
-          <% unless cleaner.cleanings.blank? or cleaner.cleanings.exist? == false %>
+          <% unless cleaner.cleanings.blank? or cleaner.cleanings.exists? == false %>
             <% cleaner.cleanings.each do |cleaning| %>
               <% @ratings << cleaning.rating  %>
             <% end %>
