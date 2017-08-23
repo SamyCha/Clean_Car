@@ -6,6 +6,8 @@ class CleaningsController < ApplicationController
   end
 
   def new
+    @cleaning = Cleaning.new
+    @cars = Car.where(user_id: current_user.id)
   end
 
   def create

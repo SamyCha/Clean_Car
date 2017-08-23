@@ -4,18 +4,26 @@
         <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown" "></i>
         <ul class="dropdown-menu">
           <% if user_signed_in? %>
-            <li><a href="#">Other one</a></li>
-            <li><a href="#">Other one</a></li>
+            <li><%= link_to "New cleaning", new_cleaning_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+
+            <li><%= link_to "Dashboard", dashboard_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %></li>
+
             <li role="separator" class="divider"></li>
             <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
+              <%= link_to destroy_user_session_path, class: "navbar-wagon-item navbar-wagon-link", method: :delete do %>
                 <%= t(".sign_out", default: "Log out") %>
               <% end %>
             </li>
+
           <% else %>
+
             <li><%= link_to "home", root_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+
             <li role="separator" class="divider"></li>
-            <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
+            <li>
+              <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+            </li>
           <% end %>
         </ul>
       </div>
