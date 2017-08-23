@@ -1,2 +1,33 @@
-<h1>Cars#new</h1>
-<p>Find me in app/views/cars/new.html.erb</p>
+<div class="container">
+  <div class="col-xs-12" style="margin-top: 50px;">
+      <h2 class="text-right" style="margin-right: 20px;">
+        Enter your cars to clean
+      </h2>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <div class="col-xs-12">
+            <%= f.input :immatriculation, required: true %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :brand, required: true %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :model, required: true %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :color %>
+          </div>
+          <div class="form-actions col-xs-6 ">
+          <%= f.button :submit, "Continue to book a cleaning", class: "btn btn-default", style: "width: 100%"  %>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

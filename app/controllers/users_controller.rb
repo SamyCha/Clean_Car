@@ -11,17 +11,16 @@ class UsersController < ApplicationController
     end
     @users = User.all
     @cleaners = User.where(cleaner: true)
-    @cleaners = User.near(@address, 1000).first(5)
-
 
     #ici ce n'est pas tous les User que l'on affiche mais seulement les cleaners (à corriger)
-
     @hash = Gmaps4rails.build_markers(@cleaners) do |cleaner, marker|
       marker.lat cleaner.latitude
       marker.lng cleaner.longitude
       marker.picture({ url: "https://image.prntscr.com/image/WtApDFKyS9SqShLkO0YrEw.png", width: 32, height: 32 })
     end
 
+    @cleaners = User.where(cleaner: true).near(@address, 1000).first(5)
+    @ratings = []
   end
 
   def new
