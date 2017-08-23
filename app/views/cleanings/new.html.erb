@@ -7,40 +7,62 @@
     </div>
   </div>
 
-  <div class="row">
-    select your car
-    (slidebox)
-  </div>
+  <%= form_for @cleaning do |f| %>
+    <div class="row">
+      <h6 style="margin: 0px 0px 3px 16px; ">
+        Select your car
+      </h6>
+    </div>
 
-  <%= render "shared/swiper" %>
+    <%= render "shared/swiper" %>
+    <%= f.text_field :car_id, id: "car_id_field", class: "hidden" %>
 
-  <div class="row">
-    enter your parking period
-    (icone de calendrier) --datetime picker--
+    <div class="row">
+      <h6 style="margin-bottom: 3px; margin-left: 16px;">
+        Enter your parking period
+      </h6>
+      <div class="col-xs-12">
+        <%= image_tag "datepicker.png", style: "height: 45px;"%>
+         --datetime picker--
+      </div>
+    </div>
 
-  </div>
+    <div class="row">
+      <h6 style="margin-bottom: 3px; margin-left: 16px;">
+        Car location during cleaning
+      </h6>
+      <div class="col-xs-12">
+        <%= image_tag "localisation.png", style: "height: 45px;"%>
+        --address input--
+      </div>
+    </div>
 
-  <div class="row">
-    Car location during cleaning
-    (icone location) --address input--
+    <div class="row">
+      <h6 style="margin-bottom: 3px; margin-left: 16px;">
+        Please confirm the mandatory items to order
+      </h6>
+      <div class="col-xs-12 text-center">
+        <h5>[Easy Access][Security][Private Zone]</h5>
+      </div>
+    </div>
 
-  </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= f.text_area :comment_access, placeholder: "Give more details to the cleaner (special access, other informations ...)", class: "form-control"  %>
+      </div>
+    </div>
 
-  <div class="row">
-    Please confirm the mandatory items to order
-    [Easy Access][Security][Private Zone]
-
-  </div>
-
-  <div class="row">
-    Give more details to the cleaner (special access, other informations ...)
-
-  </div>
-
-  <div class="row">
-    Contact a cleaner
-
-  </div>
-
-
+    <div class="row" style="margin-top: 15px;">
+      <div class="text-center">
+        <%= f.submit "Contact a cleaner", class: "btn btn-default" %>
+      </div>
+    </div>
+  <% end %>
 </div>
+
+<script>
+  $(document).ready(function(){
+    var carId = $(".swiper-slide-active").attr('id');
+    $('#car_id_field').val(carId);
+  });
+</script>
