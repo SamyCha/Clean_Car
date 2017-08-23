@@ -2,14 +2,14 @@
   <div class="swiper-container swiper-container-horizontal">
     <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1860px, 0px, 0px);">
 
-      <div class="swiper-slide" style="height: 25vh; margin-right: 30px; background-color: #e5e5e5;">
+      <div class="swiper-slide" style="height: 19vh; margin-right: 30px; background-color: #e5e5e5;">
           <%= link_to new_car_path, class: "col-xs-12", style: "height: 100%; display: flex; align-items: center; justify-content: center;" do %>
             <h4>Create new car</h4>
         <% end %>
       </div>
 
       <% @cars.each do |car| %>
-        <div class="swiper-slide" style="height: 25vh; margin-right: 30px; background-color: #e5e5e5; display: flex; align-items: center;">
+        <div class="swiper-slide" style="height: 19vh; margin-right: 30px; background-color: #e5e5e5; display: flex; align-items: center;">
           <div class="col-xs-4 col-xs-offset-1">
             <% if car.car_picture && !car.car_picture.blank? %>
               <%= image_tag car.car_picture, class: "img-circle" %>
