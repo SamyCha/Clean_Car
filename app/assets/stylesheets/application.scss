@@ -9,10 +9,6 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-// the 2 lines below are how we write basic imports in our bundler
-@import "flatpickr"; // same as require("flatpickr");
-@import "flatpickr/themes/material_blue";
-
 // Your CSS partials
 @import "layouts/index";
 @import "components/index";
@@ -20,4 +16,4 @@
 @import "pages/index";
 @import "components/card";
 @import "components/swiper";
-@import "components/timepicker";
+
