@@ -44,7 +44,7 @@ class CleaningsController < ApplicationController
   private
 
   def cleaning_params
-    params.require(:cleaning).permit(:car_id)
+    params.require(:cleaning).permit(:car_id, :address, :period, :comment_access)
   end
 
   def find_cleaning

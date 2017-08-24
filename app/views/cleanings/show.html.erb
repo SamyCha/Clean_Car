@@ -12,7 +12,7 @@
         <% if @car.car_picture && !@car.car_picture.blank? %>
           <%= image_tag @car.car_picture, class: "img-circle" %>
         <% else %>
-          <%= image_tag "car picto.png", style: "width: 80%; height: 9vh; background-color: white;", class: "img-circle" %>
+          <%= image_tag "car_picto.png", style: "width: 80%; height: 9vh; background-color: white;", class: "img-circle" %>
         <% end %>
       </div>
       <div class="col-xs-7 ">
@@ -25,7 +25,7 @@
           <small>
             <%= @car.immatriculation %>
           </small>
-          <%= Category.find(@car.id).name %>
+          <%= Category.find(@car.category_id).name %>
         </h6>
       </div>
   </div>
