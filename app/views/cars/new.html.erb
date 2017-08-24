@@ -24,27 +24,6 @@
             <%= f.input :color, placeholder: "grey" %>
           </div>
 
-    <div class="row">
-      <h6 style="margin-bottom: 3px; margin-left: 16px;">
-        Car size:
-      </h6>
-      <div class="col-xs-4">
-        <%= image_tag "car_picto.png", style: "height: 45px;"%>
-      </div>
-      <div class="col-xs-4">
-        <%= image_tag "car_picto.png", style: "height: 60px;"%>
-      </div>
-      <div class="col-xs-4">
-        <%= image_tag "car_picto.png", style: "height: 75px;"%>
-      </div>
-    </div>
-
-          <div class="col-xs-12 text-center">
-            <%= f.submit "Save this Car", class: "btn btn-success" %>
-              or
-            <%= link_to "Add an other Car", new_car_path(current_user), class: "btn btn-primary" %>
-          </div>
-
         </div>
     </div>
   </div>
