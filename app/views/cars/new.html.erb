@@ -1,2 +1,38 @@
-<h1>Cars#new</h1>
-<p>Find me in app/views/cars/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 text-right" style="margin-top: 50px;">
+      <h2>Enter your car to clean</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+
+      <%= simple_form_for @car do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <div class="col-xs-12">
+            <%= f.input :immatriculation, placeholder: "DB 888 QV"  %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :brand, placeholder: "Peugeot" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :model, placeholder: "208" %>
+          </div>
+          <div class="col-xs-6">
+            <%= f.input :color, placeholder: "grey" %>
+          </div>
+
+          <div class="col-xs-12 text-center">
+            <%= f.submit "Save this Car", class: "btn btn-success" %>
+              or
+            <%= link_to "Add an other Car", new_car_path(current_user), class: "btn btn-primary" %>
+          </div>
+        </div>
+       <% end %>
+    </div>
+  </div>
+</div>
+

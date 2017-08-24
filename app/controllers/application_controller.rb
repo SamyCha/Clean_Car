@@ -5,10 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  def after_sign_in_path(user)
-    if user.cleaner == true
-
-    end
+  def after_sign_in_path_for(resource)
+    Car.where(user_id: current_user.id).blank? ? new_car_path(current_user) : new_cleaning_path
   end
 
   def configure_permitted_parameters

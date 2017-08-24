@@ -1,0 +1,36 @@
+
+  <div class="container text-center">
+    <div class="row">
+    <div class="col-xs-12 text-center">
+      <div class="profile">
+        <div class="card main">
+          <div class="main-content">
+            <%= image_tag @user.picture, width: "150", class: "img-circle" %>
+            <h2>your last-name: <%= @user.lastname.capitalize %></h2>
+            <h2>your first-name: <%= @user.firstname %></h2>
+            <p>your e-mail: <%= @user.email %></p>
+            <p>your adress: <%= @user.address %></p>
+            <p>your phone-number: <%= @user.phonenumber %></p>
+            <% if @user != current_user %>
+              <%= link_to "UPDATE INFOS", user_path(current_user), class: "btn btn-success" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="col-xs-12">
+        <h6>Your upcoming cleanings:</h6>
+      </div>
+<!-- suicvi des cards incluant:
+- la marque,
+- le model,
+- l'immatriculation
+- l'image optionnel
+et le statut:
+- pending
+- ou aborted
+- ou to do
+le button Start Mission si le statut est "to do" avec un link vers cleaning#edit (si le paiement a été effectué)
+-->
+
+</div>

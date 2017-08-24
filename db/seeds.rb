@@ -32,23 +32,19 @@ User.create!(firstname: Faker::Name.first_name, lastname: Faker::Name.last_name,
 User.create!(firstname: Faker::Name.first_name, lastname: Faker::Name.last_name, email: "test14@test", password: "test", address: "Chartrons Bordeaux", phonenumber: Faker::PhoneNumber.cell_phone, cleaner: true)
 User.create!(firstname: Faker::Name.first_name, lastname: Faker::Name.last_name, email: "test15@test", password: "test", address: "Victoire Bordeaux", phonenumber: Faker::PhoneNumber.cell_phone, cleaner: true)
 
+
 # Categories
 y = Category.new(name: "small", price: 10)
 y.save!
-
 Category.create!(name: "medium", price: 13)
 Category.create!(name: "large", price: 18)
-
 # Cars
 z = Car.new(immatriculation: "DG-672-RK", brand: "PEUGEOT", model: "206", color: "noir", user_id: x.id, category_id: y.id)
 z.save!
 # Car.create!(immatriculation: "BC-921-DD", brand: "RENAULT", model: "Clio", color: "noir", user: x)
 # Car.create!(immatriculation: "CW-434-HP", brand: "NISSAN", model: "Qashqai", color: "noir", user: x)
-
 # Cleanings
 # as stated on Trello, cleaning_status available are "pending", "confirmed" or "canceled"
 cleaning = Cleaning.new(place: Faker::Address.city, period: Faker::Date.between( Date.today, 1.year.from_now), comment_access: "usefull comment on where is the car", requirements: true, rating: 4, cleaning_status: "confirmed", images: "whatever attachinary", user: x, car: z)
 cleaning.save!
-
-
 puts "Seed done !"
