@@ -12,10 +12,13 @@ class UsersController < ApplicationController
     @users = User.all
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     # @address = "Bordeaux"
     @cleaners = User.where(cleaner: true).near(@address, 500).first(5)
 
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     @cleaners = User.where(cleaner: true).near(@address, 20)

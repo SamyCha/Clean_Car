@@ -1,7 +1,10 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 $(document).ready(function() {
   var input_to_autocomplete = $('.autocomplete').get(0);
 =======
+=======
+>>>>>>> Stashed changes
   var cleaner_address = $('#location_address').get(0);
 >>>>>>> Stashed changes
 
