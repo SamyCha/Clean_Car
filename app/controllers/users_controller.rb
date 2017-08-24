@@ -11,10 +11,13 @@ class UsersController < ApplicationController
     end
     @users = User.all
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     # @address = "Bordeaux"
     @cleaners = User.where(cleaner: true).near(@address, 500).first(5)
 
 =======
+=======
+>>>>>>> Stashed changes
     @cleaners = User.where(cleaner: true).near(@address, 20)
     puts "hi #{@cleaners}"
     #ici ce n'est pas tous les User que l'on affiche mais seulement les cleaners (à corriger)

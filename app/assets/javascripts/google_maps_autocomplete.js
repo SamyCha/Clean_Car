@@ -1,5 +1,9 @@
+<<<<<<< Updated upstream
 $(document).ready(function() {
   var input_to_autocomplete = $('.autocomplete').get(0);
+=======
+  var cleaner_address = $('#location_address').get(0);
+>>>>>>> Stashed changes
 
   if (input_to_autocomplete) {
     var autocomplete = new google.maps.places.Autocomplete(input_to_autocomplete, { types: ['geocode'] });
