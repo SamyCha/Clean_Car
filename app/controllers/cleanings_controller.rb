@@ -17,8 +17,10 @@ class CleaningsController < ApplicationController
   end
 
   def create
-    @cleaning = Cleaning.new(cleaning_params)
+    cleaning_params[:period] = "#{cleaning_params[:date]} #{cleaning_params[:time]}"
 
+    @cleaning = Cleaning.new(cleaning_params)
+    raise
     users = User.all
     cleaner = User.where(cleaner: true).near("Bordeaux", 20).first
 
@@ -44,7 +46,7 @@ class CleaningsController < ApplicationController
   private
 
   def cleaning_params
-    params.require(:cleaning).permit(:car_id, :address, :period, :comment_access)
+    params.require(:clean).permit(:car_id, :place, :date, :time, :comment_access)
   end
 
   def find_cleaning
