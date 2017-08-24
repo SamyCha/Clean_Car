@@ -25,11 +25,11 @@
         </div>
 
         <div class="col-xs-3 col-xs-offset-3">
-          <% unless cleaner.cleanings.blank? or cleaner.cleanings.exists? == false %>
+          <% unless cleaner.cleanings.blank? or cleaner.cleanings == false %>
             <% cleaner.cleanings.each do |cleaning| %>
               <% @ratings << cleaning.rating  %>
             <% end %>
-            <%= @ratings.sum / @ratings.size %>
+            <%= @ratings.sum / @ratings.size if @ratings.size >= 1%>
           <% else %>
             <h6>no rating yet</h6>
           <% end%>

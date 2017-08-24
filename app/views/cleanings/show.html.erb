@@ -69,7 +69,7 @@
       </div>
 
       <div class="col-xs-4 col-xs-offset-2 text-center">
-        <% unless @cleanngs.blank? or @cleanings == false %>
+        <% unless @cleanings.blank? or @cleanings == false %>
           <% @cleanings.each do |cleaning| %>
             <% @ratings << cleaning.rating  %>
           <% end %>
