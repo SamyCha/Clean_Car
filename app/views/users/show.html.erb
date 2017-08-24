@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row text-right" style="margin-top: 5px;">
+    <div class="col-xs-10 col-xs-offset-2">
+      <h2>Your Profile</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-1 text-center">
+      <%= image_tag "profil.png", style: "width: 100%"%>
+    </div>
+    <div class="col-xs-7 text-right">
+      <p><%= @user.email %></p>
+      <p style="font-size: 12px;">client since : <%= @user.created_at.strftime('%d/ %m/ %Y') %></p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <h3>Your cleanings</h3>
+      <ul style="list-style-type: none;">
+        <% @cleanings.each do |cleaning| %>
+          <%= link_to cleaning_path(cleaning) do %>
+            <li style="background-color: #e5e5e5; padding: 10px; display: flex; justify-content: space-between; align-items: center;", class="card">
+              <div>
+                <% car = Car.find(cleaning.car_id) %>
+                <% if car.car_picture && !car.car_picture.blank? %>
+                  <%= image_tag car.car_picture, class: "img-circle" %>
+                <% else %>
+                  <%= image_tag "car picto.png", style: "width: 50px; height: 50px;; background-color: white;", class: "img-circle" %>
+                <% end %>
+              </div>
+              <div>
+                <p style="font-size: 12px; margin: 0px;"><%= car.brand %> <%= car.model %></p>
+                <p style="font-size: 12px; margin: 0px;"><%= car.color %></p>
+              </div>
+              <div>
+                <p style="font-size: 12px; margin: 0px;"><%= cleaning.place %></p>
+                <p style="font-size: 12px; margin: 0px;"><%= cleaning.period.strftime("%d/%m/%y - %M/%H") if cleaning.period %></p>
+              </div>
+              <div></div>
+              <div></div>
+              <div></div>
+              <div>
+                <p style="font-size: 12px; margin: 0px;"><%= cleaning.cleaning_status %></p>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+</div>
