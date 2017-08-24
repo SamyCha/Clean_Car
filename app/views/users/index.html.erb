@@ -55,28 +55,27 @@
     $(document).ready(function() {
       var styles = [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#46bcec"},{"visibility":"on"}]}]
 
-      var handler = Gmaps.build('Google');
-      handler.buildMap({
-        provider:
-        {
-          disableDefaultUI: true,
-          styles: styles
-          // pass in other Google Maps API options here
-          // => https://developers.google.com/maps/documentation/javascript/reference#MapOptions
-        },
-        internal: { id: 'map' } }, function() {
-          markers = handler.addMarkers(<%= raw @hash.to_json %>);
-          handler.bounds.extendWith(markers);
-          handler.fitMapToBounds();
-          if (markers.length == 0) {
-            handler.getMap().setZoom(2);
-          } else if (markers.length == 1) {
-            handler.getMap().setZoom(5);
-          }
+    var handler = Gmaps.build('Google');
+    handler.buildMap({
+      provider:
+      {
+        disableDefaultUI: true,
+        styles: styles
+        // pass in other Google Maps API options here
+        // => https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+      },
+      internal: { id: 'map' } }, function() {
+        markers = handler.addMarkers(<%= raw @hash.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        if (markers.length == 0) {
+          handler.getMap().setZoom(2);
+        } else if (markers.length > 0) {
+          handler.getMap().setZoom(11);
+        }
+        console.log('map done');
       });
-    });
+  });
   <% end %>
 <% end %>
-
-
 <%= render 'shared/javascript_tag' %>
