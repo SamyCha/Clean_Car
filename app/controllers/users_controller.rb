@@ -10,9 +10,15 @@ class UsersController < ApplicationController
     #   @address = "Le Wagon Bordeaux"
     end
     @users = User.all
+<<<<<<< Updated upstream
     # @address = "Bordeaux"
     @cleaners = User.where(cleaner: true).near(@address, 500).first(5)
 
+=======
+    @cleaners = User.where(cleaner: true).near(@address, 20)
+    puts "hi #{@cleaners}"
+    #ici ce n'est pas tous les User que l'on affiche mais seulement les cleaners (à corriger)
+>>>>>>> Stashed changes
     @hash = Gmaps4rails.build_markers(@cleaners) do |cleaner, marker|
       marker.lat cleaner.latitude
       marker.lng cleaner.longitude
