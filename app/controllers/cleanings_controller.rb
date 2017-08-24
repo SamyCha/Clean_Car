@@ -5,6 +5,10 @@ class CleaningsController < ApplicationController
   end
 
   def show
+    @cleaner = User.find(@cleaning.user_id)
+    @cleanings = @cleaner.cleanings.where.not(id: @cleaning.id)
+    @car = Car.find(@cleaning.car_id)
+    @ratings = []
   end
 
   def new
@@ -14,7 +18,11 @@ class CleaningsController < ApplicationController
 
   def create
     @cleaning = Cleaning.new(cleaning_params)
-    @cleaning.update(user: current_user)
+
+    users = User.all
+    cleaner = User.where(cleaner: true).near("Bordeaux", 20).first
+
+    @cleaning.update(user: cleaner)
 
     if @cleaning.save
       redirect_to cleaning_path(@cleaning)
