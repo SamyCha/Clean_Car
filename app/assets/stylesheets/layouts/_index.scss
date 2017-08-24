@@ -4,3 +4,7 @@
 // @import "profile";
 // @import "map";
 // @import "card";
+.background{
+  min-height: 100vh;
+  background-size: cover !important;
+}

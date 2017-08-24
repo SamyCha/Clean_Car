@@ -14,11 +14,15 @@
     <%= javascript_include_tag 'application' %>
     <%= favicon_link_tag 'car_picto.png' %>
   </head>
-  <body>
-    <%= render 'shared/dropdown' %>
-    <%= render 'shared/flashes' %>
-    <%= yield %>
-    <%= render 'shared/javascript_tag' %>
-    <%= yield(:after_js) %>
-  </body>
+
+    <body>
+      <div class="background" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "background_bentley.jpg" %>');">
+        <%= render 'shared/dropdown' %>
+        <%= render 'shared/flashes' %>
+        <%= yield %>
+      </div>
+      <%= render 'shared/javascript_tag' %>
+      <%= yield(:after_js) %>
+    </body>
+
 </html>
