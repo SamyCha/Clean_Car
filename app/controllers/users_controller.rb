@@ -6,22 +6,18 @@ class UsersController < ApplicationController
 
     if params["location_address"]
       @address = params["location_address"]
-    else
-      @address = "107 Cours Balguerie Stuttenberg, 33300 Bordeaux"
+    # else
+    #   @address = "Le Wagon Bordeaux"
     end
     @users = User.all
-    @cleaners = User.where(cleaner: true)
-    @cleaners = User.near(@address, 1000).first(5)
-
-
-    #ici ce n'est pas tous les User que l'on affiche mais seulement les cleaners (à corriger)
+    # @address = "Bordeaux"
+    @cleaners = User.where(cleaner: true).near(@address, 500).first(5)
 
     @hash = Gmaps4rails.build_markers(@cleaners) do |cleaner, marker|
       marker.lat cleaner.latitude
       marker.lng cleaner.longitude
       marker.picture({ url: "https://image.prntscr.com/image/WtApDFKyS9SqShLkO0YrEw.png", width: 32, height: 32 })
     end
-
   end
 
   def new

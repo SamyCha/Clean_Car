@@ -33,7 +33,7 @@
             <%= f.input :lastname, required: true %>
           </div>
           <div class="col-xs-12">
-              <%= f.input :address, required: true%>
+              <%= f.input :address, required: true, input_html: { class: 'autocomplete' } %>
               <%= f.input :cleaner, as: :hidden, input_html: {value: true} %>
         <% end %>
             <%= f.input :phonenumber, required: true %>
@@ -43,7 +43,7 @@
         </div>
 
         <div class="form-actions col-xs-6 ">
-          <%= f.button :submit, "Sign up", class: "btn btn-default", style: "width: 100%"  %>
+          <%= f.button :submit, "Sign up", class: "btn btn-primary btn-block" %>
         </div>
       <% end %>
     </div>
