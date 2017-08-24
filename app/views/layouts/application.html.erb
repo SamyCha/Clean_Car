@@ -12,12 +12,13 @@
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <%= favicon_link_tag 'car picto.png' %>
+    <%= favicon_link_tag 'car_picto.png' %>
   </head>
   <body>
     <%= render 'shared/dropdown' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
+    <%= render 'shared/javascript_tag' %>
     <%= yield(:after_js) %>
   </body>
 </html>
