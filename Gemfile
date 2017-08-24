@@ -18,11 +18,10 @@ gem 'jquery-rails'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
-gem "coffee-rails"
-gem "gmaps4rails"
-  source 'https://rails-assets.org' do
-  gem "rails-assets-underscore"
-end
+gem 'coffee-rails'
+gem 'gmaps4rails'
+gem 'rails-assets-underscore', source: 'https://rails-assets.org'
+gem 'rails-assets-flatpickr', source: 'https://rails-assets.org'
 
 group :development, :test do
   gem 'pry-byebug'
