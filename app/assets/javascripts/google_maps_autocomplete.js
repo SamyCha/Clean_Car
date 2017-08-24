@@ -1,23 +1,21 @@
-$(document).ready(function() {
-  var input_to_autocomplete = $('.autocomplete').get(0);
+var input_to_autocomplete = $('.autocomplete').get(0);
 
-  if (input_to_autocomplete) {
-    var autocomplete = new google.maps.places.Autocomplete(input_to_autocomplete, { types: ['geocode'] });
-    google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
-    google.maps.event.addDomListener(input_to_autocomplete, 'keydown', function(e) {
-      // uncomment for testings purposes
-      // if (e.keyCode == 13) {
-      //   e.preventDefault();
-      // }
-    });
-  }
-});
+if (input_to_autocomplete) {
+  var autocomplete = new google.maps.places.Autocomplete(input_to_autocomplete, { types: ['geocode'] });
+  google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+  google.maps.event.addDomListener(input_to_autocomplete, 'keydown', function(e) {
+    // uncomment for testings purposes
+    // if (e.keyCode == 13) {
+    //   e.preventDefault();
+    // }
+  });
+}
 
 function onPlaceChanged() {
   var place = this.getPlace();
   var components = getAddressComponents(place);
 
-  $('#user_address').trigger('blur').val(components.address);
+  // $('#user_address').trigger('blur').val(components.address);
   $('#flat_zip_code').val(components.zip_code);
   $('#flat_city').val(components.city);
   if (components.country_code) {
@@ -26,7 +24,6 @@ function onPlaceChanged() {
 
   // first result given by the API
   var firstResult = $(".pac-container .pac-item:first").text();
-  // this one ?
   // $("#user_address").val(firstResult);
 
   var userInput = $('.autocomplete').val();

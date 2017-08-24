@@ -4,14 +4,13 @@ class UsersController < ApplicationController
   def index
     @title = "Index - My Clean Car"
 
-    if params["location_address"]
-      @address = params["location_address"]
-    # else
-    #   @address = "Le Wagon Bordeaux"
+    if params["address"] != ""
+      @address = params["address"]
+    else
+      @address = "Le Wagon Bordeaux"
     end
     @users = User.all
-    # @address = "Bordeaux"
-    @cleaners = User.where(cleaner: true).near(@address, 500).first(5)
+    @cleaners = User.where(cleaner: true).near(@address, 20).first(5)
 
     @hash = Gmaps4rails.build_markers(@cleaners) do |cleaner, marker|
       marker.lat cleaner.latitude
