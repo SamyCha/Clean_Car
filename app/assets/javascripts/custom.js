@@ -5,4 +5,5 @@ $(document).ready(function(){
     $('#flash').css('animation', 'fadeOut 500ms');
     $('#flash').remove();
   }, 4000);
+  $('#dropdown-toggle').dropdown();
  })
