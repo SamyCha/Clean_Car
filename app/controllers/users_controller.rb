@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     @cars = Car.where(user_id: @user.id)
-    if @user.cleaning
+    if @user.cleaner
       @cleanings = Cleaning.where(user_id: @user.id)
     else
       @cleanings = []
