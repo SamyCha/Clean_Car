@@ -28,24 +28,28 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" >
     <div class="col-xs-12">
+      <div class="col-xs-12">
         <strong>*Select your car size:</strong>
+      </div>
     </div>
-  </div>
-
-  <div class="row" style="display: flex; align-items: center;">
-    <div class="col-xs-4 text-center">
-      <p>small</p>
-      <%= image_tag "car_picto.png", style: "height: 45px;"%>
+    <div class="col-xs-12 text-center hidden">
+      <%= f.text_field :category_id, value: 2, id: "category-input" %>
     </div>
-    <div class="col-xs-4 text-center">
-      <p>medium</p>
-      <%= image_tag "car_picto.png", style: "height: 60px;"%>
-    </div>
-    <div class="col-xs-4 text-center">
-      <p>large</p>
-      <%= image_tag "car_picto.png", style: "height: 75px;"%>
+    <div class="col-xs-12 buttons" style="display: flex; align-items: center;">
+      <div class="col-xs-4 btn text-center category" id="1" style="background-color: #e5e5e5; margin: 20px; border-radius: 5px;">
+        <p>small</p>
+        <%= image_tag "small_car.svg", style: "width: 45px;"%>
+      </div>
+      <div class="col-xs-4 btn text-center category" id="2" style="background-color: #e5e5e5; margin: 20px;">
+        <p>medium</p>
+        <%= image_tag "normal_car.svg", style: "width: 64px;"%>
+      </div>
+      <div class="col-xs-4 btn text-center category" id="3" style="background-color: #e5e5e5; margin: 20px;">
+        <p>large</p>
+        <%= image_tag "large_car.svg", style: "width: 57px;"%>
+      </div>
     </div>
   </div>
 
@@ -56,3 +60,17 @@
   </div>
   <% end %>
 </div>
+
+<script>
+  $(document).ready(function(){
+    $('.category').on('click', function(e) {
+      $("#category-input").val($(this).attr('id'));
+    });
+  });
+</script>
+
+<style>
+  .category.active {
+
+  }
+</style>

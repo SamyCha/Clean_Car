@@ -12,7 +12,7 @@
         <% if @car.car_picture && !@car.car_picture.blank? %>
           <%= image_tag @car.car_picture, class: "img-circle" %>
         <% else %>
-          <%= image_tag "car picto.png", style: "width: 80%; height: 9vh; background-color: white;", class: "img-circle" %>
+          <%= image_tag "car_picto.png", style: "width: 80%; height: 9vh; background-color: white;", class: "img-circle" %>
         <% end %>
       </div>
       <div class="col-xs-7 ">
@@ -25,7 +25,7 @@
           <small>
             <%= @car.immatriculation %>
           </small>
-          <%= Category.find(@car.id).name %>
+          <%= Category.find(@car.category_id).name %>
         </h6>
       </div>
   </div>
@@ -69,22 +69,32 @@
       </div>
 
       <div class="col-xs-4 col-xs-offset-2 text-center">
-        <% unless @cleanings.blank? or @cleanings == false %>
-          <% @cleanings.each do |cleaning| %>
+        <% unless @cleanings.where.not(rating: nil).blank? %>
+          <% @cleanings.where.not(rating: nil).each do |cleaning| %>
             <% @ratings << cleaning.rating  %>
           <% end %>
-          <%= @ratings.sum / @ratings.size if @ratings.size >= 1%>
+          <%= @ratings.sum / @ratings.size%>
         <% else %>
           <h6>no rating yet</h6>
-        <% end%>
+        <% end %>
       </div>
     </div>
   </div>
 
-  <div class="row" style="margin-bottom: 20px;">
-    <div class="col-xs-12 text-center">
-      <%= link_to "Pay to book this cleaning", new_cleaning_path, class: "btn btn-success" %>
+  <% unless @cleaning.status == "complete" %>
+    <div class="row" style="margin-bottom: 20px;">
+      <div class="col-xs-12 text-center">
+        <%= link_to "Pay to book this cleaning", dashboard_path, class: "btn btn-success" %>
+      </div>
     </div>
-  </div>
+  <% else %>
+    <div class="row">
+      <div class="btn-toolbar" role="toolbar" aria-label="...">
+      <div class="btn-group" role="group" aria-label="...">...</div>
+      <div class="btn-group" role="group" aria-label="...">...</div>
+      <div class="btn-group" role="group" aria-label="...">...</div>
+    </div>
+    </div>
+  <% end %>
 
 </div>
