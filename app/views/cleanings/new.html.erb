@@ -22,18 +22,30 @@
         Enter your parking period
       </h6>
       <div class="col-xs-12">
-        <%= image_tag "datepicker.png", style: "height: 45px;"%>
-         --datetime picker--
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        <%= f.date_field :car_id, id: "date_picker" %>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <i class="fa fa-clock-o" aria-hidden="true"></i>
+        <input type="text" class=" clockpicker" value="14:00">
+      </div>
+    </div>
+
+    <script type="text/javascript">
+    </script>
 
     <div class="row">
       <h6 style="margin-bottom: 3px; margin-left: 16px;">
         Car location during cleaning
       </h6>
-      <div class="col-xs-12">
+      <div class="col-xs-2">
         <%= image_tag "localisation.png", style: "height: 45px;"%>
-        --address input--
+      </div>
+      <div class="col-xs-8">
+        <%= text_field_tag :address, nil, class: "form-control autocomplete", placeholder: "Le Wagon Bordeaux" %>
       </div>
     </div>
 
@@ -59,10 +71,3 @@
     </div>
   <% end %>
 </div>
-
-<script>
-  $(document).ready(function(){
-    var carId = $(".swiper-slide-active").attr('id');
-    $('#car_id_field').val(carId);
-  });
-</script>
