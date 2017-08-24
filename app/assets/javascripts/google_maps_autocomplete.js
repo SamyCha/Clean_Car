@@ -29,6 +29,7 @@ function onPlaceChanged() {
   var userInput = $('.autocomplete').val();
   $('.autocomplete').attr('placeholder',userInput);
   $('.autocomplete').val(userInput);
+  // maybe to adapt, need to test on mobile
   $('.btn').focus()
 }
 
