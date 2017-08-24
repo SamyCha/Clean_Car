@@ -18,16 +18,18 @@
             <% end %>
           </div>
           <div class="col-xs-6">
-            <h4>
-              <%= car.brand %>
-              <%= car.model %>
-              <%= car.color %>
-            </h4>
+            <div style="display: flex; justify-content: space-around; align-items: center">
+              <span style="font-size: 26px;">
+                <%= car.brand %>
+                <%= car.model %>
+              </span>
+              (<%= car.color %>)
+            </div>
             <h6 style="display: flex; justify-content: space-around;">
               <small>
                 <%= car.immatriculation %>
               </small>
-              <%= Category.find(car.id).name %>
+              <%= Category.find(car.category_id).name %>
             </h6>
           </div>
         </div>

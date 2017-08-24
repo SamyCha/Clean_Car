@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170824101530) do
     t.string "comment_access"
     t.boolean "requirements"
     t.integer "rating"
-    t.string "cleaning_status", default: "pending"
+    t.string "status", default: "pending"
     t.string "images"
     t.bigint "user_id"
     t.datetime "created_at", null: false
