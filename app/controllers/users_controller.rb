@@ -39,6 +39,13 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @cars = Car.where(user_id: @user.id)
+    if @user.cleaning
+      @cleanings = Cleaning.where(user_id: @user.id)
+    else
+      @cleanings = []
+      @cars.each { |car| car.cleanings.each { |cleaning| @cleanings << cleaning } }
+    end
   end
 
   def update

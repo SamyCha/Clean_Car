@@ -6,7 +6,7 @@ class CreateCleanings < ActiveRecord::Migration[5.1]
       t.string :comment_access
       t.boolean :requirements
       t.integer :rating
-      t.string :cleaning_status
+      t.string :cleaning_status, default: "pending"
       t.string :images
       t.references :user, foreign_key: true
 
