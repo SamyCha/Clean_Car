@@ -82,7 +82,7 @@
   </div>
 
   <!-- not sure how to correct so prefered to not do shit -->
-  <%# unless @cleaning.status == "complete" %>
+  <% unless @cleaning.status == "complete" %>
     <div class="row" style="margin-bottom: 20px;">
       <div class="col-xs-12 text-center">
         <%#= link_to "Pay to book this cleaning", dashboard_path, class: "btn btn-success" %>
@@ -97,7 +97,7 @@
       <div class="btn-group" role="group" aria-label="...">ccc</div>
     </div>
     </div>
-  <%# end %>
+  <% end %>
 
   <div id="cleaner-accepted" aria-hidden="true" aria-labelledby="cleaner-accepted" role="dialog" class="iziModal">
     <i class="iziModal-header-icon icon-power_settings_new"></i>
