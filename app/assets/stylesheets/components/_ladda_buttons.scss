@@ -1,0 +1,8 @@
+.ladda-button-disabled {
+  cursor: not-allowed;
+  &:hover {
+    color: #fff;
+    background-color: $green;
+    border-color: $green;
+  }
+}
