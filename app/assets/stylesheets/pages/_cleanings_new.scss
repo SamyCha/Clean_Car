@@ -1,3 +1,49 @@
+// pre-swiper
+.car-select {
+  margin: 0px 0px 3px 16px;
+}
+
+// datetime input
+.period-select {
+  margin-bottom: 3px;
+  margin-left: 16px;
+}
+
+.datetime-group {
+  display: flex;
+  align-items: center;
+  &>i {
+    font-size: 20px;
+  }
+}
+
+.col-icon-datetime {
+  padding-right: 0px;
+  padding-left: 20px;
+}
+
+// location input
+.location-select {
+  margin-bottom: 3px;
+  margin-left: 16px;
+}
+
+.location-img {
+  padding-right: 0px;
+}
+
 .form-group.string.required.clean_place {
   margin-bottom: 0px;
+}
+
+// requirements
+.requirements-label {
+  margin-bottom: 3px;
+  margin-left: 16px;
+}
+
+
+// comment access input
+.comment-access {
+
 }
