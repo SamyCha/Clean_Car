@@ -73,7 +73,6 @@
           <% @cleanings.where.not(rating: nil).each do |cleaning| %>
             <% @ratings << cleaning.rating  %>
           <% end %>
-          <%# raise %>
           <%= (@ratings.sum / @ratings.size.to_f).to_s.first(3) %>
         <% else %>
           <h6>no rating yet</h6>
@@ -82,8 +81,6 @@
     </div>
   </div>
 
-  <!-- not sure how to correct so prefered to not do shit -->
-  <%# raise %>
   <% if @cleaning.rating.blank? or  @cleaning.rating.nil? %>
     <% unless @cleaning.status == "complete" %>
       <div class="row" style="margin-bottom: 20px;">

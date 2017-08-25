@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row text-right" style="margin-top: 5px;">
+  <div class="row text-right margin-top5" >
     <div class="col-xs-10 col-xs-offset-2">
       <h2>Your Profile</h2>
     </div>
@@ -11,60 +11,71 @@
     </div>
     <div class="col-xs-7 text-right">
       <p><%= @user.email %></p>
-      <p style="font-size: 12px;">client since : <%= @user.created_at.strftime('%d/ %m/ %Y') %></p>
+      <p class="created-at">client since : <%= @user.created_at.strftime('%d/ %m/ %Y') %></p>
     </div>
   </div>
 
   <div class="row">
     <div class="col-xs-12">
       <h3>Your cleanings</h3>
-      <ul style="list-style-type: none;">
-        <% @cleanings.each do |cleaning| %>
-          <%= link_to cleaning_path(cleaning), style: "text-decoration: none" do %>
-            <li style="background-color: #e5e5e5; padding: 10px; display: flex; justify-content: space-between; align-items: center;", class="card">
-              <div>
-                <% car = Car.find(cleaning.car_id) %>
-                <% if car.car_picture && !car.car_picture.blank? %>
-                  <%= image_tag car.car_picture, class: "img-circle" %>
-                <% else %>
-                  <% case car.category_id %>
-                  <% when 1  %>
-                    <%= image_tag "small_car.svg", style: "width: 50px; height: 50px; background-color: white;", class: "img-circle" %>
-
-                  <% when 2  %>
-                    <%= image_tag "normal_car.svg", style: "width: 50px; height: 50px; background-color: white;", class: "img-circle" %>
-
-                  <% when 3  %>
-                    <%= image_tag "large_car.svg", style: "width: 50px; height: 50px; background-color: white;", class: "img-circle" %>
-
+      <ul class="dashboard-client-ul">
+        <p>pending</p>
+        <% @cleanings.each_with_index do |cleanings, i| %>
+          <% cleanings.each do |cleaning| %>
+              <li class="card">
+                <div>
+                  <% car = Car.find(cleaning.car_id) %>
+                  <% if car.car_picture && !car.car_picture.blank? %>
+                    <%= image_tag car.car_picture, class: "img-circle" %>
+                  <% else %>
+                    <% case car.category_id %>
+                    <% when 1  %>
+                      <%= image_tag "small_car.svg", class: "img-circle" %>
+                    <% when 2  %>
+                      <%= image_tag "normal_car.svg", class: "img-circle" %>
+                    <% when 3  %>
+                      <%= image_tag "large_car.svg", class: "img-circle" %>
+                    <% end %>
                   <% end %>
+                </div>
+                <div>
+                  <p class="dashboard-cleaning-description"><%= car.brand %> <%= car.model %></p>
+                  <p class="dashboard-cleaning-description"><%= car.color %></p>
+                </div>
+                <div>
+                  <p class="dashboard-cleaning-description"><%= cleaning.place %></p>
+                  <p class="dashboard-cleaning-description"><%= cleaning.period.strftime("%d/%m/%y - %M/%H") if cleaning.period %></p>
+                </div>
+
+                <% unless cleaning.rating.nil? %>
+                <div>
+                  <p class="dashboard-cleaning-description"><%= cleaning.rating %>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </p>
+                </div>
                 <% end %>
-              </div>
-              <div>
-                <p style="font-size: 12px; margin: 0px;"><%= car.brand %> <%= car.model %></p>
-                <p style="font-size: 12px; margin: 0px;"><%= car.color %></p>
-              </div>
-              <div>
-                <p style="font-size: 12px; margin: 0px;"><%= cleaning.place %></p>
-                <p style="font-size: 12px; margin: 0px;"><%= cleaning.period.strftime("%d/%m/%y - %M/%H") if cleaning.period %></p>
-              </div>
 
-              <% unless cleaning.rating.nil? %>
-              <div>
-                <p style="font-size: 12px; margin: 0px;"><%= cleaning.rating %>
-                  <i class="fa fa-star" aria-hidden="true"></i>
-                </p>
-              </div>
-              <% end %>
-
-              <div>
-                <p style="font-size: 12px; margin: 0px;"><%= cleaning.status %></p>
-              </div>
-            </li>
+                <% if cleaning.status == "complete" && !cleaning.rating.nil? %>
+                    <%= link_to "hide", cleaning_path(cleaning), class: "btn btn-default btn-hide", method: "patch"  %>
+                <% else %>
+                  <div>
+                    <p class="dashboard-cleaning-description p-status-<%= cleaning.status %>"><%= cleaning.status %></p>
+                  </div>
+                <% end %>
+                <%= link_to '', cleaning_path(cleaning), class: "dashboard-cleaning-link" %>
+              </li>
+          <% end %>
+          <% case i %>
+          <% when 0 %>
+            <hr>
+            <p>confirmed</p>
+          <% when 1 %>
+            <hr>
+            <p>complete</p>
           <% end %>
         <% end %>
       </ul>
     </div>
   </div>
-
 </div>
+

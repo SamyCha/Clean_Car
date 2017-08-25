@@ -45,7 +45,7 @@ z.save!
 # Car.create!(immatriculation: "CW-434-HP", brand: "NISSAN", model: "Qashqai", color: "noir", user: x)
 
 # Cleanings
-# as stated on Trello, cleaning_status available are "pending", "confirmed" or "canceled" and "complete" when end_photos
+# as stated on Trello, cleaning_status available are "pending", "confirmed" or "canceled" and "complete" when end_photos and "archived" when client use button hide in dashboard
 cleaning = Cleaning.create!(place: Faker::Address.city, period: Faker::Date.between( Date.today, 1.year.from_now), comment_access: "usefull comment on where is the car", requirements: true, rating: 4, status: "confirmed", images: "whatever attachinary", user: x, car: z)
 
 puts "----- Seed done ! -----"

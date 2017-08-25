@@ -1,0 +1,49 @@
+.created-at {
+  font-size: 12px;
+}
+
+.dashboard-client-ul {
+  list-style-type: none;
+  .dashboard-cleaning-link {
+  text-decoration: none;
+  z-index: 1;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin-left: -10px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  }
+
+  li.card {
+    position: relative;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    background-color: #e5e5e5;
+    opacity: 0.9;
+    .p-status-pending {
+      color: #e57d14;
+    }
+    .p-status-confirmed {
+      color: rgb(48, 121, 171);
+    }
+    .p-status-complete {
+      color: rgb(48, 211, 130);
+    }
+    img {
+      width: 50px;
+      height: 50px;
+      background-color: white;
+    }
+    .dashboard-cleaning-description {
+      font-size: 12px; margin: 0px;
+    }
+    .btn-hide {
+      z-index: 2;
+    }
+  }
+}
