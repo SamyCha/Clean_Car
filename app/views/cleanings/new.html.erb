@@ -55,23 +55,28 @@
     </div>
 
     <div class="row">
-      <p class="requirements-label">
-        Please confirm the mandatory items to order
-      </p>
-      <div class="col-xs-12 text-center">
-        <p>[Easy Access][Security][Private Zone]</p>
-      </div>
-    </div>
-
-    <div class="row">
       <div class="col-xs-12">
         <%= f.text_area :comment_access, placeholder: "Give more details to the cleaner (special access, other informations ...)", class: "form-control"  %>
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-xs-2">
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-success">
+          <input type="checkbox" autocomplete="off" checked="">
+          <span class="glyphicon glyphicon-ok"></span>
+          </label>
+        </div>
+      </div>
+        <div class="col-xs-10">
+        <p>Confirm the security and easy access for the cleaner</p>
+        </div>
+    </div>
+
     <div class="row margin-top15">
       <div class="text-center">
-        <%= f.submit "Contact a cleaner", class: "btn btn-default" %>
+        <%= f.submit "Contact a cleaner", class: "btn btn-success" %>
       </div>
     </div>
   <% end %>
