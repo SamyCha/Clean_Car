@@ -1,0 +1,17 @@
+.category {
+  background-color: #8eb5cc;
+  margin: 20px;
+  border-radius: 5px;
+  opacity: 0.8;
+  &.active {
+    background-color: #1B3545;
+    opacity: 0.9;
+    &>p {
+    color: white;
+    }
+  }
+}
+
+.save-btn {
+  margin: 20px 0px;
+}
