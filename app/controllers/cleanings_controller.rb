@@ -17,26 +17,32 @@ class CleaningsController < ApplicationController
   end
 
   def create
-    date = params[:clean][:date].split('-')
-    time = params[:clean][:time].split(':')
-    period = DateTime.new(date[0].to_i, date[1].to_i, date[2].to_i, time[0].to_i, time[1].to_i)
-
-    params[:clean].delete(:time)
-    params[:clean].delete(:date)
-
-    params[:clean][:period] = period
-
-    @cleaning = Cleaning.new(cleaning_params)
-    users = User.all
-    cleaner = User.where(cleaner: true).near("Bordeaux", 20).first
-
-    @cleaning.update(user: cleaner)
-
-    if @cleaning.save
-      redirect_to cleaning_path(@cleaning)
-    else
-      flash[:alert] = "An error has occurred..."
+    if cleaning_params[:place].blank?
+      flash[:alert] = "Please enter a location"
       redirect_to new_cleaning_path
+    else
+
+      date = params[:clean][:date].split('-')
+      time = params[:clean][:time].split(':')
+      period = DateTime.new(date[2].to_i, date[1].to_i, date[0].to_i, time[0].to_i, time[1].to_i)
+
+      params[:clean].delete(:time)
+      params[:clean].delete(:date)
+
+      params[:clean][:period] = period
+
+      @cleaning = Cleaning.new(cleaning_params)
+      users = User.all
+      cleaner = User.where(cleaner: true).near("Bordeaux", 20).first
+
+      @cleaning.update(user: cleaner)
+
+      if @cleaning.save
+        redirect_to cleaning_path(@cleaning)
+      else
+        flash[:alert] = "An error has occurred..."
+        redirect_to new_cleaning_path
+      end
     end
   end
 
