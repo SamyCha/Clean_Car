@@ -1,6 +1,5 @@
 <div class="container">
-
-  <div class="row text-right" style="margin-top: 15px;">
+  <div class="row text-right margin-top15">
     <div class="col-xs-10 col-xs-offset-2">
       <h2>My Clean Car</h2>
       <h6>book an eco wash</h6>
@@ -36,7 +35,7 @@
     </h6>
     <div class="col-xs-10 col-xs-offset-1">
       <%= image_tag "datepicker.png", style: "height: 45px;"%>
-       --datetime picker--
+      <%= @cleaning.period.strftime('the %d/%m/%y at %Hh%M') %>
     </div>
   </div>
 
@@ -46,72 +45,68 @@
     </h6>
     <div class="col-xs-10 col-xs-offset-1">
       <%= image_tag "localisation.png", style: "height: 45px;"%>
-      --address input--
+      <%= @cleaning.place %>
     </div>
   </div>
 
-  <div class="row">
-    <h6 style="margin-bottom: 3px; margin-left: 16px;">
-      Please confirm the mandatory items to order
-    </h6>
-    <div class="col-xs-12 text-center">
-      <h5>[Easy Access][Security][Private Zone]</h5>
+  <div class="row" style="margin-top: 50px; color: black;">
+    <div class="col-xs-12">
+      <p style="color: white;">Your cleaner :</p>
     </div>
-  </div>
+    <div class="col-xs-12 card" style="padding: 5px; background-color: #e5e5e5; margin-bottom: 25px;">
+      <div style="display: flex; align-items: center;">
+        <div class="col-xs-3">
+        <%= image_tag "profil.png", id: "logo", height: 60 %>
+        </div>
+        <div class="col-xs-3">
+          <%= @cleaner.firstname %>
+        </div>
 
-  <div class="col-xs-12 card" style="padding: 5px; background-color: #e5e5e5; margin-bottom: 25px;">
-    <div style="display: flex; align-items: center;">
-      <div class="col-xs-3">
-      <%= image_tag "profil.png", id: "logo", height: 60 %>
-      </div>
-      <div class="col-xs-3">
-        <%= @cleaner.firstname %>
-      </div>
-
-      <div class="col-xs-4 col-xs-offset-2 text-center">
-        <% unless @cleanings.where.not(rating: nil).blank? %>
-          <% @cleanings.where.not(rating: nil).each do |cleaning| %>
-            <% @ratings << cleaning.rating  %>
+        <div class="col-xs-4 col-xs-offset-2 text-center">
+          <% unless @cleanings.where.not(rating: nil).blank? %>
+            <% @cleanings.where.not(rating: nil).each do |cleaning| %>
+              <% @ratings << cleaning.rating  %>
+            <% end %>
+            <%= (@ratings.sum / @ratings.size.to_f).to_s.first(3) %>
+          <% else %>
+            <h6>no rating yet</h6>
           <% end %>
-          <%= (@ratings.sum / @ratings.size.to_f).to_s.first(3) %>
-        <% else %>
-          <h6>no rating yet</h6>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-  <% if @cleaning.rating.blank? or  @cleaning.rating.nil? %>
-    <% unless @cleaning.status == "complete" %>
-      <div class="row" style="margin-bottom: 20px;">
-        <div class="col-xs-12 text-center">
-          <button href="#" class="progress-demo btn btn-primary ladda-button" data-style="zoom-in" data-size="xs" data-spinner-color="#fff"><span class="ladda-label">Pay to book this cleaning</span></a>
         </div>
       </div>
-    <% else %>
-      <div class="row ">
-        <div class="col-xs-12 text-center btn-rating" >
-          <strong>Rate this cleaning !</strong>
-          <div class="btn-toolbar text-center margin-top15" role="toolbar" aria-label="...">
-            <div class="btn-group" role="group" aria-label="..." style="float: none">
-              <button type="button" class="btn btn-default">1</button>
-              <button type="button" class="btn btn-default">2</button>
-              <button type="button" class="btn btn-default">3</button>
-              <button type="button" class="btn btn-default">4</button>
-              <button type="button" class="btn btn-default">5</button>
-            </div>
+    </div>
+
+    <% if @cleaning.rating.blank? or  @cleaning.rating.nil? %>
+      <% unless @cleaning.status == "complete" %>
+        <div class="row" style="margin-bottom: 20px;">
+          <div class="col-xs-12 text-center">
+            <button href="#" class="progress-demo btn btn-primary ladda-button" data-style="zoom-in" data-size="xs" data-spinner-color="#fff"><span class="ladda-label">Pay to book this cleaning</span></a>
           </div>
         </div>
-        <div class="col-xs-12 text-center thx-rating hidden" >
-          <h3>Thank you for rating</h3>
+      <% else %>
+        <div class="row ">
+          <div class="col-xs-12 text-center btn-rating" >
+            <strong>Rate this cleaning !</strong>
+            <div class="btn-toolbar text-center margin-top15" role="toolbar" aria-label="...">
+              <div class="btn-group" role="group" aria-label="..." style="float: none">
+                <button type="button" class="btn btn-default">1</button>
+                <button type="button" class="btn btn-default">2</button>
+                <button type="button" class="btn btn-default">3</button>
+                <button type="button" class="btn btn-default">4</button>
+                <button type="button" class="btn btn-default">5</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 text-center thx-rating hidden" >
+            <h3>Thank you for rating</h3>
+          </div>
         </div>
+      <% end %>
+    <% else %>
+      <div class="col-xs-12 text-center" style="margin-top: 30px;">
+        <%= link_to "dashboard", dashboard_path, class: "btn btn-primary" %>
       </div>
     <% end %>
-  <% else %>
-    <div class="col-xs-12 text-center" style="margin-top: 70px;">
-      <%= link_to "dashboard", dashboard_path, class: "btn btn-primary" %>
-    </div>
-  <% end %>
+  </div>
 
   <div id="cleaner-accepted" aria-hidden="true" aria-labelledby="cleaner-accepted" role="dialog" class="iziModal">
     <i class="iziModal-header-icon icon-power_settings_new"></i>
