@@ -81,20 +81,48 @@
     </div>
   </div>
 
-  <% unless @cleaning.status == "complete" %>
+  <!-- not sure how to correct so prefered to not do shit -->
+  <%# unless @cleaning.status == "complete" %>
     <div class="row" style="margin-bottom: 20px;">
       <div class="col-xs-12 text-center">
-        <%= link_to "Pay to book this cleaning", dashboard_path, class: "btn btn-success" %>
+        <%#= link_to "Pay to book this cleaning", dashboard_path, class: "btn btn-success" %>
+        <button href="#" class="progress-demo btn btn-primary ladda-button" data-style="zoom-in" data-size="xs" data-spinner-color="#fff"><span class="ladda-label">Pay to book this cleaning</span></a>
       </div>
     </div>
   <% else %>
     <div class="row">
       <div class="btn-toolbar" role="toolbar" aria-label="...">
-      <div class="btn-group" role="group" aria-label="...">...</div>
-      <div class="btn-group" role="group" aria-label="...">...</div>
-      <div class="btn-group" role="group" aria-label="...">...</div>
+      <div class="btn-group" role="group" aria-label="...">aaa</div>
+      <div class="btn-group" role="group" aria-label="...">bbb</div>
+      <div class="btn-group" role="group" aria-label="...">ccc</div>
     </div>
     </div>
-  <% end %>
+  <%# end %>
+
+  <div id="cleaner-accepted" aria-hidden="true" aria-labelledby="cleaner-accepted" role="dialog" class="iziModal">
+    <i class="iziModal-header-icon icon-power_settings_new"></i>
+    <div class="iziModal-progressbar"></div>
+    <div class="iziModal-wrap" style="height: auto;">
+      <div class="iziModal-content" style="padding: 0;">
+      </div>
+    </div>
+  </div>
 
 </div>
+
+<script>
+  Ladda.bind( 'div:not(.progress-demo) btn', { timeout: 4000 } );
+  Ladda.bind( '.progress-demo', {
+    callback: function( instance ) {
+      var progress = 0;
+      var interval = setInterval( function() {
+          progress = Math.min( progress + Math.random() * 0.1, 1 );
+          instance.setProgress( progress );
+          if( progress === 1 ) {
+            instance.stop();
+            clearInterval( interval );
+          }
+      }, 200 );
+    }
+  });
+</script>

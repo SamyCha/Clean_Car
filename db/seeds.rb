@@ -43,8 +43,9 @@ z = Car.new(immatriculation: "DG-672-RK", brand: "PEUGEOT", model: "206", color:
 z.save!
 # Car.create!(immatriculation: "BC-921-DD", brand: "RENAULT", model: "Clio", color: "noir", user: x)
 # Car.create!(immatriculation: "CW-434-HP", brand: "NISSAN", model: "Qashqai", color: "noir", user: x)
+
 # Cleanings
 # as stated on Trello, cleaning_status available are "pending", "confirmed" or "canceled" and "complete" when end_photos
-cleaning = Cleaning.new(place: Faker::Address.city, period: Faker::Date.between( Date.today, 1.year.from_now), comment_access: "usefull comment on where is the car", requirements: true, rating: 4, status: "confirmed", images: "whatever attachinary", user: x, car: z)
-cleaning.save!
-puts "Seed done !"
+cleaning = Cleaning.create!(place: Faker::Address.city, period: Faker::Date.between( Date.today, 1.year.from_now), comment_access: "usefull comment on where is the car", requirements: true, rating: 4, status: "confirmed", images: "whatever attachinary", user: x, car: z)
+
+puts "----- Seed done ! -----"
