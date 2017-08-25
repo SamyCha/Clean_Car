@@ -1,8 +1,14 @@
 <div class="container">
   <div class="row text-right margin-top15">
     <div class="col-xs-10 col-xs-offset-2">
-      <h2>My Clean Car</h2>
-      <h6>book an eco wash</h6>
+      <h2 style="margin-bottom: 0px;">My Clean Car</h2>
+      <h6 style="margin-top: 0px;">book an eco wash</h6>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 text-left">
+      <p">Recap of your cleaning : </p>
     </div>
   </div>
 
@@ -31,7 +37,7 @@
 
   <div class="row">
     <h6 style="margin-bottom: 3px; margin-left: 16px;">
-      Enter your parking period
+      Your parking period
     </h6>
     <div class="col-xs-10 col-xs-offset-1">
       <%= image_tag "datepicker.png", style: "height: 45px;"%>
@@ -41,7 +47,7 @@
 
   <div class="row">
     <h6 style="margin-bottom: 3px; margin-left: 16px;">
-      Car location during cleaning
+      Your car location during cleaning
     </h6>
     <div class="col-xs-10 col-xs-offset-1">
       <%= image_tag "localisation.png", style: "height: 45px;"%>
@@ -49,7 +55,7 @@
     </div>
   </div>
 
-  <div class="row" style="margin-top: 50px; color: black;">
+  <div class="row" style="margin-top: 40px; color: black;">
     <div class="col-xs-12">
       <p style="color: white;">Your cleaner :</p>
     </div>
@@ -102,7 +108,7 @@
         </div>
       <% end %>
     <% else %>
-      <div class="col-xs-12 text-center" style="margin-top: 30px;">
+      <div class="col-xs-12 text-center" style="margin-top: 15px;">
         <%= link_to "dashboard", dashboard_path, class: "btn btn-primary" %>
       </div>
     <% end %>
