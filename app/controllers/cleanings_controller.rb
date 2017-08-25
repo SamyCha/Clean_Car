@@ -50,6 +50,8 @@ class CleaningsController < ApplicationController
   end
 
   def update
+    @cleaning.update(status: "archived")
+    redirect_to dashboard_path
   end
 
   def destroy

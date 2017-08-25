@@ -43,8 +43,15 @@ class UsersController < ApplicationController
     if @user.cleaner
       @cleanings = Cleaning.where(user_id: @user.id)
     else
-      @cleanings = []
-      @cars.each { |car| car.cleanings.each { |cleaning| @cleanings << cleaning } }
+      @pendings = []
+      @confirmeds = []
+      @completes = []
+      @cars.each do |car|
+        car.cleanings.where(status: "pending").each { |cleaning| @pendings << cleaning }
+        car.cleanings.where(status: "confirmed").each { |cleaning| @confirmeds << cleaning }
+        car.cleanings.where(status: "complete").each { |cleaning| @completes << cleaning }
+      end
+      @cleanings = [ @pendings, @confirmeds, @completes ]
     end
   end
 
