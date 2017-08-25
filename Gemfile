@@ -22,6 +22,8 @@ gem 'coffee-rails'
 gem 'gmaps4rails'
 gem 'rails-assets-underscore', source: 'https://rails-assets.org'
 gem 'rails-assets-flatpickr', source: 'https://rails-assets.org'
+gem 'ladda-bootstrap-rails', :git => 'https://github.com/vendji/ladda-bootstrap-rails.git'
+gem 'izimodal'
 
 group :development, :test do
   gem 'pry-byebug'

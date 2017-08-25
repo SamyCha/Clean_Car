@@ -12,6 +12,8 @@
 // the 2 lines below are how we write basic imports in our bundler
 @import "flatpickr"; // same as require("flatpickr");
 @import "flatpickr/themes/material_blue";
+@import "ladda-themeless";
+@import "iziModal";
 
 // Your CSS partials
 @import "layouts/index";
@@ -23,3 +25,5 @@
 @import "components/timepicker";
 @import "pages/cleanings_new";
 
+@import "components/simple_modal";
+@import "components/ladda_buttons";
