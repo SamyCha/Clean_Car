@@ -48,9 +48,15 @@
                 <p style="font-size: 12px; margin: 0px;"><%= cleaning.place %></p>
                 <p style="font-size: 12px; margin: 0px;"><%= cleaning.period.strftime("%d/%m/%y - %M/%H") if cleaning.period %></p>
               </div>
-              <div></div>
-              <div></div>
-              <div></div>
+
+              <% unless cleaning.rating.nil? %>
+              <div>
+                <p style="font-size: 12px; margin: 0px;"><%= cleaning.rating %>
+                  <i class="fa fa-star" aria-hidden="true"></i>
+                </p>
+              </div>
+              <% end %>
+
               <div>
                 <p style="font-size: 12px; margin: 0px;"><%= cleaning.status %></p>
               </div>
