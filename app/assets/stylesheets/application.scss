@@ -15,11 +15,14 @@
 
 // Your CSS partials
 @import "layouts/index";
+@import "pages/index";
+@import "pages/cleanings_new";
+
+@import "global_classes";
+
 @import "components/index";
 @import "components/navbar";
-@import "pages/index";
 @import "components/card";
 @import "components/swiper";
 @import "components/timepicker";
-@import "pages/cleanings_new";
 
