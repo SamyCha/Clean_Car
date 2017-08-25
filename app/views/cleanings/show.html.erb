@@ -82,22 +82,31 @@
   </div>
 
   <!-- not sure how to correct so prefered to not do shit -->
-  <%# unless @cleaning.status == "complete" %>
+  <% unless @cleaning.status == "complete" %>
     <div class="row" style="margin-bottom: 20px;">
       <div class="col-xs-12 text-center">
-        <%#= link_to "Pay to book this cleaning", dashboard_path, class: "btn btn-success" %>
         <button href="#" class="progress-demo btn btn-primary ladda-button" data-style="zoom-in" data-size="xs" data-spinner-color="#fff"><span class="ladda-label">Pay to book this cleaning</span></a>
       </div>
     </div>
   <% else %>
-    <div class="row">
-      <div class="btn-toolbar" role="toolbar" aria-label="...">
-      <div class="btn-group" role="group" aria-label="...">aaa</div>
-      <div class="btn-group" role="group" aria-label="...">bbb</div>
-      <div class="btn-group" role="group" aria-label="...">ccc</div>
+    <div class="row ">
+      <div class="col-xs-12 text-center btn-rating" >
+        <strong>Rate this cleaning !</strong>
+        <div class="btn-toolbar text-center margin-top15" role="toolbar" aria-label="...">
+          <div class="btn-group" role="group" aria-label="..." style="float: none">
+            <button type="button" class="btn btn-default">1</button>
+            <button type="button" class="btn btn-default">2</button>
+            <button type="button" class="btn btn-default">3</button>
+            <button type="button" class="btn btn-default">4</button>
+            <button type="button" class="btn btn-default">5</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 text-center thx-rating hidden" >
+        <h3>Thank you for rating</h3>
+      </div>
     </div>
-    </div>
-  <%# end %>
+  <% end %>
 
   <div id="cleaner-accepted" aria-hidden="true" aria-labelledby="cleaner-accepted" role="dialog" class="iziModal">
     <i class="iziModal-header-icon icon-power_settings_new"></i>
@@ -124,5 +133,14 @@
           }
       }, 200 );
     }
+  });
+
+  $(document).ready(function(){
+    $('.btn-group>button').on('click', function(e) {
+      var rating = $(this).text();
+      $('.btn-rating').addClass('hidden');
+      $('.thx-rating').removeClass('hidden');
+      // window.location.replace("<%#= cleaning_path(rating) %>");
+    });
   });
 </script>
