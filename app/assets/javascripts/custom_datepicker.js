@@ -4,6 +4,5 @@ $(document).ready(function(){
     defaultDate: new Date(),
     dateFormat: "d-m-Y",
   });
-
   // different syntax $("#date_picker").flatpickr({disableMobile: true});
 });
