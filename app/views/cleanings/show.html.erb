@@ -82,29 +82,35 @@
   </div>
 
   <!-- not sure how to correct so prefered to not do shit -->
-  <% unless @cleaning.status == "complete" %>
-    <div class="row" style="margin-bottom: 20px;">
-      <div class="col-xs-12 text-center">
-        <button href="#" class="progress-demo btn btn-primary ladda-button" data-style="zoom-in" data-size="xs" data-spinner-color="#fff"><span class="ladda-label">Pay to book this cleaning</span></a>
-      </div>
-    </div>
-  <% else %>
-    <div class="row ">
-      <div class="col-xs-12 text-center btn-rating" >
-        <strong>Rate this cleaning !</strong>
-        <div class="btn-toolbar text-center margin-top15" role="toolbar" aria-label="...">
-          <div class="btn-group" role="group" aria-label="..." style="float: none">
-            <button type="button" class="btn btn-default">1</button>
-            <button type="button" class="btn btn-default">2</button>
-            <button type="button" class="btn btn-default">3</button>
-            <button type="button" class="btn btn-default">4</button>
-            <button type="button" class="btn btn-default">5</button>
-          </div>
+  <% if @cleaning.nil? %>
+    <% unless @cleaning.status == "complete" %>
+      <div class="row" style="margin-bottom: 20px;">
+        <div class="col-xs-12 text-center">
+          <button href="#" class="progress-demo btn btn-primary ladda-button" data-style="zoom-in" data-size="xs" data-spinner-color="#fff"><span class="ladda-label">Pay to book this cleaning</span></a>
         </div>
       </div>
-      <div class="col-xs-12 text-center thx-rating hidden" >
-        <h3>Thank you for rating</h3>
+    <% else %>
+      <div class="row ">
+        <div class="col-xs-12 text-center btn-rating" >
+          <strong>Rate this cleaning !</strong>
+          <div class="btn-toolbar text-center margin-top15" role="toolbar" aria-label="...">
+            <div class="btn-group" role="group" aria-label="..." style="float: none">
+              <button type="button" class="btn btn-default">1</button>
+              <button type="button" class="btn btn-default">2</button>
+              <button type="button" class="btn btn-default">3</button>
+              <button type="button" class="btn btn-default">4</button>
+              <button type="button" class="btn btn-default">5</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 text-center thx-rating hidden" >
+          <h3>Thank you for rating</h3>
+        </div>
       </div>
+    <% end %>
+  <% else %>
+    <div class="col-xs-12 text-center" style="margin-top: 70px;">
+      <%= link_to "dashboard", dashboard_path, class: "btn btn-primary" %>
     </div>
   <% end %>
 
@@ -140,7 +146,9 @@
       var rating = $(this).text();
       $('.btn-rating').addClass('hidden');
       $('.thx-rating').removeClass('hidden');
-      // window.location.replace("<%#= cleaning_path(rating) %>");
+      window.setTimeout(function() {
+        window.location.replace("<%= dashboard_path %>");
+      }, 2000);
     });
   });
 </script>
