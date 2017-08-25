@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/vendji/ladda-bootstrap-rails.git
+  revision: 6b8782f357504dd353e8493443637280f0044a4b
+  specs:
+    ladda-bootstrap-rails (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -78,6 +84,7 @@ GEM
       activesupport (>= 4.2.0)
     gmaps4rails (2.1.2)
     i18n (0.8.6)
+    izimodal (1.4.0)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -208,8 +215,10 @@ DEPENDENCIES
   font-awesome-sass
   geocoder
   gmaps4rails
+  izimodal
   jbuilder (~> 2.0)
   jquery-rails
+  ladda-bootstrap-rails!
   listen (~> 3.0.5)
   pg
   pry-byebug

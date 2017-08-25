@@ -81,7 +81,7 @@
     </div>
   </div>
 
-  <% unless @cleaning.status == "complete" %>
+  <%# unless @cleaning.status == "complete" %>
     <div class="row" style="margin-bottom: 20px;">
       <div class="col-xs-12 text-center">
         <%= link_to "Pay to book this cleaning", dashboard_path, class: "btn btn-success" %>
@@ -95,6 +95,53 @@
       <div class="btn-group" role="group" aria-label="...">...</div>
     </div>
     </div>
-  <% end %>
+  <%# end %>
 
+  <a href="#" class="progress-demo btn btn-success ladda-button" data-style="zoom-in" data-size="xs" data-spinner-color="#fff"><span class="ladda-label">Pay to book</span></a>
+
+<a href="#" class="trigger">Modal</a>
+<!-- <div id="modal"> -->
+<div id="modal" class="iziModal" data-izimodal-group="alerts">test yolo swag</div>
+    <h1>yolo</h1>
 </div>
+
+<div id="cleaner-accepted" aria-hidden="true" aria-labelledby="cleaner-accepted" role="dialog" class="iziModal" style="z-index: 999; border-radius: 3px; border-bottom: 3px solid rgb(189, 91, 91); overflow: hidden; max-width: 200px; display: none; height: 72px;">
+  <!-- <div class="iziModal-header" style="background: rgb(189, 91, 91); padding-right: 44px;"> -->
+    <i class="iziModal-header-icon icon-power_settings_new"></i>
+    <div class="iziModal-progressbar">
+      <!-- <div style="background-color: rgba(255, 255, 255, 0.5); width: 0%;"></div> -->
+    </div>
+      <!-- <div class="iziModal-header-buttons"> -->
+        <!-- <a href="javascript:void(0)" class="iziModal-button iziModal-button-close" data-izimodal-close=""></a> -->
+      <!-- </div> -->
+    <!-- </div> -->
+  <div class="iziModal-wrap" style="height: auto;">
+  <div class="iziModal-content" style="padding: 0;"></div>
+
+  </div>
+  </div>
+
+  <script>
+   ///your are missing this part
+   // Bind normal btn
+   Ladda.bind( 'div:not(.progress-demo) btn', { timeout: 4000 } );
+   // Bind progress btn and simulate loading progress
+   Ladda.bind( '.progress-demo', {
+     callback: function( instance ) {
+       var progress = 0;
+       var interval = setInterval( function() {
+           progress = Math.min( progress + Math.random() * 0.1, 1 );
+           instance.setProgress( progress );
+           if( progress === 1 ) {
+             instance.stop();
+             clearInterval( interval );
+           }
+       }, 200 );
+     }
+   } );
+   // You can control loading explicitly using the JavaScript API
+   // as outlined below:
+  </script>
+</div>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.2.0/prototype.js"></script> -->

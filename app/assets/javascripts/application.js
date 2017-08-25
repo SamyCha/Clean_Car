@@ -4,6 +4,9 @@
 //= require underscore
 //= require gmaps/google
 //= require flatpickr
+//= require spin
+//= require ladda
+//= require iziModal
 
 //= require_tree .
 // always keep tree . on the bottom pls or will generate errors sometimes
