@@ -1,4 +1,3 @@
 $(document).ready(function(){
-  $('.clockpicker').clockpicker({
-    donetext: 'Done'});
+  $('.clockpicker').clockpicker({autoclose: true});
 });
