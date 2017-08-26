@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   resources :cleanings
   root 'pages#home'
   get '/dashboard', to: 'users#show'
+
+#page statique about
+  get "/:page" => "static#show"
 end

@@ -11,7 +11,7 @@
           <label style="font-weight: lighter;">cleaners around you</label>
         </div>
         <div class="col-xs-9">
-          <%= text_field_tag :address, nil, class: "form-control autocomplete", placeholder: "Le Wagon Bordeaux" %>
+          <%= text_field_tag :address, nil, class: "form-control autocomplete", placeholder: "Chartrons Bordeaux" %>
         </div>
         <div class="col-xs-3" style="padding: 0px;">
           <input type="submit" class="btn btn-success" value="search">
@@ -39,7 +39,7 @@
         <%= image_tag "parking.png", style: "height: 45px; margin: 0px 5px;"%>
       </div>
       <div class="col-xs-10">
-        <p style="font-size: 12px;">Enter the characteristics of your car as well as your parking information.</p>
+        <p style="font-size: 12px;">After Sign-up... Complete the form by entering the characteristics of your car as well as your parking information.</p>
       </div>
     </div>
     <div class="row">
@@ -48,6 +48,7 @@
       </div>
       <div class="col-xs-10">
         <p style="font-size: 12px;">A cleaner will come clean your car during parking, at the desired time and at the location indicated.</p>
+        <p class="text-right"><%= link_to "more details", "/about" %></p>
       </div>
     </div>
   </div>
