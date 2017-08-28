@@ -8,4 +8,11 @@ Rails.application.routes.draw do
   resources :cleanings
   root 'pages#home'
   get '/dashboard', to: 'users#show'
+
+  resources :orders, only: [:show, :create]
+
+  resources :orders, only: [:show, :create] do
+    resources :payments, only: [:new, :create]
+  end
+
 end
