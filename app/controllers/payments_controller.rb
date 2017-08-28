@@ -2,6 +2,9 @@ class PaymentsController < ApplicationController
     before_action :set_order
 
   def new
+    @cleaner = @order.cleaning.user
+    @cleanings = @cleaner.cleanings.where.not(id: @order.cleaning.id)
+    @ratings = []
   end
 
   def create
