@@ -81,12 +81,22 @@
       </div>
     </div>
 
+      <div class="col-xs-12 text-center" >
+        <%= form_tag orders_path do %>
+          <%= hidden_field_tag 'cleaning_id', @cleaning.id %>
+          <h2>Amount: <%= humanized_money_with_symbol(@car.category.price) %></h2>
+          <%= submit_tag 'Pay to book this cleaning', class: 'btn btn-success' %>
+        <% end %>
+      </div>
+
     <% if @cleaning.rating.blank? or  @cleaning.rating.nil? %>
       <% unless @cleaning.status == "complete" %>
         <div class="row" style="margin-bottom: 20px;">
+<!-- #
           <div class="col-xs-12 text-center">
             <button href="#" class="progress-demo btn btn-primary ladda-button" data-style="zoom-in" data-size="xs" data-spinner-color="#fff"><span class="ladda-label">Pay to book this cleaning</span></a>
           </div>
+-->
         </div>
       <% else %>
         <div class="row ">
