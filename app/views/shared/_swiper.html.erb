@@ -11,7 +11,7 @@
             <% if car.car_picture && !car.car_picture.blank? %>
               <%= image_tag car.car_picture  %>
             <% else %>
-              <%= image_tag "#{Category.find(car.category_id).name}_car.svg"  %>
+              <%= image_tag "#{car.category.name}_car.svg"  %>
             <% end %>
           </div>
           <div class="col-xs-6 car-details">
@@ -30,7 +30,7 @@
               <%= car.immatriculation %>
             </div>
             <div class="col-xs-4 text-center min-category flex-ver-center">
-              <%= image_tag "#{Category.find(car.category_id).name}_car.svg", class: "min-category" %>
+              <%= image_tag "#{car.category.name}_car.svg", class: "min-category" %>
             </div>
           </div>
         </div>
