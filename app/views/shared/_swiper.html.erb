@@ -1,20 +1,17 @@
-<div class="row" style="margin-bottom: 20px;">
+<div class="row margin-bottom20">
   <div class="swiper-container swiper-container-horizontal">
-    <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1860px, 0px, 0px);">
-
-      <div class="swiper-slide" style="height: 19vh; margin-right: 30px; background-color: #e5e5e5;">
-          <%= link_to new_car_path, class: "col-xs-12", style: "height: 100%; display: flex; align-items: center; justify-content: center;" do %>
-            <h4>Create new car</h4>
-        <% end %>
+    <div class="swiper-wrapper">
+      <div class="swiper-slide create-car-slide">
+        <%= link_to "Create new car", new_car_path, class: "col-xs-12 create-car-link"%>
       </div>
 
       <% @cars.each do |car| %>
-        <div class="swiper-slide" id="<%= car.id %>" style="height: 19vh; margin-right: 30px; background-color: rgba(229, 229, 229, 0.7); display: flex; align-items: center;">
+        <div class="swiper-slide car-slide" id="<%= car.id %>">
           <div class="col-xs-4 col-xs-offset-1">
             <% if car.car_picture && !car.car_picture.blank? %>
               <%= image_tag car.car_picture, class: "img-circle" %>
             <% else %>
-              <%= image_tag "car_picto.png", style: "width: 100%; height: 14vh; background-color: white;", class: "img-circle" %>
+              <%= image_tag "normal_car.svg",  class: "img-circle" %>
             <% end %>
           </div>
           <div class="col-xs-6">

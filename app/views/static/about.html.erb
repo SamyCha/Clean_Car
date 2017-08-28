@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row text-right" style="margin-top: 15px;">
+    <div class="col-xs-10 col-xs-offset-2">
+      <h2>My Clean Car</h2>
+      <h4 style=" color: #00FF00;">book an eco wash</h4>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; margin-top: 50px; align-items: space-between; justify-content: space-around; height: 42vh;">
+    <div class="row" >
+      <div class="col-xs-12">
+        <h4>How it works?</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">
+        <%= image_tag "smartphone.png", style: "height: 45px; margin: 0px 5px;"%>
+      </div>
+      <div class="col-xs-10">
+        <p style="font-size: 12px;">You are a motorist ....<br>Connect to My Clean Car via your smartphone to order an outdoor wash of your car.
+        A few clicks are enough to fill in the necessary information,</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">
+        <%= image_tag "parking.png", style: "height: 45px; margin: 0px 5px;"%>
+      </div>
+      <div class="col-xs-10">
+        <p style="font-size: 12px;">Enter the characteristics of your car as well as your parking information.
+        Your car must respect cleaner security, easy access, and public reglementation.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2">
+        <%= image_tag "spray.png", style: "height: 45px; margin: 0px 5px;"%>
+      </div>
+      <div class="col-xs-10">
+        <p style="font-size: 12px;">A cleaner will come clean your car during parking, at the desired time and at the location indicated.
+        We use only environmentally friendly products. No water or waste is issued on site</p>
+      </div>
+      <p class="text-right"><%= link_to "back home", root_path %>
+    </div>
+  </div>
+</div>

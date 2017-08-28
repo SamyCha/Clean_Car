@@ -14,5 +14,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:show, :create] do
     resources :payments, only: [:new, :create]
   end
+#page statique about
+  get "/:page" => "static#show"
 
 end

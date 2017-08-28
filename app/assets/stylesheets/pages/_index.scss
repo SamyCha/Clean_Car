@@ -1,2 +1,21 @@
-// Import page-specific CSS files here.
-@import "home";
+// index-map
+.index-map {
+  #map {
+    width: 100%; height: 200px;
+  }
+}
+
+// index-cleaners-cards
+.index-cleaners-cards {
+  margin: 15px 0px;
+  .card {
+    padding: 5px;
+    background-color: #278f75;
+    opacity: 0.8;
+  }
+}
+
+// index-btn-connect
+.index-btn-connect {
+
+}
