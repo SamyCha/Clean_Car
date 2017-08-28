@@ -17,8 +17,12 @@ class CleaningsController < ApplicationController
   end
 
   def create
+
     if cleaning_params[:place].blank?
       flash[:alert] = "Please enter a location"
+      redirect_to new_cleaning_path
+    elsif cleaning_params[:requirements].blank?
+      flash[:alert] = "You need to confirm the requirements"
       redirect_to new_cleaning_path
     else
 
@@ -60,7 +64,7 @@ class CleaningsController < ApplicationController
   private
 
   def cleaning_params
-    params.require(:clean).permit(:car_id, :place, :period, :comment_access)
+    params.require(:clean).permit(:car_id, :place, :period, :comment_access, :requirements)
   end
 
   def find_cleaning

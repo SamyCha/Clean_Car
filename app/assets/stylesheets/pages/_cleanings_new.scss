@@ -30,10 +30,44 @@
     background-color: rgba(229, 229, 229, 0.7);
     display: flex;
     align-items: center;
-    img {
-      width: 100%;
-      height: 14vh;
-      background-color: white;
+    .car-image {
+      height: 100%;
+      background-color: rgba(256, 256, 256, 0.6);
+      img {
+        width: 100%;
+        height: 90%;
+      }
+    }
+    .car-details {
+      div {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        .car-model-brand {
+          font-size: 20px;
+        }
+      }
+      .glyphicon.glyphicon-adjust {
+        font-size: 15px;
+        height: 20px;
+        p {
+          font-size: 12px;
+          height: 15px;
+          margin: 0px;
+          font-family: 'Roboto', sans-serif;
+        }
+      }
+      .immatriculation {
+        font-size: 12px;
+        padding-left: 10px;
+      }
+      .min-category {
+        height: 100%;
+        margin-top: 10px;
+        img {
+          width: 100%;
+        }
+      }
     }
   }
 }
