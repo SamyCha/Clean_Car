@@ -3,6 +3,43 @@
   margin: 0px 0px 3px 16px;
 }
 
+// swiper
+
+.swiper-wrapper {
+  transition-duration: 0ms;
+  transform: translate3d(-1860px, 0px, 0px);
+
+  .create-car-slide {
+    height: 19vh;
+    margin-right: 30px;
+    background-color: rgba(229, 229, 229, 0.8);
+    .create-car-link {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        color: rgb(61, 98, 124);
+      }
+    }
+  }
+
+  .car-slide {
+    height: 19vh;
+    margin-right: 30px;
+    background-color: rgba(229, 229, 229, 0.7);
+    display: flex;
+    align-items: center;
+    img {
+      width: 100%;
+      height: 14vh;
+      background-color: white;
+    }
+  }
+}
+
+
+
 // datetime input
 .period-select {
   margin-bottom: 3px;
@@ -45,5 +82,5 @@
 
 // comment access input
 .comment-access {
-
+  max-width: 100%
 }
