@@ -1,1 +1,37 @@
-// Specific CSS for your home-page
+// MyCleanCar Title
+.subtitle {
+   color: #00FF00;
+}
+
+// Address search bar
+.address-search-bar {
+  margin-top: 7vh;
+  label {
+    font-weight: lighter;
+  }
+  .col-xs-8 {
+    padding-right: 0px
+  }
+  .col-xs-4 {
+    padding: 0px;
+  }
+}
+
+// Presentation area
+.presentation-area {
+  margin-top: 7vh;
+  height: 42vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .how-it-works {
+
+  }
+  .p-pres {
+    font-size: 12px;
+  }
+  &>.row {
+    display: flex;
+    align-items: center;
+  }
+}

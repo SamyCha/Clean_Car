@@ -26,7 +26,7 @@
 
         <div class="col-xs-3 col-xs-offset-3">
           <% unless cleaner.cleanings.blank? or cleaner.cleanings == false %>
-            <% cleaner.cleanings.each do |cleaning| %>
+            <% cleaner.cleanings.where.not(rating: nil).each do |cleaning| %>
               <% @ratings << cleaning.rating  %>
             <% end %>
             <%= @ratings.sum / @ratings.size if @ratings.size >= 1%>
