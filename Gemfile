@@ -10,6 +10,7 @@ gem 'rails', '5.1.3'
 gem 'redis'
 gem 'geocoder'
 gem 'faker'
+gem 'callr'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
