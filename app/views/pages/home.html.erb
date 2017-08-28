@@ -1,10 +1,5 @@
 <div class="container">
-  <div class="row text-right">
-    <div class="col-xs-10 col-xs-offset-2">
-      <h1 >My Clean Car</h1>
-      <p class="subtitle">book an eco wash</p>
-    </div>
-  </div>
+  <%= render "shared/mcc-main-title" %>
 
   <div class="row address-search-bar">
     <%= form_tag users_path, method: "get", class:"form-inline" do %>
