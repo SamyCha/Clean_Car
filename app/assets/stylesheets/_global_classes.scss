@@ -3,6 +3,10 @@
   align-items: center;
 }
 
+.no-rating {
+  font-size: 12px;
+}
+
 // row title clean car
 .margin-top5 {
   margin-top: 5px;
@@ -12,6 +16,25 @@
   margin-top: 15px;
 }
 
+.margin-top20 {
+  margin-top: 20px;
+}
+
+.margin-top50 {
+  margin-top: 50px;
+}
+
+
 .row:last-child {
   margin-bottom: 20px;
+}
+
+// MyCleanCar Title
+.mcc-main-title {
+  h1 {
+    font-size: 42px;
+  }
+  .subtitle {
+     color: #00FF00;
+  }
 }

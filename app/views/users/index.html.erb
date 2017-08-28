@@ -1,22 +1,17 @@
 <div class="container">
-  <div class="row text-right" style="margin-top: 15px;">
-    <div class="col-xs-10 col-xs-offset-2">
-      <h2>My Clean Car</h2>
-      <h4 style=" color: #00FF00;">book an eco wash</h4>
-    </div>
-  </div>
+  <%= render "shared/mcc-main-title" %>
 
-  <div class="row" style="margin-top: 50px;">
+  <div class="row index-map">
     <div class="col-xs-12">
-     <h6>Cleaners around you</h6>
+      <h6>Cleaners around you</h6>
     </div>
-    <div id="map" style="width: 100%; height: 200px;"></div>
+    <div id="map"></div>
   </div>
 
-  <div class="row" style="margin: 15px 0px; ba">
+  <div class="row index-cleaners-cards">
     <% @cleaners.each do |cleaner| %>
-    <div class="col-xs-12 card" style="padding: 5px; background-color: #278f75; opacity: 0.8;">
-      <div style="display: flex; align-items: center;">
+    <div class="col-xs-12 card">
+      <div class="flex-ver-center">
         <div class="col-xs-3">
         <%= image_tag "profil.png", id: "logo", height: 60 %>
         </div>
@@ -26,12 +21,13 @@
 
         <div class="col-xs-3 col-xs-offset-3">
           <% unless cleaner.cleanings.blank? or cleaner.cleanings == false %>
-            <% cleaner.cleanings.each do |cleaning| %>
+            <% cleaner.cleanings.where.not(rating: nil).each do |cleaning| %>
               <% @ratings << cleaning.rating  %>
             <% end %>
-            <%= @ratings.sum / @ratings.size if @ratings.size >= 1%>
+            <%= rating = @ratings.sum / @ratings.size if @ratings.size >= 1%>
+            <i class="fa fa-star-o" aria-hidden="true"></i>
           <% else %>
-            <h6>no rating yet</h6>
+            <p class="no-rating">no rating yet</p>
           <% end%>
         </div>
       </div>
@@ -39,7 +35,7 @@
     <% end %>
   </div>
 
-  <div class="row" style="margin-top: 50px;">
+  <div class="row index-btn-connect margin-top50">
     <div class="col-xs-12 text-center">
       <% if current_user %>
         <%= link_to "Book a Cleaning", new_cleaning_path, class: "btn btn-success" %>
