@@ -1,7 +1,39 @@
+
+
 .created-at {
-  font-size: 12px;
+  font-size: 3vw;
 }
 
+// cleaner side
+.profil-description {
+  background-color: rgba(50, 183, 150, 0.6);
+  p {
+    margin: 0px;
+  }
+  .cleaner-picture {
+    padding: 10px;
+    img {
+      width: 90%;
+    }
+  }
+  .cleaner-details {
+    padding-right: 0px;
+    .name {
+      font-size: 5.6vw;
+    }
+    .address {
+      font-size: 3vw;
+    }
+    .email {
+      font-size: 4vw;
+    }
+  }
+}
+#cleaner-edit {
+  font-size: 4vw;
+}
+
+// client side
 .dashboard-client-ul {
   list-style-type: none;
 

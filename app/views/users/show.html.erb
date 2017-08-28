@@ -5,6 +5,29 @@
     </div>
   </div>
 
+  <% if current_user.cleaner %>
+
+  <div class="row">
+    <div class="col-xs-12 profil-description flex-ver-center">
+      <div class="col-xs-5 text-center cleaner-picture">
+        <%= image_tag "profil.png" %>
+      </div>
+      <div class="col-xs-7 text-right cleaner-details">
+        <p class="name"><%= @user.firstname.capitalize %> <%= @user.lastname.capitalize %></p>
+        <p class="address"><%= @user.address %></p>
+        <p class="email"><%= @user.email %></p>
+        <p class="created-at">cleaner since : <%= @user.created_at.strftime('%d/ %m/ %Y') %></p>
+      </div>
+    </div>
+    <div class="col-xs-12 text-right">
+      <%= link_to "edit", dashboard_edit_path(@user), id: "cleaner-edit" %>
+    </div>
+  </div>
+
+
+
+
+  <% else %>
   <div class="row">
     <div class="col-xs-4 col-xs-offset-1 text-center">
       <%= image_tag "profil.png", style: "width: 100%"%>
@@ -70,5 +93,6 @@
       </ul>
     </div>
   </div>
+  <% end %>
 </div>
 

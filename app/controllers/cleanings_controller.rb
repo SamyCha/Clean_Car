@@ -17,7 +17,6 @@ class CleaningsController < ApplicationController
   end
 
   def create
-
     if cleaning_params[:place].blank?
       flash[:alert] = "Please enter a location"
       redirect_to new_cleaning_path
