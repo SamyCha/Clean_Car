@@ -15,7 +15,7 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= favicon_link_tag 'car_picto.png' %>
-    <%= render :partial => "shared/ga" if Rails.env.production? %>
+    <%= render "shared/ga"  %>
   </head>
 
     <body>
