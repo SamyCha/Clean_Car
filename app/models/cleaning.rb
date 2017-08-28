@@ -2,6 +2,7 @@ class Cleaning < ApplicationRecord
   belongs_to :user
   belongs_to :car
 
+
 after_update :send_sms_to_customer
 
   def price

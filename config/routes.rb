@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   root 'pages#home'
   get '/dashboard', to: 'users#show'
 
+  resources :orders, only: [:show, :create]
+
+  resources :orders, only: [:show, :create] do
+    resources :payments, only: [:new, :create]
+  end
 #page statique about
   get "/:page" => "static#show"
+
 end

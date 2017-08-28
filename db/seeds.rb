@@ -34,10 +34,10 @@ User.create!(firstname: Faker::Name.first_name, lastname: Faker::Name.last_name,
 
 
 # Categories
-y = Category.new(name: "small", price: 10)
+y = Category.new(name: "small", price_cents: 1000)
 y.save!
-Category.create!(name: "medium", price: 13)
-Category.create!(name: "large", price: 18)
+Category.create!(name: "medium", price_cents: 1300)
+Category.create!(name: "large", price_cents: 1800)
 # Cars
 z = Car.new(immatriculation: "DG-672-RK", brand: "PEUGEOT", model: "206", color: "noir", user_id: x.id, category_id: y.id)
 z.save!

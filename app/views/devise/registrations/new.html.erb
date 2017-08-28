@@ -1,23 +1,16 @@
 <div class="container">
-<div class="row text-right" style="margin-top: 15px;">
+  <div class="row registration-title">
     <div class="col-xs-10 col-xs-offset-2">
-      <h2>My Clean Car</h2>
-      <h4 style=" color: #00FF00;">book an eco wash</h4>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-12" style="margin-top: 50px;">
-      <h2 class="text-right" style="margin-right: 20px;">
+      <h2 class="text-right">
         Sign up
-        <small>
+      </h2>
+      <p class="text-right">
         <% if params[:cleaner] %>
           as cleaner
         <% else %>
           as client
         <% end %>
-        </small>
-      </h2>
+      </p>
     </div>
   </div>
 
@@ -49,20 +42,19 @@
         </div>
 
         <div class="form-actions col-xs-6 ">
-          <%= f.button :submit, "Sign up", class: "btn btn-primary btn-block" %>
+          <%= f.button :submit, "Sign up", class: "btn-block" %>
         </div>
       <% end %>
     </div>
   </div>
 
-  <!-- NASTY ! =P -->
   <hr>
 
   <div class="row">
     <div class="col-xs-12 text-center">
       <h5>Already an account ?</h5>
     </div>
-    <div class="col-xs-6 col-xs-offset-3 text-center btn btn-default" style="margin-bottom: 100px;">
+    <div class="col-xs-6 col-xs-offset-3 text-center btn btn-default" style="margin-bottom: 50px;">
       <%= render "devise/shared/links" %>
     </div>
   </div>

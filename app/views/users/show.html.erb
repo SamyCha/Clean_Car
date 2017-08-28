@@ -28,14 +28,7 @@
                   <% if car.car_picture && !car.car_picture.blank? %>
                     <%= image_tag car.car_picture, class: "img-circle" %>
                   <% else %>
-                    <% case car.category_id %>
-                    <% when 1  %>
-                      <%= image_tag "small_car.svg", class: "img-circle" %>
-                    <% when 2  %>
-                      <%= image_tag "normal_car.svg", class: "img-circle" %>
-                    <% when 3  %>
-                      <%= image_tag "large_car.svg", class: "img-circle" %>
-                    <% end %>
+                    <%= image_tag "#{Category.find(car.category_id).name}_car.svg", class: "img-circle" %>
                   <% end %>
                 </div>
                 <div>

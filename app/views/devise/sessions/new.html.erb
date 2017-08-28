@@ -1,14 +1,7 @@
 <div class="container">
-  <div class="row text-right" style="margin-top: 15px;">
-    <div class="col-xs-10 col-xs-offset-2">
-      <h2>My Clean Car</h2>
-      <h4 style=" color: #00FF00;">book an eco wash</h4>
-    </div>
-  </div>
-
   <div class="row">
-    <div class="col-xs-12" style="margin-top: 50px;">
-      <h2 class="text-right" style="margin-right: 20px;">Log in</h2>
+    <div class="col-xs-12 margin-top20">
+      <h2 class="text-right">Log in</h2>
     </div>
   </div>
 
@@ -27,7 +20,7 @@
         </div>
       <% end %>
     </div>
-    <div class="col-xs-12 text-right" style=" padding-top: 6px;">
+    <div class="col-xs-12 text-right">
       <%- if devise_mapping.recoverable? %>
         <%= link_to "Forgot your password?", new_password_path(resource_name), style: "font-size: 14px;" %>
       <% end -%>
@@ -36,9 +29,9 @@
 
   <hr>
 
-  <div class="row" style="margin-bottom: 50px;">
+  <div class="row">
     <div class="col-xs-12 text-center">
-      <h5>create an account as:</h5>
+      <p>create an account as:</p>
     </div>
     <div class="col-xs-5 text-center">
       <%- if devise_mapping.registerable? %>
@@ -47,7 +40,7 @@
     </div>
 
     <div class="col-xs-2 text-center">
-      <h6>or</h6>
+      <p>or</p>
     </div>
 
     <div class="col-xs-5 text-center">
