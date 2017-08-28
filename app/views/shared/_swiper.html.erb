@@ -7,27 +7,31 @@
 
       <% @cars.each do |car| %>
         <div class="swiper-slide car-slide" id="<%= car.id %>">
-          <div class="col-xs-4 col-xs-offset-1">
+          <div class="col-xs-4 col-xs-offset-1 car-image flex-ver-center img-circle">
             <% if car.car_picture && !car.car_picture.blank? %>
-              <%= image_tag car.car_picture, class: "img-circle" %>
+              <%= image_tag car.car_picture  %>
             <% else %>
-              <%= image_tag "normal_car.svg",  class: "img-circle" %>
+              <%= image_tag "#{Category.find(car.category_id).name}_car.svg"  %>
             <% end %>
           </div>
-          <div class="col-xs-6">
-            <div style="display: flex; justify-content: space-around; align-items: center">
-              <span style="font-size: 26px;">
+          <div class="col-xs-6 car-details">
+            <div>
+              <strong class="car-model-brand">
                 <%= car.brand %>
                 <%= car.model %>
-              </span>
-              (<%= car.color %>)
+              </strong>
+              <div class="glyphicon glyphicon-adjust" style="color: <%= car.color %>">
+                <p>
+                  (<%= car.color %>)
+                </p>
+              </div>
             </div>
-            <h6 style="display: flex; justify-content: space-around;">
-              <small>
-                <%= car.immatriculation %>
-              </small>
-              <%= Category.find(car.category_id).name %>
-            </h6>
+            <div class="immatriculation col-xs-8 text-center">
+              <%= car.immatriculation %>
+            </div>
+            <div class="col-xs-4 text-center min-category flex-ver-center">
+              <%= image_tag "#{Category.find(car.category_id).name}_car.svg", class: "min-category" %>
+            </div>
           </div>
         </div>
       <% end %>
