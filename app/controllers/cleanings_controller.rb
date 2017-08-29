@@ -25,14 +25,14 @@ class CleaningsController < ApplicationController
       redirect_to new_cleaning_path
     else
 
-      date = params[:clean][:date].split('-')
-      time = params[:clean][:time].split(':')
+      date = params[:cleaning][:date].split('-')
+      time = params[:cleaning][:time].split(':')
       period = DateTime.new(date[2].to_i, date[1].to_i, date[0].to_i, time[0].to_i, time[1].to_i)
 
-      params[:clean].delete(:time)
-      params[:clean].delete(:date)
+      params[:cleaning].delete(:time)
+      params[:cleaning].delete(:date)
 
-      params[:clean][:period] = period
+      params[:cleaning][:period] = period
 
       @cleaning = Cleaning.new(cleaning_params)
       users = User.all
@@ -58,7 +58,7 @@ class CleaningsController < ApplicationController
     elsif @cleaning.status == "accepted"
       @cleaning.update(status: "confirmed")
     elsif @cleaning.status == "confirmed"
-      @cleaning.update(status: "complete")
+      @cleaning.update(cleaning_params)
     elsif @cleaning.status == "complete"
       @cleaning.update(status: "archived")
     end
@@ -71,7 +71,7 @@ class CleaningsController < ApplicationController
   private
 
   def cleaning_params
-    params.require(:clean).permit(:car_id, :place, :period, :comment_access, :requirements)
+    params.require(:cleaning).permit(:car_id, :place, :period, :comment_access, :requirements, :status, photos: [])
   end
 
   def find_cleaning

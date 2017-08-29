@@ -8,5 +8,9 @@
 //= require ladda
 //= require iziModal
 
+//= require jquery-fileupload/basic
+//= require cloudinary/jquery.cloudinary
+//= require attachinary
+
 //= require_tree .
 // always keep tree . on the bottom pls or will generate errors sometimes
