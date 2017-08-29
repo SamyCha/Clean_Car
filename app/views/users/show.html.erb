@@ -27,6 +27,7 @@
     <div class="row">
       <div class="col-xs-12">
         <h2>Your Missions : </h2>
+        <!-- card of the cleaning order -->
         <ul class="dashboard-cleaner-ul">
           <% @missions.each do |cleaning| %>
             <p class="created-at">created : <%= cleaning.created_at.strftime("%d/%m/%y at %Hh%M") %></p>
@@ -65,6 +66,7 @@
             </li>
           <% end %>
         </ul>
+
       </div>
       <% unless @completes.blank? %>
         <div class="col-xs-12">
@@ -102,6 +104,7 @@
     </div>
   </section>
 
+  <div class="socket-field"></div>
 
   <% else %>
   <section id="client-section">

@@ -4,6 +4,7 @@ class Cleaning < ApplicationRecord
 
 
 after_update :send_sms_to_customer
+after_create :broadcast_cleaning
 
   def price
     car.category.price
@@ -23,5 +24,14 @@ private
         nil
       )
     end
+  end
+
+  def broadcast_cleaning
+    ActionCable.server.broadcast("cleanings", {
+      cleaning_partial: ApplicationController.renderer.render(
+        partial: "cleanings/recap_for_client",
+        locals: { car: self.car }
+      )
+    })
   end
 end
