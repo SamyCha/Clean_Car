@@ -125,6 +125,7 @@
           <p>pending</p>
           <% @cleanings.each_with_index do |cleanings, i| %>
             <% cleanings.each do |cleaning| %>
+                <p class="created-at">created : <%= cleaning.created_at.strftime("%d/%m/%y at %Hh%M") %></p>
                 <li class="card">
                   <div>
                     <% car = Car.find(cleaning.car_id) %>
@@ -166,6 +167,9 @@
               <hr>
               <p>confirmed</p>
             <% when 1 %>
+              <hr>
+              <p>confirmed</p>
+            <% when 2 %>
               <hr>
               <p>complete</p>
             <% end %>
