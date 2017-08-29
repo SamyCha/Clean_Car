@@ -20,29 +20,18 @@ class UsersController < ApplicationController
     end
   end
 
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to users_path
-    else
-      render :new
-    end
-  end
-
   def edit
     @title = "Dashboard"
   end
 
   def show
     @user = current_user
-    @cars = Car.where(user_id: @user.id)
     if @user.cleaner
-      @cleanings = Cleaning.where(user_id: @user.id)
+      @missions = @user.cleanings.where(status: "pending").or(@user.cleanings.where(status: "accepted")).or(@user.cleanings.where(status: "confirmed")).sort_by(&:status).reverse
+      @completes = @user.cleanings.where(status: "complete")
+      @cleanings = @user.cleanings
     else
+      @cars = Car.where(user_id: @user.id)
       @pendings = []
       @confirmeds = []
       @completes = []

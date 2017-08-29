@@ -17,7 +17,6 @@ class CleaningsController < ApplicationController
   end
 
   def create
-
     if cleaning_params[:place].blank?
       flash[:alert] = "Please enter a location"
       redirect_to new_cleaning_path
@@ -37,7 +36,7 @@ class CleaningsController < ApplicationController
 
       @cleaning = Cleaning.new(cleaning_params)
       users = User.all
-      cleaner = User.where(cleaner: true).near("Bordeaux", 20).first
+      cleaner = User.where(cleaner: true).near(cleaning_params[:place], 20).first
 
       @cleaning.update(user: cleaner)
 
@@ -54,7 +53,11 @@ class CleaningsController < ApplicationController
   end
 
   def update
-    @cleaning.update(status: "archived")
+    if @cleaning.status == "pending"
+      @cleaning.update(status: "accepted")
+    elsif @cleaning.status == "complete"
+      @cleaning.update(status: "archived")
+    end
     redirect_to dashboard_path
   end
 
