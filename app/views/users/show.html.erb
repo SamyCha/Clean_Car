@@ -1,98 +1,183 @@
 <div class="container">
   <div class="row text-right margin-top5" >
     <div class="col-xs-10 col-xs-offset-2">
-      <h2>Your Profile</h2>
+      <h1 id="dashboard-h1">Your Profile</h1>
     </div>
   </div>
 
   <% if current_user.cleaner %>
-
-  <div class="row">
-    <div class="col-xs-12 profil-description flex-ver-center">
-      <div class="col-xs-5 text-center cleaner-picture">
-        <%= image_tag "profil.png" %>
+  <section id="cleaner-section">
+    <div class="row">
+      <div class="col-xs-12 profil-description flex-ver-center">
+        <div class="col-xs-5 text-center cleaner-picture">
+          <%= image_tag "profil.png" %>
+        </div>
+        <div class="col-xs-7 text-right cleaner-details">
+          <p class="name"><%= @user.firstname.capitalize %> <%= @user.lastname.capitalize %></p>
+          <p class="address"><%= @user.address %></p>
+          <p class="email"><%= @user.email %></p>
+          <p class="created-at">cleaner since : <%= @user.created_at.strftime('%d/ %m/ %Y') %></p>
+        </div>
       </div>
-      <div class="col-xs-7 text-right cleaner-details">
-        <p class="name"><%= @user.firstname.capitalize %> <%= @user.lastname.capitalize %></p>
-        <p class="address"><%= @user.address %></p>
-        <p class="email"><%= @user.email %></p>
-        <p class="created-at">cleaner since : <%= @user.created_at.strftime('%d/ %m/ %Y') %></p>
+      <div class="col-xs-12 text-right">
+        <%= link_to "edit", dashboard_edit_path(@user), id: "cleaner-edit" %>
       </div>
     </div>
-    <div class="col-xs-12 text-right">
-      <%= link_to "edit", dashboard_edit_path(@user), id: "cleaner-edit" %>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Your Missions : </h2>
+        <ul class="dashboard-cleaner-ul">
+          <% @missions.each do |cleaning| %>
+            <p class="created-at">created : <%= cleaning.created_at.strftime("%d/%m/%y at %Hh%M") %></p>
+            <li class="card">
+              <div class="col-xs-2 text-left img-col img-circle">
+                <% if cleaning.car.car_picture && !cleaning.car.car_picture.blank? %>
+                  <%= image_tag cleaning.car.car_picture %>
+                <% else %>
+                  <%= image_tag "#{Category.find(cleaning.car.category_id).name}_car.svg", class: "img-circle" %>
+                <% end %>
+              </div>
+              <div class="col-xs-2 car-col">
+                <p class="dashboard-cleaning-description"><%= cleaning.car.brand %> <%= cleaning.car.model %></p>
+                <p class="dashboard-cleaning-description"><%= cleaning.car.color %></p>
+              </div>
+              <div class="col-xs-4 place">
+                <p class="dashboard-cleaning-description"><%= cleaning.place %></p>
+              </div>
+              <div class="col-xs-2 date">
+                <p class="text-center dashboard-cleaning-description"><%= cleaning.period.strftime("%d/%m/%y")%></p>
+                <p class="text-center dashboard-cleaning-description"><%= cleaning.period.strftime("%Hh%M")%></p>
+              </div>
+              <% if cleaning.status == "pending" %>
+                <div class="col-xs-2 col-btn">
+                  <%= link_to "accept", cleaning_path(cleaning), method: 'patch', class: "btn btn-info", id: "accept-btn" %>
+                </div>
+              <% elsif cleaning.status == "accepted" %>
+                <%= link_to "https://calendar.google.com/calendar/", class: "dashboard-cleaner-link flex-ver-center stripe text-center" do %>
+                  <p>waiting for paiement confirmation <br> add to your google calendar</p>
+                <% end %>
+              <% elsif cleaning.status == "confirmed" %>
+                <div class="col-xs-2 col-btn">
+                  <%= link_to "edit", cleaning_path(cleaning), class: "btn btn-primary" %>
+                </div>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <% unless @completes.blank? %>
+        <div class="col-xs-12">
+          <h2>Past Missions :</h2>
+          <ul class="dashboard-cleaner-ul">
+            <% @completes.each do |cleaning| %>
+              <p class="created-at">created : <%= cleaning.created_at.strftime("%d/%m/%y at %Hh%M") %></p>
+              <li class="card">
+                <div class="col-xs-2 text-left img-col img-circle">
+                  <% if cleaning.car.car_picture && !cleaning.car.car_picture.blank? %>
+                    <%= image_tag cleaning.car.car_picture %>
+                  <% else %>
+                    <%= image_tag "#{Category.find(cleaning.car.category_id).name}_car.svg", class: "img-circle" %>
+                  <% end %>
+                </div>
+                <div class="col-xs-2 car-col">
+                  <p class="dashboard-cleaning-description"><%= cleaning.car.brand %> <%= cleaning.car.model %></p>
+                  <p class="dashboard-cleaning-description"><%= cleaning.car.color %></p>
+                </div>
+                <div class="col-xs-4 place">
+                  <p class="dashboard-cleaning-description"><%= cleaning.place %></p>
+                </div>
+                <div class="col-xs-2 date">
+                  <p class="text-center dashboard-cleaning-description"><%= cleaning.period.strftime("%d/%m/%y")%></p>
+                  <p class="text-center dashboard-cleaning-description"><%= cleaning.period.strftime("%Hh%M")%></p>
+                </div>
+                <div class="col-xs-2 col-btn">
+                  <%= link_to "show", cleaning_path(cleaning), class: "btn btn-primary" %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
     </div>
-  </div>
-
-
+  </section>
 
 
   <% else %>
-  <div class="row">
-    <div class="col-xs-4 col-xs-offset-1 text-center">
-      <%= image_tag "profil.png", style: "width: 100%"%>
+  <section id="client-section">
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-1 text-center">
+        <%= image_tag "profil.png", style: "width: 100%"%>
+      </div>
+      <div class="col-xs-7 text-right">
+        <p><%= @user.email %></p>
+        <p class="created-at">client since : <%= @user.created_at.strftime('%d/ %m/ %Y') %></p>
+      </div>
     </div>
-    <div class="col-xs-7 text-right">
-      <p><%= @user.email %></p>
-      <p class="created-at">client since : <%= @user.created_at.strftime('%d/ %m/ %Y') %></p>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <h3>Your cleanings</h3>
-      <ul class="dashboard-client-ul">
-        <p>pending</p>
-        <% @cleanings.each_with_index do |cleanings, i| %>
-          <% cleanings.each do |cleaning| %>
-              <li class="card">
-                <div>
-                  <% car = Car.find(cleaning.car_id) %>
-                  <% if car.car_picture && !car.car_picture.blank? %>
-                    <%= image_tag car.car_picture, class: "img-circle" %>
-                  <% else %>
-                    <%= image_tag "#{Category.find(car.category_id).name}_car.svg", class: "img-circle" %>
-                  <% end %>
-                </div>
-                <div>
-                  <p class="dashboard-cleaning-description"><%= car.brand %> <%= car.model %></p>
-                  <p class="dashboard-cleaning-description"><%= car.color %></p>
-                </div>
-                <div>
-                  <p class="dashboard-cleaning-description"><%= cleaning.place %></p>
-                  <p class="dashboard-cleaning-description"><%= cleaning.period.strftime("%d/%m/%y - %M/%H") if cleaning.period %></p>
-                </div>
-
-                <% unless cleaning.rating.nil? %>
-                <div>
-                  <p class="dashboard-cleaning-description"><%= cleaning.rating %>
-                    <i class="fa fa-star" aria-hidden="true"></i>
-                  </p>
-                </div>
-                <% end %>
-
-                <% if cleaning.status == "complete" && !cleaning.rating.nil? %>
-                    <%= link_to "hide", cleaning_path(cleaning), class: "btn btn-default btn-hide", method: "patch"  %>
-                <% else %>
+    <div class="row">
+      <div class="col-xs-12">
+        <h3>Your cleanings</h3>
+        <ul class="dashboard-client-ul">
+          <p>pending</p>
+          <% @cleanings.each_with_index do |cleanings, i| %>
+            <% cleanings.each do |cleaning| %>
+                <li class="card">
                   <div>
-                    <p class="dashboard-cleaning-description p-status-<%= cleaning.status %>"><%= cleaning.status %></p>
+                    <% car = Car.find(cleaning.car_id) %>
+                    <% if car.car_picture && !car.car_picture.blank? %>
+                      <%= image_tag car.car_picture, class: "img-circle" %>
+                    <% else %>
+                      <%= image_tag "#{Category.find(car.category_id).name}_car.svg", class: "img-circle" %>
+                    <% end %>
                   </div>
-                <% end %>
-                <%= link_to '', cleaning_path(cleaning), class: "dashboard-cleaning-link" %>
-              </li>
+                  <div>
+                    <p class="dashboard-cleaning-description"><%= car.brand %> <%= car.model %></p>
+                    <p class="dashboard-cleaning-description"><%= car.color %></p>
+                  </div>
+                  <div>
+                    <p class="dashboard-cleaning-description"><%= cleaning.place %></p>
+                    <p class="dashboard-cleaning-description"><%= cleaning.period.strftime("%d/%m/%y - %M/%H") if cleaning.period %></p>
+                  </div>
+
+                  <% unless cleaning.rating.nil? %>
+                  <div>
+                    <p class="dashboard-cleaning-description"><%= cleaning.rating %>
+                      <i class="fa fa-star" aria-hidden="true"></i>
+                    </p>
+                  </div>
+                  <% end %>
+
+                  <% if cleaning.status == "complete" && !cleaning.rating.nil? %>
+                      <%= link_to "hide", cleaning_path(cleaning), class: "btn btn-default btn-hide", method: "patch"  %>
+                  <% else %>
+                    <div>
+                      <p class="dashboard-cleaning-description p-status-<%= cleaning.status %>"><%= cleaning.status %></p>
+                    </div>
+                  <% end %>
+                  <%= link_to '', cleaning_path(cleaning), class: "dashboard-cleaning-link" %>
+                </li>
+            <% end %>
+            <% case i %>
+            <% when 0 %>
+              <hr>
+              <p>confirmed</p>
+            <% when 1 %>
+              <hr>
+              <p>complete</p>
+            <% end %>
           <% end %>
-          <% case i %>
-          <% when 0 %>
-            <hr>
-            <p>confirmed</p>
-          <% when 1 %>
-            <hr>
-            <p>complete</p>
-          <% end %>
-        <% end %>
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
+  </section>
   <% end %>
 </div>
 
+<script>
+  $(document).ready(function() {
+    $("#accept-btn").on('click', function(e) {
+      $(".dashboard-cleaning-link").toggleClass('hidden');
+    });
+  });
+</script>

@@ -1,82 +1,171 @@
-
+#dashboard-h1 {
+  font-size: 10vw;
+}
 
 .created-at {
   font-size: 3vw;
 }
 
 // cleaner side
-.profil-description {
-  background-color: rgba(50, 183, 150, 0.6);
-  p {
-    margin: 0px;
+#cleaner-section {
+  h2 {
+    font-size: 7vw;
   }
-  .cleaner-picture {
-    padding: 10px;
-    img {
-      width: 90%;
+  .profil-description {
+    background-color: rgba(50, 183, 150, 0.6);
+    p {
+      margin: 0px;
+    }
+    .cleaner-picture {
+      padding: 10px;
+      img {
+        width: 90%;
+      }
+    }
+    .cleaner-details {
+      padding-right: 0px;
+      .name {
+        font-size: 5.6vw;
+      }
+      .address {
+        font-size: 3vw;
+      }
+      .email {
+        font-size: 4vw;
+      }
     }
   }
-  .cleaner-details {
-    padding-right: 0px;
-    .name {
-      font-size: 5.6vw;
-    }
-    .address {
+
+  #cleaner-edit {
+    font-size: 4vw;
+  }
+
+  .dashboard-cleaner-ul {
+    list-style-type: none;
+    padding: 0px;
+    .created-at {
+      margin: 0px;
       font-size: 3vw;
     }
-    .email {
-      font-size: 4vw;
+    li {
+      margin-top: 0px;
+    }
+    .card {
+      position: relative;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      color: black;
+      background-color: #e5e5e5;
+      opacity: 0.9;
+      margin-bottom: 10px;
+      .place {
+        padding: 0px;
+      }
+      .date {
+        padding: 0px;
+      }
+      .col-xs-2.img-col {
+        padding: 0px;
+        img {
+          padding: 10%;
+          height: 7.5vh;
+          width: 100%;
+          background-color: white;
+        }
+      }
+      .col-xs-2.car-col {
+        padding-left: 3%;
+      }
+      .col-xs-2.col-btn {
+        padding: 0px;
+        .btn {
+          font-size: 3vw;
+        }
+        #accept-btn {
+          padding: 15% 17%;
+        }
+      }
+      .dashboard-cleaning-description {
+        font-size: 2.7vw;
+        margin: 0px;
+      }
+      .dashboard-cleaner-link {
+        text-decoration: none;
+        z-index: 1;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        color: white;
+        justify-content: center;
+        margin-left: -10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        p {
+          font-size: 4vw;
+          text-shadow: 3px 3px 3px black;
+        }
+      }
+      .stripe {
+        color: white;
+        background: repeating-linear-gradient(
+          -55deg,
+          #222,
+          #222 10px,
+          #333 10px,
+          #333 20px
+        );
+        opacity: 0.8;
+      }
     }
   }
-}
-#cleaner-edit {
-  font-size: 4vw;
 }
 
 // client side
-.dashboard-client-ul {
-  list-style-type: none;
+#client-section {
+  .dashboard-client-ul {
+    list-style-type: none;
 
-  .dashboard-cleaning-link {
-  text-decoration: none;
-  z-index: 1;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  margin-left: -10px;
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.2);
+    .dashboard-cleaning-link {
+    text-decoration: none;
+    z-index: 1;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin-left: -10px;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
     }
-  }
 
-  li.card {
-    position: relative;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: black;
-    background-color: #e5e5e5;
-    opacity: 0.9;
-    .p-status-pending {
-      color: #e57d14;
-    }
-    .p-status-confirmed {
-      color: rgb(48, 121, 171);
-    }
-    .p-status-complete {
-      color: rgb(48, 211, 130);
-    }
-    img {
-      width: 50px;
-      height: 50px;
-      background-color: white;
-    }
-    .dashboard-cleaning-description {
-      font-size: 12px; margin: 0px;
-    }
-    .btn-hide {
-      z-index: 2;
+    li.card {
+      position: relative;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: black;
+      background-color: #e5e5e5;
+      opacity: 0.9;
+      .p-status-pending {
+        color: #e57d14;
+      }
+      .p-status-confirmed {
+        color: rgb(48, 121, 171);
+      }
+      .p-status-complete {
+        color: rgb(48, 211, 130);
+      }
+      img {
+        width: 50px;
+        height: 50px;
+        background-color: white;
+      }
+      .dashboard-cleaning-description {
+        font-size: 12px; margin: 0px;
+      }
+      .btn-hide {
+        z-index: 2;
+      }
     }
   }
 }

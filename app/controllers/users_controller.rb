@@ -27,10 +27,9 @@ class UsersController < ApplicationController
   def show
     @user = current_user
     if @user.cleaner
-      @pendings = @user.cleanings.where(status: "pending")
-      @confirmeds = @user.cleanings.where(status: "confirmed")
+      @missions = @user.cleanings.where(status: "pending").or(@user.cleanings.where(status: "accepted")).or(@user.cleanings.where(status: "confirmed")).sort_by(&:status).reverse
       @completes = @user.cleanings.where(status: "complete")
-      @cleanings = [ @pendings, @confirmeds, @completes ]
+      @cleanings = @user.cleanings
     else
       @cars = Car.where(user_id: @user.id)
       @pendings = []
