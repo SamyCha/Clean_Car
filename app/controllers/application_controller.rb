@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_user.cleaner
-      user_path(current_user)
+      dashboard_path(current_user)
     else
       Car.where(user_id: current_user.id).blank? ? new_car_path(current_user) : new_cleaning_path
     end
