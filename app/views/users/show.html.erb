@@ -159,7 +159,11 @@
                       <p class="dashboard-cleaning-description p-status-<%= cleaning.status %>"><%= cleaning.status %></p>
                     </div>
                   <% end %>
-                  <%= link_to '', cleaning_path(cleaning), class: "dashboard-cleaning-link" %>
+                  <% if cleaning.status == "accepted" %>
+                    <%= link_to '', new_order_payment_path(cleaning), class: "dashboard-cleaning-link" %>
+                  <% else %>
+                    <%= link_to '', cleaning_path(cleaning), class: "dashboard-cleaning-link" %>
+                  <% end %>
                 </li>
             <% end %>
             <% case i %>

@@ -55,6 +55,8 @@ class CleaningsController < ApplicationController
   def update
     if @cleaning.status == "pending"
       @cleaning.update(status: "accepted")
+    elsif @cleaning.status == "accepted"
+      @cleaning.update(status: "confirmed")
     elsif @cleaning.status == "confirmed"
       @cleaning.update(cleaning_params)
     elsif @cleaning.status == "complete"

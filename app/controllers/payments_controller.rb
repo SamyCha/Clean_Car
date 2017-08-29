@@ -33,6 +33,4 @@ private
   def set_order
     @order = Order.where(state: 'pending').find(params[:order_id])
   end
-
-
 end
