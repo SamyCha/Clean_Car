@@ -1,6 +1,7 @@
 class Cleaning < ApplicationRecord
   belongs_to :user
   belongs_to :car
+  attr_accessor :date, :time
 
   has_attachments :photos, maximum: 4
 

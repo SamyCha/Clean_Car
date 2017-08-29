@@ -1,29 +1,23 @@
 <div class="container">
-  <div class="row text-right" style="margin-top: 15px;">
-    <div class="col-xs-10 col-xs-offset-2">
-      <h2>My Clean Car</h2>
-      <h4 style=" color: #00FF00;">book an eco wash</h4>
-    </div>
-  </div>
+  <%= render "shared/mcc-main-title" %>
 
-  <div class="row">
-    <div class="col-xs-10 col-xs-offset-2">
-    <%= image_tag "bmw_front.jpg", class: "car_photo", height: 60 %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-10 col-xs-offset-2">
-    <%= image_tag "bmw_side_left.jpg", class: "car_photo", height: 60 %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-10 col-xs-offset-2">
-    <%= image_tag "bmw_side_right.jpg", class: "car_photo", height: 60 %>
-    </div>
-  </div>
+  <% if current_user.cleaner and @cleaning.status == "confirmed" %>
     <div class="row">
-      <div class="col-xs-12">
-      Rate your cleaning
-      </div>
+      <%= simple_form_for(@cleaning) do |f| %>
+        <div class="col-xs-12 text-center">
+          <%= f.input :photos, as: :attachinary %>
+          <%= f.input :status, input_html: {value: "complete"}, as: :hidden %>
+          <%= f.submit %>
+        </div>
+      <% end %>
     </div>
+  <% end %>
+
+
+  <div class="row margin-top20">
+    <div class="col-xs-12 text-center">
+      *****
+    </div>
+  </div>
 </div>
+
