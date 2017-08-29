@@ -28,6 +28,9 @@ gem 'rails-assets-underscore', source: 'https://rails-assets.org'
 gem 'rails-assets-flatpickr', source: 'https://rails-assets.org'
 gem 'ladda-bootstrap-rails', :git => 'https://github.com/vendji/ladda-bootstrap-rails.git'
 gem 'izimodal'
+gem 'cloudinary', '1.1.7'
+gem 'attachinary', github: 'assembler/attachinary'
+gem 'jquery-fileupload-rails'
 
 group :development, :test do
   gem 'pry-byebug'

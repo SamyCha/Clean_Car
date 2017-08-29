@@ -2,14 +2,16 @@ class Cleaning < ApplicationRecord
   belongs_to :user
   belongs_to :car
 
+  has_attachments :photos, maximum: 4
 
-after_update :send_sms_to_customer
+  after_update :send_sms_to_customer
 
   def price
     car.category.price
   end
 
-private
+  private
+
   def send_sms_to_customer
     if status == "complete"
       callr_api = CALLR::Api.new(ENV["CALLR_USER_NAME"], ENV["CALLR_PASSWORD"])

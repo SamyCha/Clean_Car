@@ -18,4 +18,5 @@ Rails.application.routes.draw do
 #page statique about
   get "/:page" => "static#show"
 
+  mount Attachinary::Engine => "/attachinary"
 end
