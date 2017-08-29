@@ -21,7 +21,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-
   def configure_permitted_parameters
     # rajouter ici les keys pour les champs à add lors du sign-up
     # https://karr.lewagon.org/lectures/rails/07-authentication#/5/3
