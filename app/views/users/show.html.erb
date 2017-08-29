@@ -122,6 +122,7 @@
           <p>pending</p>
           <% @cleanings.each_with_index do |cleanings, i| %>
             <% cleanings.each do |cleaning| %>
+                <p class="created-at">created : <%= cleaning.created_at.strftime("%d/%m/%y at %Hh%M") %></p>
                 <li class="card">
                   <div>
                     <% car = Car.find(cleaning.car_id) %>

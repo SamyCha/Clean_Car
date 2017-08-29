@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-   before_action :find_user, only: [:edit, :update, :destroy]
+   before_action :find_user, only: [:update, :destroy]
 
   def index
     @title = "Index - My Clean Car"
@@ -21,6 +21,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
     @title = "Dashboard"
   end
 
