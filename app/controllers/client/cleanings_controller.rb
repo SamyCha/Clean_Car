@@ -38,7 +38,8 @@ class Client::CleaningsController < ApplicationController
       @cleaning.update(user: cleaner)
 
       if @cleaning.save
-        redirect_to client_cleaning_path(@cleaning)
+
+        redirect_to new_client_order_payment_path(@cleaning)
       else
         flash[:alert] = "An error has occurred..."
         redirect_to new_client_cleaning_path

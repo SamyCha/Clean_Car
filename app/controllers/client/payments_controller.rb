@@ -3,7 +3,9 @@ class Client::PaymentsController < ApplicationController
 
   def new
     @cleaner = @order.cleaning.user
-    @cleanings = @cleaner.cleanings.where.not(id: @order.cleaning.id)
+    @cleanings = @cleaner.cleanings
+    @cleaning = @order.cleaning
+    @car = @cleaning.car
     @ratings = []
   end
 

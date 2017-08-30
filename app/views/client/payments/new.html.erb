@@ -1,30 +1,111 @@
-<div class="container">
+<div class="container" id="payment-new">
   <%= render "shared/mcc-main-title" %>
 
-  <div class="row margin-top20 choosen-cleaner">
-    <div class="col-xs-12">
-      <p>Your cleaning will be done by : </p>
-    </div>
-    <div class="col-xs-12 card flex-ver-center">
-      <div class="col-xs-3">
-      <%= image_tag "profil.png", id: "logo", height: 60 %>
+  <div class="row">
+    <ul>
+      <div class="col-xs-12 label-payment" >
+        <p style="color: white;">Your car : </p>
       </div>
-      <div class="col-xs-3">
-        <%= @order.cleaning.user.firstname %>
+      <div class="col-xs-12">
+        <li class="card flex-ver-center">
+          <div class="col-xs-12">
+            <div class="car-card">
+              <div class="col-xs-5 flex-ver-center">
+                <div class="car-image flex-ver-center img-circle">
+                  <% if @car.car_picture && !@car.car_picture.blank? %>
+                    <%= image_tag @car.car_picture  %>
+                  <% else %>
+                    <%= image_tag "#{@car.category.name}_car.svg"  %>
+                  <% end %>
+                </div>
+              </div>
+              <div class="col-xs-7 car-details">
+                <div>
+                  <strong class="car-model-brand">
+                    <%= @car.brand %>
+                    <%= @car.model %>
+                  </strong>
+                  <div class="glyphicon glyphicon-adjust" style="color: <%= @car.color %>">
+                    <p>
+                      (<%= @car.color %>)
+                    </p>
+                  </div>
+                </div>
+                <div class="immatriculation col-xs-8 text-center">
+                  <%= @car.immatriculation %>
+                </div>
+                <div class="col-xs-4 text-center min-category flex-ver-center">
+                  <%= image_tag "#{@car.category.name}_car.svg", class: "min-category" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
       </div>
 
-      <div class="col-xs-4 col-xs-offset-2 text-center">
-        <% unless @cleanings.where.not(rating: nil).blank? %>
-          <% @cleanings.where.not(rating: nil).each do |cleaning| %>
-            <% @ratings << cleaning.rating  %>
-          <% end %>
-          <%= (@ratings.sum / @ratings.size.to_f).to_s.first(3) %>
-          <i class="fa fa-star-o" aria-hidden="true"></i>
-        <% else %>
-          <p>no rating yet</p>
-        <% end %>
+      <div class="col-xs-12 margin-top15">
+        <li >
+          <div class="card col-xs-6 col-xs-offset-3 flex-ver-center cleaner-loading-svg">
+            <div class="col-xs-2 text-center">
+              <%= render "shared/svg_loader" %>
+            </div>
+            <div class="col-xs-10">
+              <p>Searching for a cleaner</p>
+            </div>
+          </div>
+        </li>
       </div>
-    </div>
+
+      <div class="col-xs-12 hidden" id="payment-cleaner-card">
+        <li >
+          <div class="col-xs-12 label-payment" >
+            <p style="color: white;">Your cleaning will be done by : </p>
+          </div>
+
+          <div class="card col-xs-12 flex-ver-center cleaner">
+            <div class="col-xs-3">
+            <%= image_tag "profil.png", id: "logo", height: 60 %>
+            </div>
+            <div class="col-xs-3">
+              <%= @cleaner.firstname %>
+            </div>
+
+            <div class="col-xs-4 col-xs-offset-2 text-center">
+              <% unless @cleaner.cleanings.where.not(rating: nil).blank? %>
+                <% @cleaner.cleanings.where.not(rating: nil).each do |cleaning| %>
+                  <% @ratings << cleaning.rating  %>
+                <% end %>
+                <%= (@ratings.sum / @ratings.size.to_f).to_s.first(3) %>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              <% else %>
+                <p>no rating yet</p>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      </div>
+      <div class="col-xs-12 label-payment" >
+        <p style="color: white;">Your cleaning will be done at : </p>
+      </div>
+      <div class="col-xs-12">
+        <li class="map-card card">
+          <div class="text-center place-period-order-show">
+            <p><%= @cleaning.place %></p>
+              <div class="col-xs-12 col-map text-center" id="map"></div>
+          </div>
+        </li>
+      </div>
+      <div class="col-xs-12 label-payment" >
+        <p style="color: white;">And the : </p>
+      </div>
+      <div class="col-xs-12">
+        <li class="card period-place flex-ver-center">
+          <div class="col-xs-12 text-center">
+            <p><%= @cleaning.period.strftime("%d/%m/%y at %Hh%M") if @cleaning.period %></p>
+          </div>
+        </li>
+      </div>
+    <ul>
   </div>
 
   <div class="row" style="margin-top: 50px;">
@@ -36,7 +117,7 @@
           </label>
         </article>
     </div>
-    <div class="col-xs-12 text-center">
+    <div class="col-xs-12 text-center last-col">
       <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
       data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
       data-name="My Cleaning"
@@ -48,3 +129,19 @@
     <% end %>
   </div>
 </div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).ready(function() {
+      var address = {lat: <%= @cleaning.latitude %>, lng: <%= @cleaning.longitude %>};
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: address
+      });
+      var marker = new google.maps.Marker({
+        position: address,
+        map: map
+      });
+    });
+  <% end %>
+<% end %>
