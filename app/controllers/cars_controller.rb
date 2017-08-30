@@ -6,8 +6,7 @@ class CarsController < ApplicationController
   end
 
   def create
-    @car = Car.new(car_params)
-    @car.update(user: current_user)
+    @car = current_user.cars.new(car_params)
     if @car.save
       redirect_to new_cleaning_path
     else
@@ -33,7 +32,12 @@ class CarsController < ApplicationController
 private
 
   def car_params
-    params.require(:car).permit(:immatriculation, :brand, :model, :color, :category_id)
+    parameters = params.require(:car).permit(:immatriculation, :brand, :model, :color, :category_id)
+    parameters[:immatriculation] = parameters[:immatriculation].upcase
+    parameters[:brand] = parameters[:brand].upcase
+    parameters[:model] = parameters[:model].capitalize
+    parameters[:color] = parameters[:color].downcase
+    return parameters
   end
 
   def find_car

@@ -15,11 +15,8 @@
 
 
 
-
-
-
   <div class="row margin-top15 recap-cleaning">
-    <p>Your parking period</p>
+    <p>Your parking period:</p>
     <div class="col-xs-10 col-xs-offset-1">
       <%= image_tag "datepicker.png", style: "height: 45px;"%>
       <%= @cleaning.period.strftime('the %d/%m/%y at %Hh%M') %>
@@ -27,7 +24,7 @@
   </div>
 
   <div class="row margin-top15 recap-cleaning">
-    <p>Your car location during cleaning</p>
+    <p>Your car location during cleaning:</p>
     <div class="col-xs-12 text-center">
       <%= image_tag "localisation.png", style: "height: 45px;"%>
       <%= @cleaning.place %>
