@@ -1,24 +1,26 @@
 <div class="container">
-  <div class="row text-right margin-top5" >
-    <div class="col-xs-10 col-xs-offset-2">
-      <h1 id="dashboard-h1">Your Profile</h1>
+<%= render "shared/mcc-main-title" %>
+  <div class="row text-left margin-top5" >
+    <div class="col-xs-12">
+      <h3 id="dashboard-h1">Your Profile</h3>
     </div>
   </div>
 
   <section id="client-section">
     <div class="row">
       <div class="col-xs-4 col-xs-offset-1 text-center">
-        <%= image_tag "profil.png", style: "width: 100%"%>
+        <%= image_tag "white_profil.png", style: "width: 60%"%>
       </div>
       <div class="col-xs-7 text-right">
         <p><%= @user.email %></p>
+        <p><%= @user.phonenumber %></p>
         <p class="created-at">client since : <%= @user.created_at.strftime('%d/ %m/ %Y') %></p>
       </div>
     </div>
 
     <div class="row">
       <div class="col-xs-12">
-        <h3>Your cleanings</h3>
+        <h3>Your cleanings:</h3>
         <ul class="dashboard-client-ul">
           <p>pending</p>
           <% @cleanings.each_with_index do |cleanings, i| %>
