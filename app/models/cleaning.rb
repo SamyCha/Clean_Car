@@ -1,8 +1,11 @@
 class Cleaning < ApplicationRecord
   belongs_to :user
   belongs_to :car
+
   attr_accessor :date, :time
 
+  geocoded_by :place
+  after_validation :geocode, if: :place_changed?
   has_attachments :photos, maximum: 4
 
   # after_update :send_sms_to_customer

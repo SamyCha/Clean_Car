@@ -1,0 +1,71 @@
+#payment-new {
+  ul {
+    list-style-type: none;
+    padding: 0px;
+    color: black;
+    .label-payment {
+      p {
+        margin-top: 30px;
+        margin-bottom: -12px;
+      }
+    }
+    .card {
+      background-color: rgba(244, 244, 244, 0.7);
+    }
+    .car-card {
+      height: 19vh;
+      background-color: rgba(1,1,1,0);
+      display: flex;
+      align-items: center;
+      .col-xs-5 {
+        height: 100%;
+        .car-image {
+          height: 90%;
+          padding: 0px 10%;
+          background-color: rgba(256, 256, 256, 0.6);
+        }
+      }
+    }
+
+    .map-card {
+      height: 30vh;
+      padding-top: 10px;
+      #map {
+        margin: 0px 10%;
+        height: 20vh;
+        width: 80%;
+      }
+    }
+
+    .period-place {
+      height: 7vh;
+      font-size: 3.4vw;
+    }
+
+    .cleaner-loading-svg {
+      background-color: rgba(244, 244, 244, 0.9);
+      .loader{
+        padding: 0.5vh;
+      }
+      p {
+        margin: 0px;
+      }
+    }
+  }
+  svg path,
+  svg rect {
+    fill: #32b796;
+  }
+
+  .amount {
+    font-size: 5vw;
+  }
+
+  .stripe-button-el {
+    width: 28vw;
+  }
+
+  .last-col {
+    margin-bottom: 50px;
+  }
+}
