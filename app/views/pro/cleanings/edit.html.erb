@@ -45,18 +45,18 @@
 
   <div class="row margin-top15 recap-cleaning">
     <div class="col-xs-6">
-      <p>Emplacement :</p>
+      <p class="bold">Period</p>
       <p><%= @cleaning.period.strftime('the %d/%m/%y at %Hh%M') %></p>
     </div>
     <div class="col-xs-6">
-      <p>Period :</p>
+      <p class="bold">Emplacement</p>
       <p><%= @cleaning.place %></p>
     </div>
   </div>
 
   <div class="row">
     <div class="col-xs-12 text-center">
-      <%= link_to "add your photos to complete the mission", "#", class: "btn btn-primary margin-top50", id: "btn-add-photos" %>
+      <%= link_to "add your photos", "#", class: "btn btn-primary margin-top50", id: "btn-add-photos" %>
     </div>
   </div>
 
