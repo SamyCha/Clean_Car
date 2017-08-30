@@ -24,14 +24,19 @@
     }
     .cleaner-details {
       padding-right: 0px;
+      overflow: hidden;
       .name {
         font-size: 5.6vw;
+        width: 100%;
+
       }
       .address {
         font-size: 3vw;
       }
       .email {
         font-size: 4vw;
+        width: 100%;
+        overflow: hidden;
       }
     }
   }
@@ -140,6 +145,7 @@
     }
     .client-details {
       padding-right: 0px;
+      overflow: hidden;
       .name {
         font-size: 5.6vw;
       }
