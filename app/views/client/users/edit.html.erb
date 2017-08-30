@@ -1,0 +1,24 @@
+<div class="container">
+
+  <div class="row text-right margin-top5" >
+    <div class="col-xs-10 col-xs-offset-2">
+      <h1 id="dashboard-h1">Your Profile</h1>
+      <p>Edit your infos</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <%= simple_form_for @user do |f| -%>
+      <div class="col-xs-6">
+        <%= f.input :avatar, as: :attachinary %>
+      </div>
+      <div class="col-xs-12">
+        <%= f.input :email %>
+      </div>
+      <div class="col-xs-12">
+        <%= f.input :phonenumber %>
+      </div>
+      <%= f.submit %>
+    <% end -%>
+  </div>
+</div>

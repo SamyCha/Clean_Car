@@ -1,7 +1,9 @@
-class CleaningsController < ApplicationController
+class Client::CleaningsController < ApplicationController
   before_action :find_cleaning, only: [:show, :edit, :update, :destroy]
 
-  def index
+  def new
+    @cleaning = Cleaning.new
+    @cars = Car.where(user_id: current_user.id)
   end
 
   def show
@@ -11,18 +13,13 @@ class CleaningsController < ApplicationController
     @ratings = []
   end
 
-  def new
-    @cleaning = Cleaning.new
-    @cars = Car.where(user_id: current_user.id)
-  end
-
   def create
     if cleaning_params[:place].blank?
       flash[:alert] = "Please enter a location"
-      redirect_to new_cleaning_path
+      redirect_to new_client_cleaning_path
     elsif cleaning_params[:requirements].blank?
       flash[:alert] = "You need to confirm the requirements"
-      redirect_to new_cleaning_path
+      redirect_to new_client_cleaning_path
     else
 
       date = params[:cleaning][:date].split('-')
@@ -41,10 +38,10 @@ class CleaningsController < ApplicationController
       @cleaning.update(user: cleaner)
 
       if @cleaning.save
-        redirect_to cleaning_path(@cleaning)
+        redirect_to client_cleaning_path(@cleaning)
       else
         flash[:alert] = "An error has occurred..."
-        redirect_to new_cleaning_path
+        redirect_to new_client_cleaning_path
       end
     end
   end
@@ -62,7 +59,7 @@ class CleaningsController < ApplicationController
     elsif @cleaning.status == "complete"
       @cleaning.update(status: "archived")
     end
-    redirect_to dashboard_path
+    redirect_to client_dashboard_path
   end
 
   def destroy
