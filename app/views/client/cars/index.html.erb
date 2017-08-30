@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row text-right margin-top5" >
+    <div class="col-xs-10 col-xs-offset-2">
+      <h1 id="dashboard-h1">Your Cars</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <ul id="cars-list">
+      <% @cars.each do |car| %>
+        <li class="card">
+          <div class="col-xs-12">
+            <div class="col-xs-4 img-container">
+              <% if car.car_picture && !car.car_picture.blank? %>
+                <%= image_tag car.car_picture, class: "img-circle" %>
+              <% else %>
+                <%= image_tag "#{Category.find(car.category_id).name}_car.svg", class: "img-circle" %>
+              <% end %>
+            </div>
+            <div class="col-xs-8 car-details margin-top15">
+              <div class="col-xs-12">
+                <p><%= "#{car.brand} #{car.model} - #{car.immatriculation}" %> </p>
+              </div>
+              <div class="col-xs-12 flex-ver-center margin-top15">
+
+                <p style="color: <%= car.color %>;"><%= car.color %></p>
+
+                <%= link_to "edit", "#", class: "btn btn-default flex-ver-center" %>
+
+                <%= link_to "delete", "#", class: "btn btn-danger flex-ver-center" %>
+
+              </div>
+
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
