@@ -160,7 +160,7 @@
                     </div>
                   <% end %>
                   <% if cleaning.status == "accepted" %>
-                    <%= link_to '', new_order_payment_path(cleaning), class: "dashboard-cleaning-link" %>
+                    <%= link_to '', order_payments_path(cleaning), class: "dashboard-cleaning-link", method: "post" %>
                   <% else %>
                     <%= link_to '', cleaning_path(cleaning), class: "dashboard-cleaning-link" %>
                   <% end %>
