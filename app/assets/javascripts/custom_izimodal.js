@@ -17,8 +17,9 @@ $(document).ready(function(e){
       $('#cleaner-accepted').iziModal('open');
     }, 4000);
     $('.ladda-label').text('Cleaner incoming');
-    var b = $('.btn.btn-primary.ladda-button.progress-demo');
+    var b = $('.btn.ladda-button.progress-demo');
     b.removeClass('btn-primary');
     b.addClass('btn-success').addClass('ladda-button-disabled');
+    $('.btn-cache').removeClass('hidden');
   });
 });

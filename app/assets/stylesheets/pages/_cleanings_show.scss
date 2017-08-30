@@ -72,3 +72,15 @@
     background-color: rgba(209, 209, 209, 0.7);
   }
 }
+
+.col-contact-cleaner-btn {
+  position: relative;
+  .btn-cache {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    height: 50px;
+    z-index: 4;
+    width: 100%;
+  }
+}

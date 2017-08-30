@@ -2,8 +2,9 @@ class PaymentsController < ApplicationController
     before_action :set_order
 
   def new
-    @cleaner = @order.cleaning.user
-    @cleanings = @cleaner.cleanings.where.not(id: @order.cleaning.id)
+    @cleaning = Cleaning.find(params[:order_id])
+    @cleaner = @cleaning.user
+    @cleanings = @cleaner.cleanings.where.not(id: @cleaning.id)
     @ratings = []
   end
 
@@ -20,8 +21,10 @@ class PaymentsController < ApplicationController
       currency:     @order.amount.currency
     )
 
+    byebug
+
     @order.update(payment: charge.to_json, state: 'paid')
-    redirect_to order_path(@order)
+    redirect_to dashboard_path(current_user)
 
   rescue Stripe::CardError => e
     flash[:alert] = e.message
