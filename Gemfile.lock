@@ -86,7 +86,11 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
+    em-hiredis (0.3.1)
+      eventmachine (~> 1.0)
+      hiredis (~> 0.6.0)
     erubi (1.6.1)
+    eventmachine (1.2.5)
     execjs (2.7.0)
     faker (1.8.4)
       i18n (~> 0.5)
@@ -101,6 +105,7 @@ GEM
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     gmaps4rails (2.1.2)
+    hiredis (0.6.1)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.8.6)
@@ -259,6 +264,7 @@ DEPENDENCIES
   coffee-rails
   coffee-script
   devise
+  em-hiredis
   faker
   figaro
   font-awesome-sass
