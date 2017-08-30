@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
-  channel_prefix: Clean_Car_production
+  url: redis://redistogo:8aad88b535a9a3e983ba983864836d18@jack.redistogo.com:11379/
+  # channel_prefix: Clean_Car_production
