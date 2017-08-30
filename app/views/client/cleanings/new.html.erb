@@ -2,7 +2,7 @@
 
   <%= render "shared/mcc-main-title" %>
 
-  <%= simple_form_for @cleaning do |f| %>
+  <%= simple_form_for @cleaning, url: client_cleanings_path do |f| %>
     <div class="row">
       <p class="car-select">
         Select your car

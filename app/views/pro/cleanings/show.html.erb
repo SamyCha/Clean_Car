@@ -1,0 +1,66 @@
+<div class="container">
+  <%= render "shared/mcc-main-title" %>
+
+  <div class="row">
+    <div class="col-xs-12 text-left">
+      <p>Recap of your cleaning : </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="car-card">
+        <div class="col-xs-5 flex-ver-center">
+          <div class="car-image flex-ver-center img-circle">
+            <% if @car.car_picture && !@car.car_picture.blank? %>
+              <%= image_tag @car.car_picture  %>
+            <% else %>
+              <%= image_tag "#{@car.category.name}_car.svg"  %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-xs-7 car-details">
+          <div>
+            <strong class="car-model-brand">
+              <%= @car.brand %>
+              <%= @car.model %>
+            </strong>
+            <div class="glyphicon glyphicon-adjust" style="color: <%= @car.color %>">
+              <p>
+                (<%= @car.color %>)
+              </p>
+            </div>
+          </div>
+          <div class="immatriculation col-xs-8 text-center">
+            <%= @car.immatriculation %>
+          </div>
+          <div class="col-xs-4 text-center min-category flex-ver-center">
+            <%= image_tag "#{@car.category.name}_car.svg", class: "min-category" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row margin-top15 recap-cleaning">
+    <p>Your parking period</p>
+    <div class="col-xs-10 col-xs-offset-1">
+      <%= image_tag "datepicker.png", style: "height: 45px;"%>
+      <%= @cleaning.period.strftime('the %d/%m/%y at %Hh%M') %>
+    </div>
+  </div>
+
+  <div class="row margin-top15 recap-cleaning">
+    <p>Your car location during cleaning</p>
+    <div class="col-xs-12 text-center">
+      <%= image_tag "localisation.png", style: "height: 45px;"%>
+      <%= @cleaning.place %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <%= link_to "add your photos to complete the mission", edit_pro_cleaning_path(@cleaning), class: "btn btn-primary margin-top50"%>
+    </div>
+  </div>
+</div>

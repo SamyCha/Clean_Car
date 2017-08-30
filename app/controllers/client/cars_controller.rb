@@ -1,4 +1,4 @@
-class CarsController < ApplicationController
+class Client::CarsController < ApplicationController
   before_action :find_car, only: [:edit, :update, :destroy]
 
   def new
@@ -9,10 +9,10 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
     @car.update(user: current_user)
     if @car.save
-      redirect_to new_cleaning_path
+      redirect_to new_client_cleaning_path
     else
       flash[:alert] = "please enter the right informations"
-      redirect_to new_car_path
+      redirect_to new_client_car_path
     end
   end
 
@@ -21,12 +21,12 @@ class CarsController < ApplicationController
 
   def update
     @car.update(params[:car])
-    redirect_to_car_path
+    redirect_to client_car_path
   end
 
   def destroy
     @car.destroy
-    redirect_to cars_path
+    redirect_to client_dashboard_path
   end
 
 
