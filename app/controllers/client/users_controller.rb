@@ -4,6 +4,8 @@ class Client::UsersController < ApplicationController
   def edit
     @user = current_user
     @title = "Dashboard"
+    @cars = @user.cars
+    # raise
   end
 
   def dashboard_cleaner
