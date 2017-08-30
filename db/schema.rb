@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170828104437) do
+ActiveRecord::Schema.define(version: 20170829153455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachinary_files", force: :cascade do |t|
+    t.string "attachinariable_type"
+    t.bigint "attachinariable_id"
+    t.string "scope"
+    t.string "public_id"
+    t.string "version"
+    t.integer "width"
+    t.integer "height"
+    t.string "format"
+    t.string "resource_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent"
+  end
 
   create_table "brands", force: :cascade do |t|
     t.string "name"
@@ -96,6 +111,7 @@ ActiveRecord::Schema.define(version: 20170828104437) do
     t.boolean "cleaner", default: false
     t.float "latitude"
     t.float "longitude"
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

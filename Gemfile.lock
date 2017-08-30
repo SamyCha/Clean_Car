@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/assembler/attachinary.git
+  revision: 98a895be22edc74b1928ffa3ae116d24bd9818fd
+  specs:
+    attachinary (1.3.1)
+      cloudinary (~> 1.1.0)
+      rails (>= 3.2)
+
+GIT
   remote: https://github.com/vendji/ladda-bootstrap-rails.git
   revision: 6b8782f357504dd353e8493443637280f0044a4b
   specs:
@@ -61,12 +69,14 @@ GEM
     byebug (9.1.0)
     callr (1.2.0)
       json (>= 1.8.1)
+
     carrierwave (0.11.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
       mimemagic (>= 0.3.0)
+
     cloudinary (1.1.7)
       aws_cf_signer
       rest-client
@@ -109,6 +119,10 @@ GEM
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    jquery-fileupload-rails (0.4.7)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      sass (>= 3.2)
     jquery-rails (4.3.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -249,12 +263,19 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+
   attachinary
   autoprefixer-rails
   bootstrap-sass
   callr
   carrierwave (~> 0.11.2)
   cloudinary
+
+  attachinary!
+  autoprefixer-rails
+  bootstrap-sass
+  callr
+  cloudinary (= 1.1.7)
   coffee-rails
   coffee-script
   devise
@@ -265,6 +286,7 @@ DEPENDENCIES
   gmaps4rails
   izimodal
   jbuilder (~> 2.0)
+  jquery-fileupload-rails
   jquery-rails
   ladda-bootstrap-rails!
   listen (~> 3.0.5)

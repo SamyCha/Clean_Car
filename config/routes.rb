@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users
 
-  resources :users, only: [:index]
+  resources :users
   resources :cars, only: [:new, :create, :edit, :update, :destroy]
 
   resources :cleanings
@@ -18,4 +18,5 @@ Rails.application.routes.draw do
 #page statique about
   get "/:page" => "static#show"
 
+  mount Attachinary::Engine => "/attachinary"
 end

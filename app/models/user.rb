@@ -4,6 +4,8 @@ class User < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
+  has_attachment :avatar
+
   has_many :cleanings, dependent: :destroy
 
   # email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
