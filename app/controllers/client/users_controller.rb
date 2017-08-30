@@ -4,6 +4,8 @@ class Client::UsersController < ApplicationController
   def edit
     @user = current_user
     @title = "Dashboard"
+    @cars = @user.cars
+    # raise
   end
 
   def dashboard_cleaner
@@ -30,14 +32,14 @@ class Client::UsersController < ApplicationController
   end
 
   def update
-    @user.update(params[:user])
+    @user.update(user_params)
     redirect_to client_dashboard_path
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :firstname, :lastname, :address, :phonenumber, :cleaner)
+    params.require(:user).permit(:avatar, :email, :phonenumber)
   end
 
   def find_user
