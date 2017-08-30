@@ -7,13 +7,40 @@
     </div>
   </div>
 
-  <%# missions.each do |cleaning| %>
-    <%= render partial: "cleanings/recap_for_client", locals: { car: @car } %>
-  <%# end %>
-
-
-
-
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="car-card">
+        <div class="col-xs-5 flex-ver-center">
+          <div class="car-image flex-ver-center img-circle">
+            <% if @car.car_picture && !@car.car_picture.blank? %>
+              <%= image_tag @car.car_picture  %>
+            <% else %>
+              <%= image_tag "#{@car.category.name}_car.svg"  %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-xs-7 car-details">
+          <div>
+            <strong class="car-model-brand">
+              <%= @car.brand %>
+              <%= @car.model %>
+            </strong>
+            <div class="glyphicon glyphicon-adjust" style="color: <%= @car.color %>">
+              <p>
+                (<%= @car.color %>)
+              </p>
+            </div>
+          </div>
+          <div class="immatriculation col-xs-8 text-center">
+            <%= @car.immatriculation %>
+          </div>
+          <div class="col-xs-4 text-center min-category flex-ver-center">
+            <%= image_tag "#{@car.category.name}_car.svg", class: "min-category" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="row margin-top15 recap-cleaning">
     <p>Your parking period:</p>
@@ -76,13 +103,14 @@
       </div>
   <% elsif @cleaning.status == "complete"%>
     <div class="col-xs-12 text-center" style="margin-top: 15px;">
-      <%= link_to "dashboard", dashboard_path, class: "btn btn-primary" %>
+      <%= link_to "dashboard", client_dashboard_path, class: "btn btn-primary" %>
     </div>
   <% else %>
     <div class="row">
-      <div class="col-xs-12 text-center" >
+      <div class="col-xs-12 text-center col-contact-cleaner-btn" >
           <h2>Amount: <%= humanized_money_with_symbol(@car.category.price) %></h2>
           <button class='btn btn-primary ladda-button progress-demo'>Contact a cleaner</button>
+          <div class="btn-cache hidden"></div>
       </div>
     </div>
   <% end %>

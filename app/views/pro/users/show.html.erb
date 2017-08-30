@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row text-right margin-top5" >
+    <div class="col-xs-10 col-xs-offset-2">
+      <h1 id="dashboard-h1">Your Profile</h1>
+    </div>
+  </div>
+
+  <section id="cleaner-section">
+    <div class="row">
+      <div class="col-xs-12 profil-description flex-ver-center">
+        <div class="col-xs-5 text-center cleaner-picture">
+          <% if @user.avatar? %>
+            <%= cl_image_tag @user.avatar.path, crop: :fill  %>
+          <% else %>
+            <%= image_tag "profil.png" %>
+          <% end %>
+        </div>
+        <div class="col-xs-7 text-right cleaner-details">
+          <p class="name"><%= @user.firstname.capitalize %> <%= @user.lastname.capitalize %></p>
+          <p class="address"><%= @user.address %></p>
+          <p class="email"><%= @user.email %></p>
+          <p class="created-at">cleaner since : <%= @user.created_at.strftime('%d/ %m/ %Y') %></p>
+        </div>
+      </div>
+      <div class="col-xs-12 text-right">
+        <%= link_to "edit", pro_dashboard_edit_path(@user), id: "cleaner-edit" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <h2>Your Missions : </h2>
+        <ul class="dashboard-cleaner-ul">
+          <%= render "shared/card_cleaning_for_cleaner_dashboard" %>
+        </ul>
+
+      </div>
+      <% unless @completes.blank? %>
+        <div class="col-xs-12">
+          <h2>Past Missions :</h2>
+          <ul class="dashboard-cleaner-ul">
+            <% @completes.each do |cleaning| %>
+              <p class="created-at">created : <%= cleaning.created_at.strftime("%d/%m/%y at %Hh%M") %></p>
+              <li class="card">
+                <div class="col-xs-2 text-left img-col img-circle">
+                  <% if cleaning.car.car_picture && !cleaning.car.car_picture.blank? %>
+                    <%= image_tag cleaning.car.car_picture %>
+                  <% else %>
+                    <%= image_tag "#{Category.find(cleaning.car.category_id).name}_car.svg", class: "img-circle" %>
+                  <% end %>
+                </div>
+                <div class="col-xs-2 car-col">
+                  <p class="dashboard-cleaning-description"><%= cleaning.car.brand %> <%= cleaning.car.model %></p>
+                  <p class="dashboard-cleaning-description"><%= cleaning.car.color %></p>
+                </div>
+                <div class="col-xs-4 place">
+                  <p class="dashboard-cleaning-description"><%= cleaning.place %></p>
+                </div>
+                <div class="col-xs-2 date">
+                  <p class="text-center dashboard-cleaning-description"><%= cleaning.period.strftime("%d/%m/%y")%></p>
+                  <p class="text-center dashboard-cleaning-description"><%= cleaning.period.strftime("%Hh%M")%></p>
+                </div>
+                <div class="col-xs-2 col-btn">
+                  <%= link_to "show", pro_cleaning_path(cleaning), class: "btn btn-primary" %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <div class="socket-field"></div>
+
+</div>
+
+<script>
+  $(document).ready(function() {
+    $("#accept-btn").on('click', function(e) {
+      $(".dashboard-cleaning-link").toggleClass('hidden');
+    });
+  });
+</script>

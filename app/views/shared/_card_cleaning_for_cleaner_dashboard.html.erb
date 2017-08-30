@@ -1,4 +1,4 @@
-<% missions.each do |cleaning| %>
+<% @missions.each do |cleaning| %>
   <p class="created-at">created : <%= cleaning.created_at.strftime("%d/%m/%y at %Hh%M") %></p>
   <li class="card">
     <div class="col-xs-2 text-left img-col img-circle">
@@ -21,7 +21,7 @@
     </div>
     <% if cleaning.status == "pending" %>
       <div class="col-xs-2 col-btn">
-        <%= link_to "accept", cleaning_path(cleaning), method: 'patch', class: "btn btn-info", id: "accept-btn" %>
+        <%= link_to "accept", pro_cleaning_path(cleaning), method: 'patch', class: "btn btn-info", id: "accept-btn" %>
       </div>
     <% elsif cleaning.status == "accepted" %>
       <%= link_to "https://calendar.google.com/calendar/", class: "dashboard-cleaner-link flex-ver-center stripe text-center" do %>
@@ -29,7 +29,7 @@
       <% end %>
     <% elsif cleaning.status == "confirmed" %>
       <div class="col-xs-2 col-btn">
-        <%= link_to "edit", cleaning_path(cleaning), class: "btn btn-primary" %>
+        <%= link_to "edit", edit_pro_cleaning_path(cleaning), class: "btn btn-primary" %>
       </div>
     <% end %>
   </li>
