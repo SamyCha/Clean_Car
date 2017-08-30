@@ -1,13 +1,85 @@
 <div class="container">
+  <%= render "shared/mcc-main-title" %>
+
   <div class="row">
-    <h1>Your Order</h1>
+    <div class="col-xs-12">
+      <h2>Thank you for your command :</h2>
+    </div>
+  </div>
+
+  <div class="row" id="order-details">
+    <ul>
+      <div class="col-xs-12">
+        <li >
+          <div class="col-xs-12 label-cleaner" >
+            <p style="color: white;">Your Cleaner :</p>
+          </div>
+          <div class="card col-xs-12 flex-ver-center cleaner">
+            <div class="col-xs-3">
+            <%= image_tag "profil.png", id: "logo", height: 60 %>
+            </div>
+            <div class="col-xs-3">
+              <%= @cleaner.firstname %>
+            </div>
+
+            <div class="col-xs-4 col-xs-offset-2 text-center">
+              <% unless @cleaner.cleanings.where.not(rating: nil).blank? %>
+                <% @cleaner.cleanings.where.not(rating: nil).each do |cleaning| %>
+                  <% @ratings << cleaning.rating  %>
+                <% end %>
+                <%= (@ratings.sum / @ratings.size.to_f).to_s.first(3) %>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              <% else %>
+                <p>no rating yet</p>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      </div>
+      <div class="col-xs-12">
+        <li class="card flex-ver-center">
+          <div class="col-xs-4 img-col">
+            <% car = @order.cleaning.car %>
+            <% if car.car_picture && !car.car_picture.blank? %>
+              <%= image_tag car.car_picture, class: "img-circle" %>
+            <% else %>
+              <%= image_tag "#{Category.find(car.category_id).name}_car.svg", class: "img-circle" %>
+            <% end %>
+          </div>
+          <div class="col-xs-4 margin-top15">
+            <p><%= car.brand %> <%= car.model %></p>
+            <p style="color: <%= car.color %>;"><%= car.color %></p>
+          </div>
+
+          <% unless @cleaning.rating.nil? %>
+          <div class="col-xs-4">
+            <p><%= @cleaning.rating %>
+              <i class="fa fa-star" aria-hidden="true"></i>
+            </p>
+          </div>
+          <% end %>
+
+        </li>
+      </div>
+      <div class="col-xs-12">
+        <li class="card">
+          <div class="flex-ver-center place-period-order-show">
+            <p><%= @cleaning.place %></p>
+            <p><%= @cleaning.period.strftime("%d/%m/%y - %M/%H") if @cleaning.period %></p>
+          </div>
+        </li>
+      </div>
+      <div class="col-xs-12">
+        <li class="card text-center">
+          <p id="label-amount">Amount: <%= humanized_money_with_symbol(@order.amount) %></p>
+        </li>
+      </div>
+    <ul>
   </div>
 
   <div class="row">
-    <ul>
-      <li>Status: <%= @order.state %></li>
-      <li>Item: <%= @order.cleaning.car.category.name %></li>
-      <li>Amount: <%= humanized_money_with_symbol(@order.amount) %></li>
-    <ul>
+    <div class="col-xs-12 text-center margin-top20">
+      <%= link_to "back to dashboard", client_dashboard_path, class: "btn btn-primary" %>
+    </div>
   </div>
 </div>
