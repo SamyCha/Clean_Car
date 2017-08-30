@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="profile-edit">
 
   <div class="row text-right margin-top5" >
     <div class="col-xs-10 col-xs-offset-2">
@@ -7,9 +7,16 @@
     </div>
   </div>
 
-  <div class="row">
-    <%= simple_form_for @user do |f| -%>
-      <div class="col-xs-6">
+  <%= render "shared/swiper" %>
+  <div class="row margin-top15">
+    <div class="col-xs-12 text-right">
+      <%= link_to "edit cars", client_cars_path, class: "btn btn-info" %>
+    </div>
+  </div>
+
+  <div class="row margin-top15">
+    <%= simple_form_for @user, url: client_user_path(@user) do |f| -%>
+      <div class="col-xs-12">
         <%= f.input :avatar, as: :attachinary %>
       </div>
       <div class="col-xs-12">
@@ -18,7 +25,9 @@
       <div class="col-xs-12">
         <%= f.input :phonenumber %>
       </div>
-      <%= f.submit %>
+      <div class="col-xs-12 text-center">
+        <%= f.submit "Save your Informations", class: "btn btn-primary" %>
+      </div>
     <% end -%>
   </div>
 </div>

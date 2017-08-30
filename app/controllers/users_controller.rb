@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
 
   def index
-    if current_user.cleaner
-      redirect_to pro_dashboard_path
+    if current_user
+      if current_user.cleaner
+        redirect_to pro_dashboard_path
+      end
     end
 
     @title = "Index - My Clean Car"
