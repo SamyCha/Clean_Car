@@ -6,7 +6,8 @@ class Cleaning < ApplicationRecord
   has_attachments :photos, maximum: 4
 
   # after_update :send_sms_to_customer
-  # after_create :broadcast_cleaning
+  after_create :broadcast_cleaning
+  after_update :broadcast_accepted
 
   def price
     car.category.price
@@ -14,12 +15,26 @@ class Cleaning < ApplicationRecord
 
   private
 
+  # def broadcast_cleaning
+  #   ActionCable.server.broadcast("cleanings", {
+  #     cleaning_partial: ApplicationController.renderer.render(
+  #       partial: "cleanings/recap_for_client",
+  #       locals: { car: self.car }
+  #     )
+  #   })
   def broadcast_cleaning
     ActionCable.server.broadcast("cleanings", {
-      cleaning_partial: ApplicationController.renderer.render(
-        # partial: "cleanings/recap_for_client",
-        locals: { car: self.car }
-      )
+      # cleaning_partial: ApplicationController.renderer.render(
+        # partial: "cleanings/recap_for_client"
+        cleaning: "Hi, this is a socket ! :D"
+      # )
     })
   end
+
+  def broadcast_accepted
+    ActionCable.server.broadcast("accepted", {
+        accepted: "hello"
+    })
+  end
+
 end
