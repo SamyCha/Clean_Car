@@ -7,12 +7,19 @@
 
   <section id="client-section">
     <div class="row">
-      <div class="col-xs-4 col-xs-offset-1 text-center">
-        <%= image_tag "profil.png", style: "width: 100%"%>
-      </div>
-      <div class="col-xs-7 text-right">
-        <p><%= @user.email %></p>
-        <p class="created-at">client since : <%= @user.created_at.strftime('%d/ %m/ %Y') %></p>
+      <div class="col-xs-12 profil-description">
+        <div class="col-xs-5 text-center client-picture">
+          <% if @user.avatar? %>
+            <%= cl_image_tag @user.avatar.path, crop: :fill  %>
+          <% else %>
+            <%= image_tag "profil.png" %>
+          <% end %>
+        </div>
+        <div class="col-xs-7 text-right client-details margin-top15">
+          <p class="email"><%= @user.email %></p>
+          <p class="created-at">client since : <%= @user.created_at.strftime('%d/ %m/ %Y') %></p>
+          <%= link_to "edit", client_dashboard_edit_path(@user), id: "client-edit" %>
+        </div>
       </div>
     </div>
 
@@ -20,7 +27,7 @@
       <div class="col-xs-12">
         <h3>Your cleanings</h3>
         <ul class="dashboard-client-ul">
-          <p>pending</p>
+          <p class="status">pending</p>
           <% @cleanings.each_with_index do |cleanings, i| %>
             <% cleanings.each do |cleaning| %>
                 <p class="created-at">created : <%= cleaning.created_at.strftime("%d/%m/%y at %Hh%M") %></p>
@@ -64,16 +71,15 @@
                   <% end %>
                 </li>
             <% end %>
-            <% case i %>
-            <% when 0 %>
+            <% if i == 0 && @accepteds.blank? == false %>
               <hr>
-              <p>accepted</p>
-            <% when 1 %>
+              <p class="status">accepted</p>
+            <% elsif i == 1 && @confirmeds.blank? == false %>
               <hr>
-              <p>confirmed</p>
-            <% when 2 %>
+              <p class="status">confirmed</p>
+            <% elsif i == 2 && @completes.blank? == false %>
               <hr>
-              <p>complete</p>
+              <p class="status">completed</p>
             <% end %>
           <% end %>
         </ul>
