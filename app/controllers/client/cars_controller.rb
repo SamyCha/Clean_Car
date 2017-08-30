@@ -1,6 +1,10 @@
 class Client::CarsController < ApplicationController
   before_action :find_car, only: [:edit, :update, :destroy]
 
+  def index
+    @cars = current_user.cars
+  end
+
   def new
     @car = Car.new
   end
