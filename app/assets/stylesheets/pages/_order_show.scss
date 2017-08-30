@@ -1,0 +1,40 @@
+#order-details {
+  ul {
+    list-style-type: none;
+    padding: 0px;
+    color: black;
+    .label-cleaner {
+      p {
+        margin: 0px;
+      }
+    }
+    .card {
+      background-color: rgba(244, 244, 244, 0.9);
+      .cleaner {
+        margin-top: 0px;
+      }
+      .img-col {
+        padding: 0px;
+        img {
+          padding: 10%;
+          height: 7.5vh;
+          width: 100%;
+        }
+      }
+      .col-xs-4 {
+        .margin-top15 {
+          p {
+            margin-bottom: 0px;
+          }
+        }
+      }
+    }
+    #label-amount {
+      font-size: 8vw;
+    }
+    .place-period-order-show {
+      padding: 3% 0px;
+      justify-content: space-around;
+    }
+  }
+}
