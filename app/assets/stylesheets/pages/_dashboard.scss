@@ -84,11 +84,12 @@
       }
       .col-xs-2.col-btn {
         padding: 0px;
+        z-index: 3;
         .btn {
           font-size: 3vw;
         }
         #accept-btn {
-          padding: 15% 17%;
+          z-index: 4;
         }
       }
       .dashboard-cleaning-description {
@@ -97,14 +98,16 @@
       }
       .dashboard-cleaner-link {
         text-decoration: none;
-        z-index: 1;
+        z-index: 2;
         position: absolute;
         height: 100%;
         width: 100%;
         color: white;
         justify-content: center;
         margin-left: -10px;
-        background-color: rgba(0, 0, 0, 0.7);
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.2);
+        }
         p {
           font-size: 4vw;
           text-shadow: 3px 3px 3px black;
@@ -243,4 +246,9 @@
       }
     }
   }
+}
+
+.save-infos {
+  width: 45%;
+  font-size: 3.5vw;
 }

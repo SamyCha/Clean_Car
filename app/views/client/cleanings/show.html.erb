@@ -1,9 +1,9 @@
 <div class="container">
   <%= render "shared/mcc-main-title" %>
 
-  <% content_for :meta_title, "#{@cleaning.name} is on #{DEFAULT_META["meta_product_name"]}" %>
-  <% content_for :meta_description, @cleaning.description %>
-  <% content_for :meta_image, cloudinary_url(@cleaning.photo.path) %>
+  <% content_for :meta_title, "#{@cleaning.user.firstname} is on #{DEFAULT_META["meta_product_name"]}" %>
+  <% content_for :meta_description, "" %>
+  <% content_for :meta_image, image_path("background_pro.png") %>
 
   <div class="row">
     <div class="col-xs-12 text-left">
@@ -45,6 +45,12 @@
       </div>
     </div>
   </div>
+
+  <% if @cleaning.status == "complete" %>
+    <div class="col-xs-12">
+      <button class="btn btn-primary" id="gallery-btn">Display Photos</button>
+    </div>
+  <% end %>
 
   <div class="row margin-top15 recap-cleaning">
     <p>Your parking period:</p>
