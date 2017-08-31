@@ -1,0 +1,8 @@
+<% if current_user %>
+  <div class="background" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "background_bentley.jpg" %>');">
+  <% if current_user.cleaner %>
+    <div class="background" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "background_pro.png" %>');">
+  <% end %>
+<% else %>
+  <div class="background" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path "background_bentley.jpg" %>');">
+<% end %>

@@ -70,7 +70,9 @@
                     </div>
                   <% end %>
                   <% if cleaning.status == "accepted" %>
-                    <%= link_to client_orders_path(cleaning: cleaning), class: "dashboard-cleaning-link stripe flex-ver-center", method: "post" do %>
+                    <%= link_to new_client_order_payment_path(
+                        order_id: Order.where(cleaning: cleaning).first.id
+                      ), class: "dashboard-cleaning-link stripe flex-ver-center" do %>
                       <p>Click to Pay</p>
                     <% end %>
                   <% elsif cleaning.status == "complete" && cleaning.rating.nil? %>
