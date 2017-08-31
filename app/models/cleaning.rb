@@ -6,7 +6,7 @@ class Cleaning < ApplicationRecord
 
   geocoded_by :place
   after_validation :geocode, if: :place_changed?
-  has_attachments :photos, maximum: 4
+  has_attachments :photos, maximum: 2
 
   # after_update :send_sms_to_customer
   after_create :broadcast_cleaning
