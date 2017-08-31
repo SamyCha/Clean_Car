@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+    <title><%= meta_title %></title>
+    <meta name="description" content="<%= meta_description %>">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -11,7 +15,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto" rel="stylesheet">
 
-    <title><%= @title.blank? ? "My Clean Car" : @title %></title>
+    <title><%= @title.blank? ? "My Clean Car, book easily an eco wash" : @title %></title>
 
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
