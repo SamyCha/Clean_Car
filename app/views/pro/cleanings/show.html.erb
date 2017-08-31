@@ -57,10 +57,13 @@
       <%= @cleaning.place %>
     </div>
   </div>
-
   <div class="row">
     <div class="col-xs-12 text-center">
-      <%= link_to "add your photos", edit_pro_cleaning_path(@cleaning), class: "btn btn-primary margin-top50"%>
+      <% unless @cleaning.photos.size == 4 %>
+        <%= link_to "add your photos", edit_pro_cleaning_path(@cleaning), class: "btn btn-primary margin-top50"%>
+      <% else %>
+        <%= link_to "hide this mission", pro_cleaning_path(@cleaning), method: "patch", class: "btn btn-primary margin-top50"%>
+      <% end %>
     </div>
   </div>
 </div>

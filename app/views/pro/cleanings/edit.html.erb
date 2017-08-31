@@ -77,12 +77,15 @@
   </div>
 </div>
 
-<script>
-  $(document).ready(function() {
-    $('#btn-add-photos').on('click', function(e) {
-      $(this).addClass('hidden');
-      $('#photos-uploader').removeClass('hidden');
-    });
-  });
 
-</script>
+<%= content_for :after_js do %>
+  <script>
+    $(document).ready(function() {
+      $('#btn-add-photos').on('click', function(e) {
+        $(this).addClass('hidden');
+        $('#photos-uploader').removeClass('hidden');
+      });
+    });
+
+  </script>
+<% end %>

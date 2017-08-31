@@ -46,19 +46,20 @@
   </div>
 </div>
 
-<script>
-  var swiper = new Swiper('.swiper-container', {
-    initialSlide: 1,
-    roundLengths: true,
-    pagination: '.swiper-pagination',
-    paginationClickable: true,
-    nextButton: '.swiper-button-next',
-    prevButton: '.swiper-button-prev',
-    spaceBetween: 30,
-    onSlideChangeEnd: function (swiper) {
-      var carId = $(".swiper-slide-active").attr('id');
-      $('#car_id_field').val(carId);
-    }
-  });
-</script>
-
+<%= content_for :after_js do  %>
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      initialSlide: 1,
+      roundLengths: true,
+      pagination: '.swiper-pagination',
+      paginationClickable: true,
+      nextButton: '.swiper-button-next',
+      prevButton: '.swiper-button-prev',
+      spaceBetween: 30,
+      onSlideChangeEnd: function (swiper) {
+        var carId = $(".swiper-slide-active").attr('id');
+        $('#car_id_field').val(carId);
+      }
+    });
+  </script>
+<% end %>
