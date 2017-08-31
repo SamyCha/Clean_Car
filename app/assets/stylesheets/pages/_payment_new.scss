@@ -44,6 +44,9 @@
 
     .cleaner-loading-svg {
       background-color: rgba(244, 244, 244, 0.9);
+      .col-xs-2 {
+        padding: 0px;
+      }
       .loader{
         padding: 0.5vh;
       }

@@ -42,16 +42,14 @@ class Client::CleaningsController < ApplicationController
   end
 
   def update
-    if @cleaning.status == "pending"
-      @cleaning.update(status: "accepted")
-    elsif @cleaning.status == "accepted"
+    if @cleaning.status == "accepted"
       @cleaning.update(status: "confirmed")
-    elsif @cleaning.status == "confirmed"
+    elsif @cleaning.status == "complete" && @cleaning.rating.nil?
       @cleaning.update(cleaning_params)
-    elsif @cleaning.status == "complete"
-      @cleaning.update(status: "archived")
+      redirect_to client_dashboard_path
+    elsif @cleaning.status == "complete" && @cleaning.rating
+      @cleaning.update(cleaning_params)
     end
-    redirect_to client_dashboard_path
   end
 
   def destroy
@@ -60,7 +58,7 @@ class Client::CleaningsController < ApplicationController
   private
 
   def cleaning_params
-    params.require(:cleaning).permit(:car_id, :place, :period, :comment_access, :requirements, :status, photos: [])
+    params.require(:cleaning).permit(:car_id, :place, :period, :comment_access, :requirements, :rating, :status, photos: [])
   end
 
   def find_cleaning

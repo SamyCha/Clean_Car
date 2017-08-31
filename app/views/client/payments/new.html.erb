@@ -44,7 +44,6 @@
       </div>
 
       <div id="cleaner-recap">
-
         <% if @cleaning.status == "accepted" %>
           <%= render partial: 'users/cleaner_recap', locals: { cleaner: @cleaning.user, ratings: [] } %>
         <% else %>
@@ -85,7 +84,7 @@
         </label>
       </article>
     </div>
-    <div class="col-xs-12 text-center last-col">
+    <div class="col-xs-12 text-center last-col hidden">
       <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
       data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
       data-name="My Cleaning"

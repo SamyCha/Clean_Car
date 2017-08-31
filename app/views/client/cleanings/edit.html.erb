@@ -1,0 +1,62 @@
+<div class="container">
+  <%= render "shared/mcc-main-title" %>
+  <% @cleaning.update(rating: nil) %>
+  <%# raise %>
+  <% if @cleaning.rating.blank? or @cleaning.rating.nil? and @cleaning.status == "complete" %>
+    <%= simple_form_for @cleaning, url: client_cleaning_path, id: "rating-form" do |f| -%>
+
+      <div class="row margin-top20">
+        <div class="col-xs-12 text-center btn-rating" >
+          <strong>Rate this cleaning !</strong>
+          <div class="btn-toolbar text-center margin-top15" role="toolbar" aria-label="...">
+            <div class="btn-group rating-btns" role="group" aria-label="..." style="float: none">
+              <% 5.times do |t| %>
+                <button type="button" class="btn btn-default"><%= t + 1 %></button>
+              <% end %>
+              <%= f.input :rating, as: :hidden, input_html: { id: "cleaning_rating"} %>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 text-center thx-rating hidden" >
+          <h3>Thank you for rating</h3>
+        </div>
+        <div class="col-xs-12 text-center margin-top15 hidden" id="dashboard-btn">
+          <%= f.submit "dashboard", class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end -%>
+  <% elsif @cleaning.rating %>
+    <div class="col-xs-12 text-center thx-rating" >
+        <h3>Thank you for rating</h3>
+      </div>
+      <div class="col-xs-12 text-center margin-bottom margin-top15">
+        <%= link_to "dashboard", client_dashboard_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% else %>
+    <div class="col-xs-12 text-center margin-top15 margin-bottom">
+      <%= link_to "dashboard", client_dashboard_path, class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+
+  $(document).ready(function(){
+
+    $('#edit_cleaning_<%= @cleaning.id %>').submit(function(e) {
+      window.setTimeout(function(e) {
+        console.log(e);
+      }, 8000);
+    });
+
+    $('button.btn').on('click', function(e) {
+      console.log(e);
+      var rating = $(this).text();
+      $('#cleaning_rating').val(rating);
+      $('.thx-rating').removeClass('hidden');
+      $('#dashboard-btn').removeClass('hidden');
+      $('.btn-rating').addClass('hidden');
+    });
+  });
+</script>
