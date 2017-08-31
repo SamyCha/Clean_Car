@@ -1,6 +1,10 @@
 <div class="container">
   <%= render "shared/mcc-main-title" %>
 
+  <% content_for :meta_title, "#{@cleaning.name} is on #{DEFAULT_META["meta_product_name"]}" %>
+  <% content_for :meta_description, @cleaning.description %>
+  <% content_for :meta_image, cloudinary_url(@cleaning.photo.path) %>
+
   <div class="row">
     <div class="col-xs-12 text-left">
       <p>Recap of your cleaning : </p>
