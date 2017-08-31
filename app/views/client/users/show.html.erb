@@ -34,9 +34,9 @@
         <ul class="dashboard-client-ul">
           <p class="status">pending</p>
           <% @cleanings.each_with_index do |cleanings, i| %>
-            <% cleanings.each do |cleaning| %>
+            <% cleanings.each_with_index do |cleaning, is| %>
                 <p class="created-at">created : <%= cleaning.created_at.strftime("%d/%m/%y at %Hh%M") %></p>
-                <li class="card">
+                <li class="card" id="status-<%= "#{cleaning.status}#{is}"%>">
                   <div>
                     <% car = Car.find(cleaning.car_id) %>
                     <% if car.car_picture && !car.car_picture.blank? %>
@@ -62,8 +62,8 @@
                   </div>
                   <% end %>
 
-                  <% if cleaning.status == "complete" && !cleaning.rating.nil? %>
-                      <%= link_to "hide", client_cleaning_path(cleaning), class: "btn btn-default btn-hide", method: "patch"  %>
+                  <% if cleaning.status == "complete" && cleaning.rating %>
+                      <%= link_to "hide", client_cleaning_path(cleaning, cleaning: {status: "archived"}), class: "btn btn-default btn-hide", method: "patch"  %>
                   <% else %>
                     <div>
                       <p class="dashboard-cleaning-description p-status-<%= cleaning.status %>"><%= cleaning.status %></p>
@@ -73,9 +73,14 @@
                     <%= link_to client_orders_path(cleaning: cleaning), class: "dashboard-cleaning-link stripe flex-ver-center", method: "post" do %>
                       <p>Click to Pay</p>
                     <% end %>
+                  <% elsif cleaning.status == "complete" && cleaning.rating.nil? %>
+                    <%= link_to edit_client_cleaning_path(cleaning), class: "dashboard-cleaning-link stripe flex-ver-center" do %>
+                    <p>Rate this cleaning</p>
+                    <% end %>
                   <% else %>
                     <%= link_to '', client_cleaning_path(cleaning), class: "dashboard-cleaning-link" %>
                   <% end %>
+                    <%# raise %>
                 </li>
             <% end %>
             <% if i == 0 && @accepteds.blank? == false %>
@@ -94,11 +99,13 @@
     </div>
   </section>
 </div>
-
 <script>
   $(document).ready(function() {
     $("#accept-btn").on('click', function(e) {
       $(".dashboard-cleaning-link").toggleClass('hidden');
+    });
+    $('.btn-hide').on('click', function(e) {
+      $(this).parent().addClass('hidden');
     });
   });
 </script>
