@@ -19,8 +19,8 @@ class Pro::CleaningsController < ApplicationController
       @cleaning.update(status: "confirmed")
     elsif @cleaning.status == "confirmed"
       @cleaning.update(cleaning_params)
-      send_sms_to_customer(@cleaning)
     elsif @cleaning.status == "complete"
+      send_sms_to_customer(@cleaning)
       @cleaning.update(status: "archived")
     end
     redirect_to pro_dashboard_path
@@ -40,17 +40,14 @@ class Pro::CleaningsController < ApplicationController
   end
 
   def send_sms_to_customer(cleaning)
-    if status == "complete"
-      callr_api = CALLR::Api.new(ENV["CALLR_USER_NAME"], ENV["CALLR_PASSWORD"])
-      to = cleaning.car.user.phonenumber
-      body = "#{cleaning.user.firstname} has cleaned your car"
-      callr_api.call(
-        'sms.send',
-        'CLEAN',
-        to,
-        body,
-        nil
-      )
-    end
+    callr_api = CALLR::Api.new(ENV["CALLR_USER_NAME"], ENV["CALLR_PASSWORD"])
+     body = "#{cleaning.user.firstname} has cleaned your car. Go check : #{client_cleaning_url(cleaning)}"
+     callr_api.call(
+       'sms.send',
+       'SMS',
+       "+33681503710",
+       body,
+       nil
+     )
   end
 end
