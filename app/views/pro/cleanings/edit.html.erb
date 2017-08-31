@@ -62,8 +62,11 @@
 
   <div class="row hidden margin-top50" id="photos-uploader">
     <%= simple_form_for @cleaning , url: pro_cleaning_path do |f| %>
-      <div class="col-xs-12 text-center">
+      <div class="col-xs-12 text-left">
+      <h4>Take maximum 2 pictures of your cleaning</h4>
         <%= f.input :photos, as: :attachinary %>
+      </div>
+        <div class="col-xs-12 text-center">
         <%= f.input :status, input_html: {value: "complete"}, as: :hidden %>
         <%= f.submit "Complete Mission" , class: "btn btn-primary margin-top20" %>
       </div>
