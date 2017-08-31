@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
+
+    <title><%= meta_title %></title>
+    <meta name="description" content="<%= meta_description %>">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <meta name="theme-color" content="#32B796">
+    <meta name="msapplication-navbutton-color" content="#32B796">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto" rel="stylesheet">
 
-    <title><%= @title.blank? ? "My Clean Car" : @title %></title>
+    <title><%= @title.blank? ? "My Clean Car, book easily an eco wash" : @title %></title>
 
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
     <%= favicon_link_tag 'car_picto.png' %>
     <%= render "shared/ga" if Rails.env.production? %>
   </head>
@@ -25,6 +31,7 @@
         <%= yield %>
       </div>
       <%= render 'shared/javascript_tag' %>
+      <%= javascript_include_tag 'application' %>
       <%= cloudinary_js_config %>
       <%= yield(:after_js) %>
     </body>

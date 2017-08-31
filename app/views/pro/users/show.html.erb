@@ -30,40 +30,17 @@
     <div class="row">
       <div class="col-xs-12">
         <h2>Your Missions : </h2>
-        <ul class="dashboard-cleaner-ul">
-          <%= render "shared/card_cleaning_for_cleaner_dashboard" %>
+        <ul class="dashboard-cleaner-ul" id="cleaning-recap">
+          <%= render partial: "shared/card_cleaning_for_cleaner_dashboard", locals: { missions: @missions } %>
         </ul>
-
       </div>
+
       <% unless @completes.blank? %>
         <div class="col-xs-12">
           <h2>Past Missions :</h2>
           <ul class="dashboard-cleaner-ul">
             <% @completes.each do |cleaning| %>
               <p class="created-at">created : <%= cleaning.created_at.strftime("%d/%m/%y at %Hh%M") %></p>
-              <li class="card">
-                <div class="col-xs-2 text-left img-col img-circle">
-                  <% if cleaning.car.car_picture && !cleaning.car.car_picture.blank? %>
-                    <%= image_tag cleaning.car.car_picture %>
-                  <% else %>
-                    <%= image_tag "#{Category.find(cleaning.car.category_id).name}_car.svg", class: "img-circle" %>
-                  <% end %>
-                </div>
-                <div class="col-xs-2 car-col">
-                  <p class="dashboard-cleaning-description"><%= cleaning.car.brand %> <%= cleaning.car.model %></p>
-                  <p class="dashboard-cleaning-description"><%= cleaning.car.color %></p>
-                </div>
-                <div class="col-xs-4 place">
-                  <p class="dashboard-cleaning-description"><%= cleaning.place %></p>
-                </div>
-                <div class="col-xs-2 date">
-                  <p class="text-center dashboard-cleaning-description"><%= cleaning.period.strftime("%d/%m/%y")%></p>
-                  <p class="text-center dashboard-cleaning-description"><%= cleaning.period.strftime("%Hh%M")%></p>
-                </div>
-                <div class="col-xs-2 col-btn">
-                  <%= link_to "show", pro_cleaning_path(cleaning), class: "btn btn-primary" %>
-                </div>
-              </li>
             <% end %>
           </ul>
         </div>
@@ -75,10 +52,23 @@
 
 </div>
 
-<script>
-  $(document).ready(function() {
-    $("#accept-btn").on('click', function(e) {
-      $(".dashboard-cleaning-link").toggleClass('hidden');
+<%= content_for :after_js do %>
+  <script>
+    $(document).ready(function() {
+      $("#accept-btn").on('click', function(e) {
+        $(".dashboard-cleaning-link").toggleClass('hidden');
+      });
     });
-  });
-</script>
+  </script>
+  <script>
+    App.cable.subscriptions.create("PaidChannel",
+      {
+        received: (data) => {
+          if (data.current_user_id == <%= current_user.id %>) {
+            $('#cleaning-recap').html(data.paid_partial);
+          }
+        }
+      }
+    )
+  </script>
+<% end %>

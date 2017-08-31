@@ -6,6 +6,6 @@ App.cable.subscriptions.create('CleaningsChannel',
   {
   received: function(data) {
     console.log("ws working !");
-    $('.socket-field').append(data.cleaning_partial);
+    $('.socket-field').append(data);
   }
 });

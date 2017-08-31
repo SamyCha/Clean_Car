@@ -24,6 +24,7 @@ class Client::PaymentsController < ApplicationController
 
     @order.update(payment: charge.to_json, state: 'paid')
     @order.cleaning.update(status: "confirmed")
+    broadcast_paid
     redirect_to client_order_path(@order)
 
   rescue Stripe::CardError => e
@@ -35,5 +36,15 @@ private
 
   def set_order
     @order = Order.where(state: 'pending').find(params[:order_id])
+  end
+
+  def broadcast_paid
+    ActionCable.server.broadcast("paid", {
+      paid_partial: ApplicationController.renderer.render(
+        partial: "shared/card_cleaning_for_cleaner_dashboard",
+        locals: { missions: @order.cleaning.user.cleanings.where(status: "pending").or(@order.cleaning.user.cleanings.where(status: "accepted")).or(@order.cleaning.user.cleanings.where(status: "confirmed")).sort_by(&:status).reverse}
+      ),
+      current_user_id: @order.cleaning.user.id
+    })
   end
 end
