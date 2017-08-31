@@ -1,0 +1,23 @@
+<li class="card">
+  <div class="col-xs-2 text-left img-col img-circle">
+    <% if cleaning.car.car_picture && !cleaning.car.car_picture.blank? %>
+      <%= image_tag cleaning.car.car_picture %>
+    <% else %>
+      <%= image_tag "#{Category.find(cleaning.car.category_id).name}_car.svg", class: "img-circle" %>
+    <% end %>
+  </div>
+  <div class="col-xs-2 car-col">
+    <p class="dashboard-cleaning-description"><%= cleaning.car.brand %> <%= cleaning.car.model %></p>
+    <p class="dashboard-cleaning-description"><%= cleaning.car.color %></p>
+  </div>
+  <div class="col-xs-4 place">
+    <p class="dashboard-cleaning-description"><%= cleaning.place %></p>
+  </div>
+  <div class="col-xs-2 date">
+    <p class="text-center dashboard-cleaning-description"><%= cleaning.period.strftime("%d/%m/%y")%></p>
+    <p class="text-center dashboard-cleaning-description"><%= cleaning.period.strftime("%Hh%M")%></p>
+  </div>
+  <div class="col-xs-2 col-btn">
+    <%= link_to "show", pro_cleaning_path(cleaning), class: "btn btn-primary" %>
+  </div>
+</li>

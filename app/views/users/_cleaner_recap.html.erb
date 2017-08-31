@@ -1,0 +1,28 @@
+<div class="col-xs-12" id="payment-cleaner-card">
+  <li >
+    <div class="col-xs-12 label-payment" >
+      <p style="color: white;">Your cleaning will be done by : </p>
+    </div>
+
+    <div class="card col-xs-12 flex-ver-center cleaner">
+      <div class="col-xs-3">
+      <%= image_tag "profil.png", id: "logo", height: 60 %>
+      </div>
+      <div class="col-xs-3">
+        <%= cleaner.firstname %>
+      </div>
+
+      <div class="col-xs-4 col-xs-offset-2 text-center">
+        <% unless cleaner.cleanings.where.not(rating: nil).blank? %>
+          <% cleaner.cleanings.where.not(rating: nil).each do |cleaning| %>
+            <% ratings << cleaning.rating  %>
+          <% end %>
+          <%= (ratings.sum / ratings.size.to_f).to_s.first(3) %>
+          <i class="fa fa-star-o" aria-hidden="true"></i>
+        <% else %>
+          <p>no rating yet</p>
+        <% end %>
+      </div>
+    </div>
+  </li>
+</div>

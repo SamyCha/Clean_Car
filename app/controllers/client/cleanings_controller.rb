@@ -25,21 +25,12 @@ class Client::CleaningsController < ApplicationController
       date = params[:cleaning][:date].split('-')
       time = params[:cleaning][:time].split(':')
       period = DateTime.new(date[2].to_i, date[1].to_i, date[0].to_i, time[0].to_i, time[1].to_i)
-
-      params[:cleaning].delete(:time)
-      params[:cleaning].delete(:date)
-
-      params[:cleaning][:period] = period
-
-      @cleaning = Cleaning.new(cleaning_params)
-      users = User.all
       cleaner = User.where(cleaner: true).near(cleaning_params[:place], 20).first
 
-      @cleaning.update(user: cleaner)
-
+      @cleaning = Cleaning.new(cleaning_params.merge(period: period, user: cleaner))
       if @cleaning.save
-
-        redirect_to new_client_order_payment_path(@cleaning)
+        order = Order.create!(cleaning: @cleaning, amount: @cleaning.price, state: 'pending')
+        redirect_to new_client_order_payment_path(order)
       else
         flash[:alert] = "An error has occurred..."
         redirect_to new_client_cleaning_path

@@ -20,7 +20,6 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
     <%= favicon_link_tag 'car_picto.png' %>
     <%= render "shared/ga" if Rails.env.production? %>
   </head>
@@ -32,6 +31,7 @@
         <%= yield %>
       </div>
       <%= render 'shared/javascript_tag' %>
+      <%= javascript_include_tag 'application' %>
       <%= cloudinary_js_config %>
       <%= yield(:after_js) %>
     </body>

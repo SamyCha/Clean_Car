@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'users#show'
     get '/dashboard/edit', to: 'users#edit'
     resources :cars
-    resources :orders, only: [:show, :create] do
+    resources :orders, only: [:show] do
       resources :payments, only: [:new, :create]
     end
   end

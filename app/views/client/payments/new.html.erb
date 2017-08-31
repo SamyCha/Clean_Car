@@ -43,49 +43,17 @@
         </li>
       </div>
 
-      <div class="col-xs-12 margin-top15">
-        <li >
-          <div class="card col-xs-6 col-xs-offset-3 flex-ver-center cleaner-loading-svg">
-            <div class="col-xs-2 text-center">
-              <%= render "shared/svg_loader" %>
-            </div>
-            <div class="col-xs-10">
-              <p>Searching for a cleaner</p>
-            </div>
-          </div>
-        </li>
+      <div id="cleaner-recap">
+
+        <% if @cleaning.status == "accepted" %>
+          <%= render partial: 'users/cleaner_recap', locals: { cleaner: @cleaning.user, ratings: [] } %>
+        <% else %>
+          <%= render 'users/waiting_for_cleaner' %>
+        <% end %>
       </div>
 
-      <div class="col-xs-12 hidden" id="payment-cleaner-card">
-        <li >
-          <div class="col-xs-12 label-payment" >
-            <p style="color: white;">Your cleaning will be done by : </p>
-          </div>
-
-          <div class="card col-xs-12 flex-ver-center cleaner">
-            <div class="col-xs-3">
-            <%= image_tag "profil.png", id: "logo", height: 60 %>
-            </div>
-            <div class="col-xs-3">
-              <%= @cleaner.firstname %>
-            </div>
-
-            <div class="col-xs-4 col-xs-offset-2 text-center">
-              <% unless @cleaner.cleanings.where.not(rating: nil).blank? %>
-                <% @cleaner.cleanings.where.not(rating: nil).each do |cleaning| %>
-                  <% @ratings << cleaning.rating  %>
-                <% end %>
-                <%= (@ratings.sum / @ratings.size.to_f).to_s.first(3) %>
-                <i class="fa fa-star-o" aria-hidden="true"></i>
-              <% else %>
-                <p>no rating yet</p>
-              <% end %>
-            </div>
-          </div>
-        </li>
-      </div>
       <div class="col-xs-12 label-payment" >
-        <p style="color: white;">Your cleaning will be done at : </p>
+        <p style="color: white;">At this place: </p>
       </div>
       <div class="col-xs-12">
         <li class="map-card card">
@@ -96,7 +64,7 @@
         </li>
       </div>
       <div class="col-xs-12 label-payment" >
-        <p style="color: white;">And the : </p>
+        <p style="color: white;">At this period: </p>
       </div>
       <div class="col-xs-12">
         <li class="card period-place flex-ver-center">
@@ -108,14 +76,14 @@
     <ul>
   </div>
 
-  <div class="row" style="margin-top: 50px;">
+  <div class="row hidden" style="margin-top: 50px;" id="pay-infos">
     <%= form_tag client_order_payments_path(@order) do %>
     <div class="col-xs-12 text-center">
-        <article>
-          <label class="amount">
-            <span>Amount : <%= humanized_money_with_symbol(@order.amount) %></span>
-          </label>
-        </article>
+      <article>
+        <label class="amount">
+          <span>Amount : <%= humanized_money_with_symbol(@order.amount) %></span>
+        </label>
+      </article>
     </div>
     <div class="col-xs-12 text-center last-col">
       <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -144,4 +112,11 @@
       });
     });
   <% end %>
+
+  <% if @cleaning.status == "accepted"%>
+    <script>
+      $("#pay-infos").removeClass('hidden')
+    </script>
+  <% end %>
 <% end %>
+

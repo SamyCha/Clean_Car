@@ -73,12 +73,14 @@
   <% end %>
 </div>
 
-<script>
-  $(document).ready(function() {
-    $('.glyphicon-ok').on('click', function(e) {
-      $(this).toggleClass('btn-danger');
-      $(this).toggleClass('btn-success');
-      $('.requirements-field').val('true');
+<%= content_for :after_js do  %>
+  <script>
+    $(document).ready(function() {
+      $('.glyphicon-ok').on('click', function(e) {
+        $(this).toggleClass('btn-danger');
+        $(this).toggleClass('btn-success');
+        $('.requirements-field').val('true');
+      });
     });
-  });
-</script>
+  </script>
+<% end %>
