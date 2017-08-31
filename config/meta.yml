@@ -1,4 +1,4 @@
 meta_product_name: "My Clean Car"
 meta_title: "My Clean Car - book an eco wash"
 meta_description: "My Clean Car provides you an easy and ecological cleaning of your car"
-meta_image: "car_picto.png"                       # should exist in `app/assets/images/`
+meta_image: "car_pictometa.png"                       # should exist in `app/assets/images/`
