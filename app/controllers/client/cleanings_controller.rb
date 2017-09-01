@@ -47,7 +47,7 @@ class Client::CleaningsController < ApplicationController
       @cleaning.update(status: "confirmed")
     elsif @cleaning.status == "complete" && @cleaning.rating.nil?
       @cleaning.update(cleaning_params)
-      redirect_to client_dashboard_path
+      redirect_to client_cleaning_path(@cleaning)
     elsif @cleaning.status == "complete" && @cleaning.rating
       @cleaning.update(cleaning_params)
     end
