@@ -101,6 +101,7 @@
     </div>
   </section>
 </div>
+<%= content_for :after_js do  %>
 <script>
   $(document).ready(function() {
     $("#accept-btn").on('click', function(e) {
@@ -111,3 +112,4 @@
     });
   });
 </script>
+<% end %>
