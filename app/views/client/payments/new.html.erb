@@ -96,26 +96,3 @@
     <% end %>
   </div>
 </div>
-
-<% content_for(:after_js) do %>
-  <%= javascript_tag do %>
-    $(document).ready(function() {
-      var address = {lat: <%= @cleaning.latitude %>, lng: <%= @cleaning.longitude %>};
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 14,
-        center: address
-      });
-      var marker = new google.maps.Marker({
-        position: address,
-        map: map
-      });
-    });
-  <% end %>
-
-  <% if @cleaning.status == "accepted"%>
-    <script>
-      $("#pay-infos").removeClass('hidden')
-    </script>
-  <% end %>
-<% end %>
-
