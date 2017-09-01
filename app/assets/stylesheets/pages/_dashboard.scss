@@ -182,7 +182,8 @@
       position: absolute;
       height: 100%;
       width: 100%;
-      margin-left: -10px;
+      left: 0;
+      top: 0;
       &:hover {
         background-color: rgba(0, 0, 0, 0.2);
       }
