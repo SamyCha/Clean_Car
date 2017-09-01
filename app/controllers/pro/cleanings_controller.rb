@@ -20,7 +20,7 @@ class Pro::CleaningsController < ApplicationController
     elsif @cleaning.status == "confirmed"
       @cleaning.update(cleaning_params)
     elsif @cleaning.status == "complete"
-      send_sms_to_customer(@cleaning)
+ #     send_sms_to_customer(@cleaning)
       @cleaning.update(status: "archived")
     end
     redirect_to pro_dashboard_path
