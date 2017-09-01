@@ -3,7 +3,7 @@
 
   <% content_for :meta_title, "#{@cleaning.user.firstname} is on #{DEFAULT_META["meta_product_name"]}" %>
   <% content_for :meta_description, "" %>
-  <% content_for :meta_image, image_path("background_pro.png") %>
+  <% content_for :meta_image, image_path("background_pro_low.jpg") %>
 
   <div class="row">
     <div class="col-xs-12 text-left">
@@ -89,7 +89,11 @@
     </div>
     <div class="col-xs-12 card flex-ver-center">
       <div class="col-xs-3">
-      <%= image_tag "profil.png", id: "logo", height: 60 %>
+        <% if @cleaner.avatar %>
+          <%= cl_image_tag @cleaner.avatar.path, crop: :fill, height: 60, id: "logo"  %>
+        <% else %>
+          <%= image_tag "profil.png", id: "logo", height: 60 %>
+        <% end %>
       </div>
       <div class="col-xs-3">
         <%= @cleaner.firstname %>
