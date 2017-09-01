@@ -68,6 +68,7 @@
   <% end %>
 </div>
 
+<%= content_for :after_js do  %>
 <script>
   $(document).ready(function(){
     $('.category').on('click', function(e) {
@@ -77,3 +78,4 @@
     });
   });
 </script>
+<% end %>

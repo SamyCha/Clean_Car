@@ -46,9 +46,21 @@
     </div>
   </div>
 
-  <% if @cleaning.status == "complete" %>
-    <div class="col-xs-12">
-      <button class="btn btn-primary" id="gallery-btn">Display Photos</button>
+  <% if @cleaning.status == "complete" or @cleaning.status == "archived" %>
+    <div class="row">
+
+      <div class="col-xs-12 text-center margin-top20">
+        <button class="btn btn-primary" id="gallery-btn">Display Photos</button>
+      </div>
+      <div class="col-xs-12 hidden flex-ver-center margin-top20" id="gallery">
+        <% if @cleaning.photos? %>
+          <% @cleaning.photos.each do |photo| %>
+            <div class="col-xs-6 cleaning-photos">
+              <%= cl_image_tag photo.path, crop: :fill %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
     </div>
   <% end %>
 
@@ -122,8 +134,15 @@
   </div> -->
 <%# raise %>
 </div>
-
+<%= content_for :after_js do  %>
 <script>
+  $(document).ready(function(e) {
+    $('#gallery-btn').on('click', function(e) {
+      $('#gallery').toggleClass('hidden');
+    });
+  });
+
+
   // Ladda.bind( 'div:not(.progress-demo) btn', { timeout: 4000 } );
   // Ladda.bind( '.progress-demo', {
   //   callback: function( instance ) {
@@ -139,3 +158,4 @@
   //   }
   // });
 </script>
+<% end %>
