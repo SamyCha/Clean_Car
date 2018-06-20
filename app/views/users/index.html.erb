@@ -12,18 +12,18 @@
     <% @cleaners.each do |cleaner| %>
     <div class="col-xs-12 card">
       <div class="flex-ver-center">
-        <div class="col-xs-3">
+        <div>
           <% if cleaner.avatar %>
             <%= cl_image_tag cleaner.avatar.path, crop: :fill, height: 60, id: "logo"  %>
           <% else %>
             <%= image_tag "profil.png", id: "logo", height: 60 %>
           <% end %>
         </div>
-        <div class="col-xs-3">
+        <div>
           <%= cleaner.firstname %>
         </div>
 
-        <div class="col-xs-3 col-xs-offset-3">
+        <div>
           <% unless cleaner.cleanings.blank? or cleaner.cleanings == false %>
             <% cleaner.cleanings.where.not(rating: nil).each do |cleaning| %>
               <% @ratings << cleaning.rating  %>
